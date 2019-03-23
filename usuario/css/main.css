@@ -1,0 +1,80 @@
+nav {
+    font-family: 'Titillium Web', sans-serif;    
+    }
+  a:hover {
+    text-decoration:none;
+    color:black;
+  }
+
+  a {
+    color:white;
+  }
+
+  nav {
+    background-color: #2653A0;
+  }
+
+  h4 {
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-weight: bold;
+  }
+
+  span >a, div>div>span {
+    color:black;
+    font-size:12px;
+  }
+
+  span>a:hover {
+    text-decoration: underline;
+    color:red;
+  }
+
+  .usuario-label {
+    text-align: left;
+  }
+
+  .usuario-valores {
+    text-align: right;
+  }
+
+  .texto-usuario-1 {
+    font-size: 12px;
+  }
+
+  .texto-usuario-2 {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+
+  .btn-usuario-editar {
+    font-size: 12px;
+  }
+
+  .usuario-curso-imagen {
+    
+  }
+
+  .usuario-curso-description {
+    
+  }
+  .btn-verCurso {
+    font-size: 9px;
+  }
+
+  .btn-cancelarCurso {
+    font-size: 9px;
+  }
+
+  .curso-inscrito {
+    border-style: groove;
+  }
+
+  .input-vacio {
+    border-color:#E84248;
+  }
+
+  .mensaje-error {
+    background-color: #E84248;
+    color:white;
+  }

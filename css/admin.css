@@ -1,0 +1,35 @@
+.letra_nav {
+    font-family: 'Exo 2', sans-serif;
+}
+
+
+
+
+.linea_arriba {
+    padding:15px;    
+    border-top: 1px solid #000;
+}
+
+.linea_abajo {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #000;
+}
+
+
+
+.titulo-seccion{
+    font-family: 'Exo 2', sans-serif;
+    font-weight:bold;
+    font-size: 1em;
+}
+
+.txt-button {
+    font-size: 12px;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+a:hover {
+    text-decoration: none;
+}
