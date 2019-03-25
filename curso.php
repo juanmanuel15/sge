@@ -179,7 +179,7 @@
                 'curso' : "<?php echo $curso;?> "
             };
 
-            var curso1 = "<?php echo $curso;?> ";
+            var curso1 = "<?php echo $curso; ?> ";
 
             var usuario = "<?php echo $usuario?>";
 
@@ -193,14 +193,14 @@
                 };
 
                 $.post('php/curso/inscribir.php', datos, function(respuesta){
-                    //respuesta = JSON.parse(respuesta);
-                    if(respuesta){
+                    respuesta = JSON.parse(respuesta);
+                    /*if(respuesta){
                         $('#btn_inscribir').text('ticket');
                         $('a').attr("href", "ticket.php");
                     }
                     else {
                         
-                    }
+                    }*/
                 });
             });
             
