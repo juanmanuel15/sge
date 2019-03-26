@@ -55,8 +55,8 @@
             ];
         }
 
-        print_r($curso);
-        print_r($cursos_inscritos);
+        
+        
 
         
 
@@ -65,48 +65,23 @@
         $respuesta = [];
 
         for ($i=0; $i < count($curso); $i++) { 
-            for ($j=0; $j <count($cursos_inscritos); $j++) {                 
-
+            for ($j=0; $j <count($cursos_inscritos); $j++) { 
+                echo $cursos_inscritos[$j]['fecha'] . "==". $curso[$i]['fecha'] . " ".  $cursos_inscritos[$j]['HI'] . ">=". $curso[$i]['HF'] ." <br>";
                 if($curso[$i]['fecha'] == $cursos_inscritos[$j]['fecha']){
-                    
-                    if($cursos_inscritos[$j]['HI']-$curso[$i]['HF']>= 0){
-
-                        $respuesta [] = true;
+                    if ($cursos_inscritos[$j]['HI'] >= $curso[$i]['HF']) {
+                        $traslape [] = false; 
                     }else {
-                        $respuesta [] = false;
+                        $traslape[] = true;
                     }
                 }else {
-                    $respuesta [] = true;
+                    $traslape [] = false;
                 }
             }
             
-        }
-         
-
-    
-
-        /*$query = "SELECT COUNT(id) FROM curso_usuario_insc WHERE nCuenta = '$nCuenta' AND id_curso = '$curso'";
-        $resultado = $conexion->query($query);
-        $inscrito = $resultado->fetch_array();
-        $inscrito = $inscrito[0];
-        $resultado->free();
-
-        if($inscrito == 0){
-            $query = "INSERT INTO curso_usuario_insc (id, nCuenta, id_curso) VALUES (NULL, '$nCuenta', '$curso')";
-            $resultado = $conexion->query($query);
-
-            if(!$resultado){
-                $respuesta = false;
-            }else {
-                $respuesta = true;
-            }
+        }   
 
 
-        }else {
-
-            $respuesta = false;
-
-        }*/
+        $respuesta = $traslape;     
 
 
 
