@@ -6,6 +6,8 @@
 	$conexion = new mysqli('localhost', 'root', '', 'sam');
 
 	return $conexion;
+
+	
     }
 
    	

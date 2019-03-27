@@ -154,10 +154,10 @@
 
                 <?php if(!isset($_SESSION['usuario'])) :?> 
                     
-                    <a href="login.php" class="btn btn-primary mx-2" id = "btn_inscribir">Inscribirse</a>
+                    <a href="login.php" class="btn btn-primary mx-2" id = "btn_inscribir_SS">Inscribirse</a>
 
                     <?php else : ?>
-                    <a href="#" class="btn btn-primary mx-2 " id = "btn_inscribir">Inscribirse</a>                   
+                    <a href="" class="btn btn-primary mx-2 " id = "btn_inscribir_CS">Inscribirse</a>                   
         
                     <?php endif; ?>
 
@@ -183,29 +183,34 @@
 
             var usuario = "<?php echo $usuario?>";
 
-            
-
-
-            $('#btn_inscribir').on('click', function(){
-                var datos = {
+            var datos = {
                     'curso' : curso1, 
                     'usuario' : usuario
                 };
 
-                $.post('php/curso/inscribir.php', datos, function(respuesta){
+
+             botonInscribir(datos, curso1);
+
+           
+
+
+            
+
+
+            $('#btn_inscribir_CS').on('click', function(){
+
+                $.post('php/usuario/curso/inscribir.php', datos, function(respuesta){
                     respuesta = JSON.parse(respuesta);
-                    /*if(respuesta){
-                        $('#btn_inscribir').text('ticket');
-                        $('a').attr("href", "ticket.php");
+                    if(respuesta){
+                       alert("Ya tienes un curso inscrito en el mismo horario");
+                    }else {
+                        alert("Curso inscrito correctamente");
                     }
-                    else {
-                        
-                    }*/
                 });
             });
             
             
-            $.post('php/curso/leer.php', curso, function(respuesta){
+            $.post('php/usuario/curso/leer.php', curso, function(respuesta){
                 respuesta = JSON.parse(respuesta);
                 console.log(respuesta.material);
                 $('#titulo_curso').text(respuesta.curso[0].titulo);
@@ -246,7 +251,37 @@
 
 
 
+
+
+
         });
+
+
+        function botonInscribir(datos, curso1){
+
+            var id_curso = curso1;
+            
+
+            $.post('php/usuario/curso/verificar.php', datos, function(respuesta){
+                respuesta = JSON.parse(respuesta);
+
+
+                if(!respuesta.inscrito){
+                   $('#btn_inscribir_CS').text("Inscribir");
+
+
+                }else {
+                    var cadena = 'ticket.php?curso=' + id_curso; 
+                    $('#btn_inscribir_CS').text('Ticket');
+                    $("a[id = btn_inscribir_CS]").attr('href', cadena);
+                    
+                }
+                
+
+            });
+
+                
+         }
 
 
 

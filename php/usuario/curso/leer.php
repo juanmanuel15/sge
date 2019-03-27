@@ -1,7 +1,7 @@
 <?php
 
-    require('../base.php');
-    require('../consulta.php');
+    require('../../base.php');
+    require('../../consulta.php');
 
     $conexion = abrirConexion();
 

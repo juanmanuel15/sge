@@ -1,7 +1,7 @@
 <?php
 
-    require('../base.php');
-    require('../consulta.php');
+    require('../../base.php');
+    require('../../consulta.php');
 
     $conexion = abrirConexion();
 
@@ -10,7 +10,7 @@
 
     } else {
 
-        $curso = filter_var(trim($_POST['curso']),FILTER_SANITIZE_STRING);
+        $id_curso = filter_var(trim($_POST['curso']),FILTER_SANITIZE_STRING);
         $usuario = filter_var(trim($_POST['usuario']),FILTER_SANITIZE_STRING);
 
         $query = "SELECT nCuenta FROM usuario WHERE usuario = '$usuario'";
@@ -23,7 +23,7 @@
         $resultado->free();
 
         #Obtenemos el horario del curso a inscribir
-        $query = "SELECT fecha, hora_inicio, hora_final FROM horario WHERE id_curso= '$curso'";
+        $query = "SELECT fecha, hora_inicio, hora_final FROM horario WHERE id_curso= '$id_curso'";
         $resultado = leerDatos($conexion, $query);
         $curso = [];
         $traslape = [];
@@ -42,11 +42,41 @@
             
         }
 
-        
         $resultado->free();
 
 
-       print_r($respuesta = $traslape);     
+        if(count(array_unique($traslape)) > 1) {
+            $traslape = true;
+        }else {
+            if($traslape[0]){
+                $traslape = true;
+            }else {
+                $traslape = false;
+            }
+        }
+
+        #Verificamos que exista un arreglo o no
+        #Si lo hay solo devuelve el valor true como respuesta
+        if($traslape){
+            $respuesta = true;
+
+        #Si el valor es FALSE realiza la inscripción al curso.
+        }else{
+
+            $query = "INSERT INTO curso_usuario_insc(nCuenta, id_curso) VALUES('$nCuenta', '$id_curso')";
+            $resultado = insertarDatos($conexion, $query);
+
+            if($resultado['valor']){                
+                $respuesta = false;
+            }else {
+                $respuesta = true;
+            }
+
+
+        }
+
+        
+    
 
 
 
