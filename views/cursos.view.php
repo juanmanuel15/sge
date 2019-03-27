@@ -132,7 +132,7 @@
 
             <div class="row">
                     <div class="col-12 c d-flex justify-content-end p-1">
-                        <a href="curso.php?curso=220319javap" class="btn btn-outline-primary btn-sm btn-detalles p-1">Detalles</a>
+                        <a href="curso.php?curso=270319javap" class="btn btn-outline-primary btn-sm btn-detalles p-1">Detalles</a>
                     </div>  
                 </div>
         </div>

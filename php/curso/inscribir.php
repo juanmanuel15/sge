@@ -22,75 +22,38 @@
 
         $resultado->free();
 
-        #Obtenemos los horarios para todos los cursos inscritos
-        $query = "SELECT horario.fecha, horario.hora_inicio, horario.hora_final FROM horario, curso_usuario_insc, curso, usuario WHERE horario.id_curso = curso.id_curso AND curso_usuario_insc.id_curso = curso.id_curso AND curso_usuario_insc.nCuenta = usuario.nCuenta AND usuario.nCuenta = '$nCuenta'";
-
-        $resultado = leerDatos($conexion, $query);
-
-        $cursos_inscritos = [];
-        while ($row = $resultado->fetch_assoc()) {
-            $cursos_inscritos[] = [
-                'fecha' => (int)str_replace("-","",  $row['fecha']),
-                'HI' => (int)substr(str_ireplace(":", "", $row['hora_inicio']), 0, -2),
-                'HF' => (int)substr(str_ireplace(":", "", $row['hora_final']), 0, -2) 
-            ];
-        }
-
-
-
-
-        $resultado->free();
-
         #Obtenemos el horario del curso a inscribir
         $query = "SELECT fecha, hora_inicio, hora_final FROM horario WHERE id_curso= '$curso'";
         $resultado = leerDatos($conexion, $query);
         $curso = [];
+        $traslape = [];
 
         while($row = $resultado->fetch_array()){
 
-            $curso[] =  [
-                'fecha' => (int)str_replace("-","",  $row[0]),
-                'HI' => (int)substr(str_ireplace(":", "", $row[1]), 0, -2),
-                'HF' => (int)substr(str_ireplace(":", "", $row[2]), 0, -2) 
-            ];
+            $query = "SELECT horario.fecha, horario.hora_inicio, horario.hora_final FROM horario, curso_usuario_insc, curso, usuario WHERE horario.id_curso = curso.id_curso AND curso_usuario_insc.id_curso = curso.id_curso AND curso_usuario_insc.nCuenta = usuario.nCuenta AND usuario.nCuenta = '$nCuenta' AND horario.hora_inicio < '$row[2]' AND horario.hora_final > '$row[1]' AND horario.fecha = '$row[0]'";
+
+            $cursos_inscritos = leerDatos($conexion, $query);
+
+            if($cursos_inscritos->num_rows>0){
+                $traslape [] = true; 
+            }else {
+                $traslape [] = false;
+            }           
+            
         }
 
         
-        
-
-        
-
-        
         $resultado->free();
-        $respuesta = [];
-
-        for ($i=0; $i < count($curso); $i++) { 
-            for ($j=0; $j <count($cursos_inscritos); $j++) { 
-                echo $cursos_inscritos[$j]['fecha'] . "==". $curso[$i]['fecha'] . " ".  $cursos_inscritos[$j]['HI'] . ">=". $curso[$i]['HF'] ." <br>";
-                if($curso[$i]['fecha'] == $cursos_inscritos[$j]['fecha']){
-                    if ($cursos_inscritos[$j]['HI'] >= $curso[$i]['HF']) {
-                        $traslape [] = false; 
-                    }else {
-                        $traslape[] = true;
-                    }
-                }else {
-                    $traslape [] = false;
-                }
-            }
-            
-        }   
 
 
-        $respuesta = $traslape;     
+       print_r($respuesta = $traslape);     
 
 
 
         echo json_encode($respuesta);
 
 
-
-
-
+        
     }
 
 
