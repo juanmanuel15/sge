@@ -77,7 +77,7 @@
     
     </nav>
 
-    <div class="container">
+    <div class="container" id="contenedor">
         <div class="row d-flex justify-content-center">
             <div class="col-3 col-sm-3 col-md-3 col-lg-3 mt-4">
             <div class="row">
@@ -134,12 +134,12 @@
                     <div class="col-12 c d-flex justify-content-end p-1">
                         <a href="curso.php?curso=220319javap" class="btn btn-outline-primary btn-sm btn-detalles p-1">Detalles</a>
                     </div>  
-                </div>
+            </div>
         </div>
         </div>
         
     </div>
-    
+    <script src="js/curso/cursos.js"></script>
 </body>
 </html>
     

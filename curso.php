@@ -154,10 +154,11 @@
 
                 <?php if(!isset($_SESSION['usuario'])) :?> 
                     
-                    <a href="login.php" class="btn btn-primary mx-2" id = "btn_inscribir_SS">Inscribirse</a>
+                    <a href="login.php" class="btn btn-primary mx-2" id = "btn_inscribir_SS">Inscribirse
+                    </a>
 
                     <?php else : ?>
-                    <a href="" class="btn btn-primary mx-2 " id = "btn_inscribir_CS">Inscribirse</a>                   
+                    <a href="#" class="btn btn-primary mx-2 " id = "btn_inscribir_CS">Inscribirse</a>                   
         
                     <?php endif; ?>
 
@@ -203,8 +204,14 @@
                     respuesta = JSON.parse(respuesta);
                     if(respuesta){
                        alert("Ya tienes un curso inscrito en el mismo horario");
+
                     }else {
                         alert("Curso inscrito correctamente");
+                        $('#btn_inscribir_CS').text("Ticket");
+                        var cadena = 'ticket.php?curso=' + curso1; 
+                        $("a[id = btn_inscribir_CS]").attr('href', cadena);
+
+
                     }
                 });
             });
