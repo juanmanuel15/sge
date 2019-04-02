@@ -17,7 +17,7 @@
         
 
        $query = "SELECT * FROM curso WHERE id_curso = '$curso'";
-
+       $tipo_actividad = '';
         
         $resultado = leerDatos($conexion, $query);
 
@@ -27,7 +27,7 @@
             $varCurso [] = [
                 'id_curso' => $row[0],
                 'titulo'=> $row[1],
-                'tipo_actividad'=> tipo_actividad($conexion,$row[2]),
+                'tipo_actividad'=> $tipo_actividad = tipo_actividad($conexion,$row[2]),
                 'descripcion' => $row[3],
                 'requisitos'=> $row[4],
                 'dirigido' => $row[5]

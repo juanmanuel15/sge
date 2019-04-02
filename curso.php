@@ -73,7 +73,7 @@
 
         <div class="row mt-2 d-flex justify-content-center">
             <div class="col-sm-12 col-12 col-md-6 col-lg-6">
-                <p id = "descripcion">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quam ipsa alias dignissimos iure, sapiente corporis, fugit fugiat similique voluptates consequatur molestiae repellendus magnam enim commodi repellat rerum. Ipsa, dolore.</p>
+                <p id = "descripcion"></p>
             </div>
         </div>
 
@@ -83,7 +83,7 @@
             </div>
 
             <div class="col-sm-7 col-7 col-md-7 col-lg-7">
-                <label id = "tipo_Actividad" > Taller</label>
+                <label id = "tipo_Actividad" ></label>
             </div>
         </div>
 
@@ -93,7 +93,7 @@
             </div>
 
             <div class="col-sm-7 col-7 col-md-7 col-lg-7">
-                <label id = "dirigido" > Taller</label>
+                <label id = "dirigido" ></label>
             </div>
         </div>
 
@@ -103,7 +103,7 @@
             </div>
 
             <div class="col-sm-7 col-7 col-md-7 col-lg-7">
-                <label id = "profesor" > Juan Manuel Hernández Contreras, Oscar Alejandro Delgadillo Martínez</label>
+                <label id = "profesor" > </label>
             </div>
         </div>
 
@@ -113,7 +113,7 @@
             </div>
 
             <div class="col-sm-7 col-7 col-md-7 col-lg-7">
-                <label id = "colaborador" > Juan Manuel Hernández Contreras, Oscar Alejandro Delgadillo Martínez</label>
+                <label id = "colaborador" > </label>
             </div>
         </div>
 
@@ -123,7 +123,7 @@
             </div>
 
             <div class="col-sm-7 col-7 col-md-7 col-lg-7">
-                <label id = "requisitos" > Ningúno</label>
+                <label id = "requisitos" > </label>
             </div>
         </div>
 
@@ -134,7 +134,7 @@
             </div>
 
             <div class="col-sm-7 col-7 col-md-7 col-lg-7">
-                <label id = "material" >Materiales</label>
+                <label id = "material" ></label>
             </div>
         </div>
 
@@ -144,7 +144,7 @@
             </div>
 
             <div class="col-sm-7 col-7 col-md-7 col-lg-7">
-                <label id = "horario" >Horario</label>
+                <label id = "horario" ></label>
             </div>
         </div>
 
@@ -219,11 +219,12 @@
             
             $.post('php/usuario/curso/leer.php', curso, function(respuesta){
                 respuesta = JSON.parse(respuesta);
-                console.log(respuesta.material);
+                console.log(respuesta);
                 $('#titulo_curso').text(respuesta.curso[0].titulo);
                 $('#descripcion').text(respuesta.curso[0].descripcion);
-                $('#tipo_Actividad').text(respuesta.curso[0].tipo_Actividad);
-                $('#requisitos').text(respuesta.curso[0].requisitos);
+                $('#tipo_Actividad').text(respuesta.curso[0].tipo_actividad);
+                $('#requisitos').text(respuesta.curso[0].requisi
+                    tos);
                 $('#dirigido').text(respuesta.curso[0].dirigido);
 
                 var profesor = "";

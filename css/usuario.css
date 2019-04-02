@@ -8,6 +8,7 @@ nav {
 
   a {
     color:white;
+
   }
 
   nav {
@@ -32,3 +33,5 @@ span >a, div>div>span {
     color:black;
     font-size:12px;
   }
+
+  

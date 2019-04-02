@@ -459,7 +459,7 @@ function selectores () {
 
 	//Obtenemos el selector para el lugar
 
-	$.get('cursos/lugar.php', function(respuesta){
+	/*$.get('cursos/lugar.php', function(respuesta){
 		$('#selectLugar').empty();
 		var array_respuesta = JSON.parse(respuesta);
 		var fila = '';
@@ -469,7 +469,7 @@ function selectores () {
 				}
 
 		$('#selectLugar').append(fila);
-	});
+	});*/
 
 	$.get('cursos/req.php', function(respuesta){
 		$('#selectReq').empty();
