@@ -289,9 +289,9 @@ $(document).ready(function(){
 			'horaF' : horaF
 		};
 
-		/*$.post('cursos/lugar1.php', datosLugar, function(respuesta){
+		$.post('cursos/lugar.php', datosLugar, function(respuesta){
 			console.log(respuesta);
-		});*/
+		});
 
 
 
