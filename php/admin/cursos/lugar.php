@@ -27,73 +27,71 @@
 
             $conexion = abrirConexion();
 
+            #Se verifica que todos los datos que insertamos sean del tipo array
+
             if(is_array($fecha) && is_array($hora_inicio) && is_array($hora_final)){
-
-                
-
+                    
+                    #Verificamos que no haya error alguno en el llenado del formulario HF<HI y HF == HI
+                    
                     $igual = horaIgual($hora_inicio, $hora_final);
                     $mayor = horaMayor($hora_inicio, $hora_final);
 
-                   if(!$igual && !$mayor){
-                      $respuesta = "Horarios Correctos";
-                   }else {
-                        $respuesta = "Horarios No Correctos";
-                   }
+                    if(!$igual && !$mayor ){
+                        #En el dado caso de que solo sea una fecha, solo obtenemos los lugares para ese horario.
+                        if(count($fecha) == 1){
 
-                
-                
+                            $respuesta = lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final);
+                                
+                                               
 
-                
+                        }else {
 
-                
+                            #En el caso de que sean varias fecha necesitamos verificar cada una de ellas.
 
-                
+                            #Verificamos que todas las fechas sean diferentes
+                            if(count($fecha) ==  count(array_unique($fecha))){
+                                #Si es el caso, solo necesitamos introducir los datos
+                                $respuesta = lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final);
+                                
+                            }else {
+
+                                #En caso contrario necesitamos verificar cada uno de los horarios 
+                                
+                                #Esta funcion nos retorna TRUE en caso de que no se traslapen y las fechas sean correctas, en caso contrario FALSE y necesitamos verificar los formularios.
+                                $valor = arrayFecha_Hora($fecha, $hora_inicio, $hora_final);    
+
+                                if($valor) {
+                                    #Mandamos a llamar la función que nos permite obtener los datos y enviarlos al seleccionador
+
+                                    $valoresSELECT = lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final);
+
+                                    $respuesta = $valoresSELECT;
+
+                                   
+                                } else{
+                                    $respuesta = false;
+                                }
+
+                            }                        
+
+                        }
+                    }else {
+                        $respuesta = false;
+                    }
+
             }else {
-                $respuesta = "No es array";
+                $respuesta = false;
             }
 
 
          }
 
-        
-
-
-
-
-
-
     }
-
-    /*$query = "SELECT id_lugar, nombre_lugar  FROM lugar WHERE id_lugar NOT IN (SELECT DISTINCT lugar.id_lugar FROM lugar INNER JOIN horario ON lugar.id_lugar =  horario.id_lugar AND horario.hora_inicio < '09:00:00' AND horario.hora_final > '07:00:00' AND horario.fecha = '2019-03-18')";
-
-
-    $resultado = leerDatos($conexion, $query);
-
-    $var = [];
-    while($row = $resultado->fetch_array()){
-        
-        $var []  = [
-        	'id' => $row[0],
-        	'nombre' => $row[1]         
-        ];
-    }
-
-    cerrarConexion($conexion);
-    
- 	echo  json_encode($var);
-
-
-
-    function isArray($array){
-        if(is_array($array)){
-
-        }else {
-            return false;
-        }
-    }*/
 
 
     echo  json_encode($respuesta);
+
+    
 
 
     function horaIgual ($horaI, $horaF){
@@ -204,6 +202,100 @@
         }
 
         return $resp;
+    }
+
+    function arrayFecha_Hora($fecha, $HI, $HF){
+
+        $respuesta = [];
+        for ($i=0; $i <= count($fecha)-2 ; $i++) { 
+            for ($j=$i+1; $j <= count($fecha)-1; $j++) { 
+                if($fecha[$i] == $fecha[$j]){
+                    if((int)hora($HI[$j]) >= (int)hora($HF[$i]) && (int)hora($HI[$i]) <= (int)hora($HF[$j])){
+                        #Cuando no estan traslapados los horarios.
+                        $respuesta[] = true;
+                    }else {
+                        #Cuando estan traslapados los horarios
+                        $respuesta[] = false;
+                    }
+                }
+
+                else {
+
+                    #Cuando las fechas no están traslapadas
+                    $respuesta[] = true;                    
+                }
+
+            }
+        }
+
+        
+        
+        if(count($respuesta) > count(array_unique($respuesta))) {
+             $respuesta = array_unique($respuesta);
+            if(count($respuesta) ==  1){
+
+                if ($respuesta == true) {
+                    $respuesta = true;
+
+                }else{
+                    $respuesta = false;
+                }
+            }else {
+                $respuesta = false;
+            }
+        }else {
+            $respuesta = false;
+        }
+
+        return $respuesta;
+    }
+
+
+    function fecha($fecha){
+        $fecha = str_replace('-', '', $fecha);
+        return $fecha;
+    }
+
+    function hora($hora){
+        $hora = str_replace(':', '', $hora);
+        $hora = substr($hora, 0, -2);
+
+        return $hora;
+    }
+
+    function arrayInt($array){
+        $resp = [] ;
+
+        for ($i=0; $i <count($array) ; $i++) {          
+                $resp []= (double)$array[$i];          
+        }
+
+        return $resp;
+    }
+
+    function lugaresDisponibles($conn, $fecha, $HI, $HF){
+        $respuesta =  [];
+        for ($i=0; $i <count($fecha) ; $i++) {
+
+            $resultado = [];
+
+            $query = "SELECT id_lugar, nombre_lugar  FROM lugar WHERE id_lugar NOT IN  (SELECT DISTINCT lugar.id_lugar FROM lugar INNER JOIN horario ON lugar.id_lugar =  horario.id_lugar AND horario.hora_inicio < '$HF[$i]' AND horario.hora_final > '$HI[$i]' AND horario.fecha = '$fecha[$i]')";
+
+            $lectura = leerDatos($conn, $query);
+
+
+
+            while($row = $lectura->fetch_array()){
+                $resultado[] = [
+                    'id' => $row[0],
+                    'nombre' => $row[1]
+                ]; 
+            }
+
+            array_push($respuesta, $resultado);
+        }
+        
+        return $respuesta;
     }
 
 ?>

@@ -290,7 +290,17 @@ $(document).ready(function(){
 		};
 
 		$.post('cursos/lugar.php', datosLugar, function(respuesta){
-			console.log(respuesta);
+			respuesta = JSON.parse(respuesta);
+			if(respuesta != false){
+				//Colocamos los valores que corresponden al SELECT de los lugares
+				//Desabilitamos los valores para de fechas y horas
+
+				
+
+			}else {
+				//Coloreamos los valores de fecha y hora_inicio y hora_final
+
+			}
 		});
 
 

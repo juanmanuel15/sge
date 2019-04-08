@@ -282,8 +282,17 @@
 	function id_curso($cadena){
 		
 		$cadena = str_replace(' ', '', $cadena);
+		$cadena = str_replace('/', '', $cadena);
+		$cadena = str_replace('*', '', $cadena);
+		$cadena = str_replace('^', '', $cadena);
 		$cadena = elimina_acentos($cadena);
-		$cadena = substr($cadena, 0, 5);
+
+		if(strlen($cadena)<8){
+			$cadena = substr($cadena, 0, strlen($cadena));	
+		}else {
+			$cadena = substr($cadena, 0, 10);	
+		}
+		
 		
 		return $id = date('dmy').$cadena;
 
