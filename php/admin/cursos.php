@@ -146,29 +146,31 @@
                 </div>
 
                 
+                <div id="msg_error_horario" class="row d-flex justify-content-center">
+                                            
+                </div>
 
                 <div class="row mt-4">
                     <div class="col-sm-8 col-lg-8 d-flex justify-content-center">
                         <h6 class="text-center pl-1">Horario(s)</h6>                        
                     </div>
 
-                    <div class="col-sm-3 col-3 col-lg-3">
+                    <div class="col-sm-3 col-3 col-lg-3" id="div_btn_lugar" >
                         <span id ="btn_lugar" class ="btn btn-outline-primary col-sm-12 col-lg-12" >Lugar</span>
                     </div>
 
-                    <div class="col-sm-1 col-lg-1 d-flex justify-content-center">
+                    <div class="col-sm-1 col-lg-1 d-flex justify-content-center" id="div_btn_agregarHorario">
                         <button class="btn" type="button" id="btn_agregarHorario"><i class="fas fa-plus"></i>
                     </div>    
                 </div>
 
-                <div class="row mt-2 d-flex justify-content-center">
+                <div class="row mt-2 d-flex justify-content-center" id="tablaHorario">
                     <table class="table">
                         <thead class="titulo-tabla">
                             <tr class="text-center">
                                 <th>Fecha</th>
                                 <th>Hora de Inicio</th>
                                 <th>Hora de Termino</th>
-                                <th>Lugar</th> 
                                 <th>Eliminar</th>    
                             </tr>
                         </thead>
@@ -185,10 +187,6 @@
                                 </td>
                                 <td>
                                     <select id="selectHoraF" class="form-control" name="selectHoraF">                            
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="selectLugar" class="form-control" name="selectLugar">                            
                                     </select>
                                 </td>
 

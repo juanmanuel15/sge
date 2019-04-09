@@ -5,6 +5,10 @@ $(document).ready(function(){
 	var l = 1;
 	var m = 1;
 
+
+
+
+
 	leer();
 	
 	$('#btn_agregar').on('click', function(){
@@ -239,7 +243,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#btn_agregarHorario').on('click', function(){
+	$(document).on('click', '#btn_agregarHorario', function(){
 		//console.log(i);
 		if(k == 10){
 			k = k;
@@ -247,6 +251,7 @@ $(document).ready(function(){
 			$('#tableHorario').clone().appendTo("#divHorario");			
 			k++;
 		}
+
 	});
 
 	$('#btn_agregarReq').on('click', function(){
@@ -270,7 +275,8 @@ $(document).ready(function(){
 	});
 
 
-	$('#btn_lugar').on('click', function(){
+	$(document).on('click', '#btn_lugar', function(){
+
 
 		
 		var obj_fecha = $('select[name = "selectFecha"]');
@@ -291,16 +297,102 @@ $(document).ready(function(){
 
 		$.post('cursos/lugar.php', datosLugar, function(respuesta){
 			respuesta = JSON.parse(respuesta);
+			$('#msg_error_horario').empty();
+
+			//console.log(respuesta.lugar[0][0].id);
+			
 			if(respuesta != false){
+
 				//Colocamos los valores que corresponden al SELECT de los lugares
 				//Desabilitamos los valores para de fechas y horas
+				$('#div_btn_agregarHorario').empty();
+				$('#tablaHorario').empty();
+				var texto = "";
+
+				texto +=  `
+					
+					<table class="table">
+	                        <thead class="titulo-tabla">
+	                            <tr class="text-center">
+	                                <th>Fecha</th>
+	                                <th>Hora de Inicio</th>
+	                                <th>Hora de Termino</th>
+	                                <th>Lugares Disponibles</th>    
+	                            </tr>
+	                        </thead>
+
+	                        <tbody id = "divHorario"> `;			
 
 				
+				for (var i = 0; i < respuesta.HF.length; i++) {
+
+						texto += `
+							<tr class = "text-center ">
+							<td>
+								<label>${respuesta.fecha[i]}</label>	
+							</td>
+							<td>
+								<label>${respuesta.HI[i]}</label>
+							</td>
+							<td>
+								<label>${respuesta.HF[i]}</label>
+							</td>
+
+							<td>
+								<select class = "form-control" name = "selectLugar">
+	
+						`;
+					for (var j = 0; j < respuesta.lugar[i].length; j++) {
+						texto += `
+							<option value = " ${respuesta.lugar[i][j].id}">
+								${respuesta.lugar[i][j].nombre}	
+							</option>
+							`;
+					}
+
+					texto += `
+								</select>
+							</td>
+							</tr>`;
+					
+				}
+
+				texto += `
+					
+					</tbody>
+                    </table>
+
+				`; 
+				
+				$('#tablaHorario').append(texto);
+
+				$('#div_btn_lugar').empty();
+				var btn_reiniciar = `<span id ="btn_reiniciarLugar" class ="btn btn-outline-primary col-sm-12 col-lg-12" >
+					Reiniciar
+				</span>`;
+
+				$('#div_btn_lugar').append(btn_reiniciar);
+
 
 			}else {
 				//Coloreamos los valores de fecha y hora_inicio y hora_final
+				var mensaje = `
+					<div class ="col-sm-12 mensaje-error d-flex justify-content-center mt-3 mb-1">
+					<label>Error al llenar los horarios</label>
+					</div>
+				`;
+
+				$('#msg_error_horario').append(mensaje);
+				$('#eliminar_lugar').text('Lugares Disponibles');
+
 
 			}
+
+
+			
+			//$('#btn_lugar').text('Reiniciar');
+			//$('#btn_lugar').attr('id', 'btn_reiniciar');
+
 		});
 
 
@@ -309,6 +401,63 @@ $(document).ready(function(){
 
 		
 		
+	});
+
+
+	$(document).on('click', '#btn_reiniciarLugar', function(){
+
+		k = 1;
+		$('#div_btn_lugar').empty();
+			var btn_reiniciar = `<span id ="btn_lugar" class ="btn btn-outline-primary col-sm-12 col-lg-12" >
+				Lugar
+			</span>`;
+		$('#div_btn_lugar').append(btn_reiniciar);
+		$('#tablaHorario').empty();
+		 var btn_agregarHorario = `			
+			<button class="btn" type="button" id="btn_agregarHorario"><i class="fas fa-plus"></i>
+		 `;
+
+		 $('#div_btn_agregarHorario').append(btn_agregarHorario);
+
+
+		var tabla = `			
+			 <table class="table">
+                        <thead class="titulo-tabla">
+                            <tr class="text-center">
+                                <th>Fecha</th>
+                                <th>Hora de Inicio</th>
+                                <th>Hora de Termino</th>
+                                <th>Eliminar</th>    
+                            </tr>
+                        </thead>
+
+                        <tbody id = "divHorario">
+                            <tr id="tableHorario">
+                                <td>
+                                    <select id="selectFecha" class="form-control" name="selectFecha">                                        
+                                    </select>                           
+                                </td>
+                                <td>
+                                    <select id="selectHoraI" class="form-control" name="selectHoraI">
+                                    </select> 
+                                </td>
+                                <td>
+                                    <select id="selectHoraF" class="form-control" name="selectHoraF">                            
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <button class="btn" type="button" id="btn_quitarHorario"><i class="fas fa-minus"></i>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+		`;
+		$('#tablaHorario').append(tabla);
+		selectores();
+
 	});
 
 

@@ -40,9 +40,9 @@
                         #En el dado caso de que solo sea una fecha, solo obtenemos los lugares para ese horario.
                         if(count($fecha) == 1){
 
-                            $respuesta = lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final);
-                                
-                                               
+                            $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final));
+
+
 
                         }else {
 
@@ -51,21 +51,19 @@
                             #Verificamos que todas las fechas sean diferentes
                             if(count($fecha) ==  count(array_unique($fecha))){
                                 #Si es el caso, solo necesitamos introducir los datos
-                                $respuesta = lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final);
+                                $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final));
                                 
                             }else {
 
                                 #En caso contrario necesitamos verificar cada uno de los horarios 
                                 
                                 #Esta funcion nos retorna TRUE en caso de que no se traslapen y las fechas sean correctas, en caso contrario FALSE y necesitamos verificar los formularios.
-                                $valor = arrayFecha_Hora($fecha, $hora_inicio, $hora_final);    
+                                $valor = arrayFecha_Hora($fecha, $hora_inicio, $hora_final);
 
                                 if($valor) {
                                     #Mandamos a llamar la función que nos permite obtener los datos y enviarlos al seleccionador
 
-                                    $valoresSELECT = lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final);
-
-                                    $respuesta = $valoresSELECT;
+                                    $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final));            
 
                                    
                                 } else{
@@ -210,6 +208,7 @@
         for ($i=0; $i <= count($fecha)-2 ; $i++) { 
             for ($j=$i+1; $j <= count($fecha)-1; $j++) { 
                 if($fecha[$i] == $fecha[$j]){
+                    //echo (int)hora($HI[$j]).  ">=" . (int)hora($HF[$i]). "&&" . (int)hora($HI[$i]).  "<=" . (int)hora($HF[$j]);
                     if((int)hora($HI[$j]) >= (int)hora($HF[$i]) && (int)hora($HI[$i]) <= (int)hora($HF[$j])){
                         #Cuando no estan traslapados los horarios.
                         $respuesta[] = true;
@@ -228,24 +227,22 @@
             }
         }
 
-        
-        
-        if(count($respuesta) > count(array_unique($respuesta))) {
-             $respuesta = array_unique($respuesta);
-            if(count($respuesta) ==  1){
+               
 
-                if ($respuesta == true) {
-                    $respuesta = true;
+        $respuesta = array_unique($respuesta);
 
-                }else{
-                    $respuesta = false;
-                }
+        if(count($respuesta) == 1){
+
+            if ($respuesta[0] == true) {
+                $respuesta = true;
             }else {
                 $respuesta = false;
             }
-        }else {
+        }else{
             $respuesta = false;
         }
+        
+        
 
         return $respuesta;
     }
@@ -296,6 +293,28 @@
         }
         
         return $respuesta;
+    }
+
+
+    function respuesta($fecha, $HI, $HF, $lugar){
+        $aFecha = [];
+        $aHI = [];
+
+        for ($i=0; $i < count($fecha); $i++) {             
+            $aFecha [] = $fecha[$i]; 
+            $aHI [] = $HI[$i];
+            $aHF [] = $HF [$i];
+        }
+
+        return $respuesta  = [
+
+            'fecha' => $aFecha,
+            'HI' => $aHI,
+            'HF' => $aHF, 
+            'lugar' => $lugar
+
+        ];
+
     }
 
 ?>
