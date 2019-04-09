@@ -7,7 +7,7 @@
 ?>
 
 <!-- Modal Agregar Curso -->
-<div class="modal fade" id="modalCurso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--div class="modal fade" id="modalCurso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -291,7 +291,8 @@
       </div>
     </div>
   </div>
-</div>
+
+<!--/div-->
 
 <!DOCTYPE html>
 <html lang="es">
