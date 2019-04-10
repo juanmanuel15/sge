@@ -15,9 +15,9 @@
       </div>
       <div class="modal-body">
             <div class="container-fluid">
-                <div class="row mt-0 mb-3">
+                <!--div class="row mt-0 mb-3">
                      <div class="col-12 d-flex justify-content-center" id="divMensaje"></div>
-                </div>
+                </div-->
 
                 <form id="formCurso">
                 <div class="row mt-3"> 
@@ -271,6 +271,10 @@
                         </tbody>
 
                     </table>
+                </div>
+
+                <div class="row mt-0 mb-3">
+                     <div class="col-12 d-flex justify-content-center" id="divMensaje" ></div>
                 </div>
 
 

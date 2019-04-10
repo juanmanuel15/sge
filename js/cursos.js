@@ -46,6 +46,10 @@ $(document).ready(function(){
 		vacio(obj_dirigido);
 		vacio(obj_cantidad);
 
+
+
+	
+
 		if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad)){
 			//Procedimiento cuando estan vacíos
 			
@@ -102,115 +106,128 @@ $(document).ready(function(){
 			
 			$.post('cursos/insertar.php',enviar, function(respuesta){
 				var respuesta = JSON.parse(respuesta);
-				console.log(respuesta);
-				if(respuesta[0].curso){
-					$('#divMensaje').addClass('mensaje-success');
-					$('#divMensaje').append("<label>Curso creado correctamente</label>");
 
-				}else {			
+				
+
+				if(typeof respuesta.curso !== 'undefined'){
+					if(!respuesta.curso){
+						$('#divMensaje').addClass('mensaje-error');
+						$('#divMensaje').append("<label>Curso no creado</label>");
+					}
 					
-					var dupProfesor =false;
-					var dupResponsable = false;
-					var dupMaterial = false;
-					var dupReq = false;
-					var dupHorario = false;
+				}else{
+					//console.log("No existe");					
 
-					var listaErrores = "";
+					if(respuesta[0].curso){
+						$('#divMensaje').addClass('mensaje-success');
+						$('#divMensaje').append("<label>Curso creado correctamente</label>");
 
-					if(respuesta[1].profesor.length>1){
-						for(var i= 0; i<respuesta[1].profesor.length; i++){						
-							if(respuesta[1].profesor[i]){
+					}else {			
+						$('#divMensaje').addClass('mensaje-error');
+
+						var dupProfesor =false;
+						var dupResponsable = false;
+						var dupMaterial = false;
+						var dupReq = false;
+						var dupHorario = false;
+
+						var listaErrores = "";
+
+						if(respuesta[1].profesor.length>1){
+							for(var i= 0; i<respuesta[1].profesor.length; i++){						
+								if(respuesta[1].profesor[i]){
+									dupProfesor = true;
+								}
+							}
+						}else {
+							if (respuesta[1].profesor){
 								dupProfesor = true;
+							}else{
+								dupProfesor = false;
 							}
 						}
-					}else {
-						if (respuesta[1].profesor){
-							dupProfesor = true;
-						}else{
-							dupProfesor = false;
-						}
-					}
-					
-					if(respuesta[2].responsable.length>1){
-						for(var i= 0; i<respuesta[2].responsable.length; i++){
-							if(respuesta[2].responsable[i]){
+						
+						if(respuesta[2].responsable.length>1){
+							for(var i= 0; i<respuesta[2].responsable.length; i++){
+								if(respuesta[2].responsable[i]){
+									dupResponsable = true;
+								}
+							}
+						}else {
+							if (respuesta[2].responsable){
 								dupResponsable = true;
+							}else{
+								dupResponsable = false;
 							}
 						}
-					}else {
-						if (respuesta[2].responsable){
-							dupResponsable = true;
-						}else{
-							dupResponsable = false;
-						}
-					}
-					
-					if(respuesta[5].material.length > 1){
-						for(var i= 0; i<respuesta[5].material.length; i++){		
-							if(respuesta[5].material[i]){
+						
+						if(respuesta[5].material.length > 1){
+							for(var i= 0; i<respuesta[5].material.length; i++){		
+								if(respuesta[5].material[i]){
+									dupMaterial = true;
+								}
+							}
+						}else {
+							if(respuesta[5].material){
 								dupMaterial = true;
 							}
 						}
-					}else {
-						if(respuesta[5].material){
-							dupMaterial = true;
-						}
-					}
 
-					if(respuesta[4].req.length > 1){
-						for(var i= 0; i<respuesta[4].req.length; i++){
-							if(respuesta[4].req[i]){
-								dupReq = true;
+						if(respuesta[4].req.length > 1){
+							for(var i= 0; i<respuesta[4].req.length; i++){
+								if(respuesta[4].req[i]){
+									dupReq = true;
+								}
 							}
-						}
-					}else {
-						if (respuesta[4].req) {
-							dupReq = true;
-						}else{
-							dupReq = false;
-						}
-					}
-
-					if(respuesta[3].horario.lengt > 1){
-						for(var i= 0; i<respuesta[3].horario.length; i++){
-							if(respuesta[3].horario[i]){
-								dupHorario = true;
-							}
-						}
-					}else {
-						if(respuesta[3].horario){
-							dupHorario = true;
 						}else {
-							dupHorario = false;
+							if (respuesta[4].req) {
+								dupReq = true;
+							}else{
+								dupReq = false;
+							}
 						}
-					}
+
+						if(respuesta[3].horario.lengt > 1){
+							for(var i= 0; i<respuesta[3].horario.length; i++){
+								if(respuesta[3].horario[i]){
+									dupHorario = true;
+								}
+							}
+						}else {
+							if(respuesta[3].horario){
+								dupHorario = true;
+							}else {
+								dupHorario = false;
+							}
+						}
 
 
 
-					
+						
 
-					if(!dupHorario){
-						listaErrores += "<li>Horario llenado incorrectamente</li>";
-					}if(!dupReq){
-						listaErrores += "<li>Requerimientos duplicados</li>";
-					}if (!dupMaterial){
-						listaErrores += "<li>Material y/o Cantidad vacio o duplicado</li>";
-					}if(!dupProfesor){
-						listaErrores += "<li>Profesores duplicados</li>";
-					}if(!dupResponsable){
-						listaErrores += "<li>Responsable duplicados</li>";
-					}
+						if(!dupHorario){
+							listaErrores += "<li>Horario llenado incorrectamente</li>";
+						}if(!dupReq){
+							listaErrores += "<li>Requerimientos duplicados</li>";
+						}if (!dupMaterial){
+							listaErrores += "<li>Material y/o Cantidad vacio o duplicado</li>";
+						}if(!dupProfesor){
+							listaErrores += "<li>Profesores duplicados</li>";
+						}if(!dupResponsable){
+							listaErrores += "<li>Responsable duplicados</li>";
+						}
 
-					console.log(listaErrores);
-
-
-					$("#divMensaje").append("<ul>" + listaErrores + "</ul>");
+						console.log(listaErrores);
 
 
+						$("#divMensaje").append("<ul>" + listaErrores + "</ul>");
 
-					
-				}
+
 				
+						
+					}
+				
+				}
 
 				
 				
@@ -325,13 +342,13 @@ $(document).ready(function(){
 						texto += `
 							<tr class = "text-center ">
 							<td>
-								<input name = "selectFecha" value = "${respuesta.fecha[i]}" disabled>
+								<input name = "selectFecha" value = "${respuesta.fecha[i]}" disabled class = "form-control align-center">
 							</td>
 							<td>
-								<input name = "selectHoraI" value = "${respuesta.HI[i]}" disabled>
+								<input name = "selectHoraI" value = "${respuesta.HI[i]}" disabled class = "form-control align-center ">
 							</td>
 							<td>
-								<input name = "selectHoraF" value = "${respuesta.HF[i]}" disabled>
+								<input name = "selectHoraF" value = "${respuesta.HF[i]}" disabled class = "form-control align-center">
 							</td>
 
 							<td>
@@ -647,6 +664,7 @@ function array(lectura){
 		return array;
 
 }
+
 
 function vacio(obj){
 

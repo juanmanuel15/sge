@@ -24,8 +24,8 @@
 }
 
 .mensaje-error{
-    background-color: #E84248;
-    color:white;
+    background-color: rgb(242,222,222);
+    color:rgb(169,68,66);
 }
 
 .mensaje-success {
