@@ -272,6 +272,9 @@
 			$respuesta = $resp;
 		}
 
+
+		//print_r($respuesta);
+
 	$conexion->close();
 	echo  json_encode($respuesta);
 

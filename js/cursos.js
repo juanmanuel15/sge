@@ -19,13 +19,12 @@ $(document).ready(function(){
 	});
 
 	$('#btn_cancelar').on('click', function(){
-
 	});
 
 
 	$('#formCurso').submit(function(e){
 		e.preventDefault();
-		quitarClases();
+		quitarClases();		
 
 		var obj_titulo = $('#txt_titulo');
 		var obj_requisitos = $('#txt_requisitos');		
@@ -57,9 +56,9 @@ $(document).ready(function(){
 
 			var obj_profesor = $('select[name = "selectProfesor"]');
 			var obj_responsable = $('select[name = "selectResponsable"]');
-			var obj_fecha = $('select[name = "selectFecha"]');
-			var obj_horaI = $('select[name = "selectHoraI"]');
-			var obj_horaF = $('select[name = "selectHoraF"]');
+			var obj_fecha = $('input[name = "selectFecha"]');
+			var obj_horaI = $('input[name = "selectHoraI"]');
+			var obj_horaF = $('input[name = "selectHoraF"]');
 			var obj_lugar = $('select[name = "selectLugar"]');
 			var obj_req = $('select[name = "selectReq"]');
 			var obj_tactividad = $('select[name = "select_tActividad"]');
@@ -218,9 +217,7 @@ $(document).ready(function(){
 			});
 				
 				
-		}
-
-		
+		}	
 	});
 
 	$('#btn_agregarProfesor').on('click', function(){
@@ -277,7 +274,6 @@ $(document).ready(function(){
 
 	$(document).on('click', '#btn_lugar', function(){
 
-
 		
 		var obj_fecha = $('select[name = "selectFecha"]');
 		var obj_horaI = $('select[name = "selectHoraI"]');
@@ -329,13 +325,13 @@ $(document).ready(function(){
 						texto += `
 							<tr class = "text-center ">
 							<td>
-								<label>${respuesta.fecha[i]}</label>	
+								<input name = "selectFecha" value = "${respuesta.fecha[i]}" disabled>
 							</td>
 							<td>
-								<label>${respuesta.HI[i]}</label>
+								<input name = "selectHoraI" value = "${respuesta.HI[i]}" disabled>
 							</td>
 							<td>
-								<label>${respuesta.HF[i]}</label>
+								<input name = "selectHoraF" value = "${respuesta.HF[i]}" disabled>
 							</td>
 
 							<td>
@@ -395,11 +391,6 @@ $(document).ready(function(){
 
 		});
 
-
-
-
-
-		
 		
 	});
 
