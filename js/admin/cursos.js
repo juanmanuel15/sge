@@ -1,6 +1,11 @@
 $(document).ready(function(){
 
+
+	
+
 	confIniciales();
+
+	
 
 	$('input[name= "confMaterial"]').change(function(){
 		var confMaterial = $(this).val();
@@ -13,6 +18,8 @@ $(document).ready(function(){
 	});
 
 
+	//Botones para aceptar cada uno de los formularios
+
 	$('#btn_AceptarDatosCurso').on('click', function(){
 		$("#divDatosCurso").hide();
 		$('#divHorarioConf').show();
@@ -24,41 +31,51 @@ $(document).ready(function(){
 	});
 
 
-	$('#btn_AceptarHorario').on('click', function(){
-		$('#divProfesorConf').show();
-		$('#divHorarioConf').hide();
+	$('#btn_AceptarProfesor').on('click', function(){
+		$('#divProfesorConf').hide();
+		$('#divRespConf').show();
+	});
+
+	$('#btn_AceptarResp').click(function(){
+		$('#divConfirmarCurso').show();
+		$('#divRespConf').hide();
 	});
 
 
-
+	//Botones para regresar al menú anterior
 
 	$('#btn_regresarHorario').click(function(){
 		$('#divHorarioConf').hide();
 		$('#divDatosCurso').show();
 	});
 
-
-	$('#btn_salirDatos').click(function(){
-		cerrarModal();
+	$('#btn_regresarProfesor').click(function(){
+		$('#divProfesorConf').hide();
+		$('#divHorarioConf').show();
 	});
 
-	$('#btn_salirHorario').click(function(){
-		 cerrarModal();	
+	$('#btn_regresarResp').click(function(){
+		$('#divProfesorConf').show();
+		$('#divRespConf').hide();
 	});
 
-	$('#btn_salirDatos').click(function(){
-		cerrarModal();
-	});
 
-	$('#btn_salirHorario').click(function(){
-		 cerrarModal();	
+	//Botones para salir.
+
+	$('#btn_salirDatos').click(cerrarModal);
+	$('#btn_salirHorario').click(cerrarModal);
+	$('#btn_salirProfesor').click(cerrarModal);
+	$('#btn_salirResp').click(cerrarModal);
+	$('#btn_cancelar').click(cerrarModal);
+
+
+	$('#formCurso').submit(function(e){
+		e.preventDefault();
 	});
 
 
 	
 
-
-	
 });
 
 
@@ -67,9 +84,13 @@ function confIniciales(){
 	$('#divProfesorConf').hide();
 	$('#divRespConf').hide();
 	$('#divHorarioConf').hide();
-	$('#divbtnAgregar').hide();
+	$('#divConfirmarCurso').hide();
+	$('#divBotonesHorario').hide();
+	leerRequerimientos();
+	leerTipoActividad();
 }
 
 function cerrarModal(){
 	$('#modalCurso').modal('hide');
+	$('#formCurso')[0].reset();	
 }

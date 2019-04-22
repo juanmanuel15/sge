@@ -242,7 +242,7 @@
                     <!--Parte del seleccionador del Responsable -->
                     <div class="row" id="divRespConf">
                         <div class="col-12 col-lg-12">
-                            <div class="row mt-4" id="">
+                            <div class="row mt-2" id="">
                                 <div class="col-sm-11 col-lg-11 d-flex justify-content-center">
                                     <h6 class="text-center">Responsable(s)</h6>                        
                                 </div>
@@ -271,6 +271,14 @@
                                 </table>
                             </div>
 
+                            <div class="row mb-4 mt-2">
+                                <div class="col-12 col-lg-12 d-flex justify-content-center">
+                                    <span class="btn btn-success mx-2 col-4" id="btn_AceptarResp">Aceptar</span>
+                                    <span class="btn btn-primary mx-2 col-4" id="btn_regresarResp">Regresar</span>
+                                    <span class="btn btn-secondary mx-2 col-4" id="btn_salirResp">Salir</span>
+                                </div>
+                            </div>
+
                         </div>                    
                     </div>
 
@@ -282,13 +290,11 @@
                             </div>
 
                             <div class="row mt-4">
-                                <div class="col-sm-8 col-lg-8 d-flex justify-content-center">
+                                <div class="col-sm-11 col-lg-11 d-flex justify-content-center">
                                     <h6 class="text-center pl-1">Horario(s)</h6>                        
                                 </div>
 
-                                <div class="col-sm-3 col-3 col-lg-3" id="div_btn_lugar" >
-                                    <span id ="btn_lugar" class ="btn btn-outline-primary col-sm-12 col-lg-12" >Lugar</span>
-                                </div>
+                                
 
                                 <div class="col-sm-1 col-lg-1 d-flex justify-content-center" id="div_btn_agregarHorario">
                                     <button class="btn" type="button" id="btn_agregarHorario"><i class="fas fa-plus"></i>
@@ -330,7 +336,7 @@
                                 </table>     
                             </div>
 
-                            <div class="row mb-4 mt-2">
+                            <div class="row mb-4 mt-2" id = "divBotonesHorario">
                                 <div class="col-12 col-lg-12 d-flex justify-content-center">
                                     <span class="btn btn-success mx-2 col-4" id="btn_AceptarHorario">Aceptar</span>
                                     <span class="btn btn-primary mx-2 col-4" id="btn_regresarHorario">Regresar</span>
@@ -348,8 +354,19 @@
                     </div>
 
 
-                    <div class="row" id="divbtnAgregar">
+                    <div class="row" id="divConfirmarCurso">
                         <div class="col-12 col-lg 12">
+
+                            <div class="row mt-2">  
+
+                                <div class="col-sm-11 col-lg-11 d-flex justify-content-center">
+                                    <h6 class="text-center">¿Desea agregar el curso?</h6>                        
+                                </div> 
+
+                            </div>
+                            
+
+
                             <div class="row mt-4 form-inline">
                                 <div class="col-lg-6 col-sm-12 mt-2 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-danger col-sm-5 col-lg-6" id="btn_aceptar">Agregar</button>
@@ -358,6 +375,7 @@
                                     <button type="button" class="btn btn-secondary col-sm-5 col-lg-6" data-dismiss="modal" id="btn_cancelar">Cancelar</button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -369,6 +387,7 @@
     </div>
   </div>
 </div>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -469,7 +488,9 @@
 
         
     </div>
-
+    <script src= "../../js/admin/funciones.js"></script>
     <script src= "../../js/admin/cursos.js"></script>
+    <script src= "../../js/admin/agregarCampos.js"></script>
+
 </body>
 </html>
