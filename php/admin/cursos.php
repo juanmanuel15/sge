@@ -336,6 +336,13 @@
                                 </table>     
                             </div>
 
+
+                            <div class="row mb-4 mt-2" id = "divBotonCalcularHorario">
+                                <div class="col-12 col-lg-12 d-flex justify-content-center">
+                                    <span class="btn btn-secondary mx-2 col-4" id="btn_CalcularHorario">Calcular</span>
+                                </div>
+                            </div>
+
                             <div class="row mb-4 mt-2" id = "divBotonesHorario">
                                 <div class="col-12 col-lg-12 d-flex justify-content-center">
                                     <span class="btn btn-success mx-2 col-4" id="btn_AceptarHorario">Aceptar</span>

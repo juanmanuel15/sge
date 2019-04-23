@@ -50,3 +50,26 @@ $(document).on('click', '#btn_quitarMaterial', function(){
 		m--;
 	}
 });
+
+
+$(document).on('click', '#btn_agregarHorario', function(){
+		//console.log(i);
+		if(k == 10){
+			k = k;
+		}else {
+			$('#tableHorario').clone().appendTo("#divHorario");			
+			k++;
+		}
+});
+
+$(document).on('click', '#btn_quitarHorario', function(){
+		
+		if(k == 1){
+			k = k;
+
+		}else {
+
+			$(this).parent('td').parent('tr').remove();
+			k--;
+		}
+	});
