@@ -29,6 +29,7 @@ $(document).ready(function(){
 		$('#divProfesorConf').show();
 		$('#divHorarioConf').hide();
 		leerProfesor(datosHorario());
+		leerResp(datosHorario());
 
 
 	});

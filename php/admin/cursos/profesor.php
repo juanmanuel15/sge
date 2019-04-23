@@ -276,7 +276,11 @@
 
             $resultado = [];
 
-            $query = "SELECT nCuenta, nombre, apellidoP, apellidoM  FROM usuario WHERE nCuenta NOT IN  (SELECT DISTINCT usuario.nCuenta FROM usuario INNER JOIN curso_usuario_org ON curso_usuario_org.nCuenta =  usuario.nCuenta AND horario.hora_inicio < '$HF[$i]' AND horario.hora_final > '$HI[$i]' AND horario.fecha = '$fecha[$i]')";
+             $query = "SELECT nCuenta, nombre, apellidoP, apellidoM FROM usuario WHERE nCuenta NOT IN ( SELECT DISTINCT usuario.nCuenta FROM usuario  INNER JOIN curso_usuario_org ON curso_usuario_org.nCuenta = usuario.nCuenta INNER JOIN horario ON horario.hora_inicio < '$HF[$i]' AND horario.hora_final > '$HI[$i]' AND horario.fecha = '$fecha[$i]');";
+
+
+
+             /*SELECT nCuenta, nombre, apellidoP, apellidoM  FROM usuario WHERE nCuenta NOT IN  (SELECT DISTINCT usuario.nCuenta FROM usuario, horario INNER JOIN curso_usuario_org ON curso_usuario_org.nCuenta =  usuario.nCuenta AND horario.hora_inicio < '' AND horario.hora_final > '' AND horario.fecha = '')";*/
 
             $lectura = leerDatos($conn, $query);
 
@@ -284,8 +288,8 @@
 
             while($row = $lectura->fetch_array()){
                 $resultado[] = [
-                    'id' => $row[0],
-                    'nombre' => $row[1]
+                    'nCuenta' => $row[0],
+                    'nombre' => $row[1] . ' ' . $row[2] . ' ' . $row[3]
                 ]; 
             }
 
@@ -306,15 +310,7 @@
             $aHF [] = $HF [$i];
         }
 
-        return $respuesta  = [
-
-            'fecha' => $aFecha,
-            'HI' => $aHI,
-            'HF' => $aHF, 
-            'lugar' => $lugar
-
-        ];
-
+        return $respuesta = $lugar;
     }
 
 ?>

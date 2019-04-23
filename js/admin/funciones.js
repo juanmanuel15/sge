@@ -64,15 +64,17 @@ function leerFecha(){
 
 
 function leerProfesor(datos){
-	console.log(datos);
-	$.post('cursos/profesor.php', 'datos', function(respuesta){
+	//console.log(datos);
+	$.post('cursos/profesor.php', datos, function(respuesta){
+
 		$('#selectProfesor').empty();
 		var array_respuesta = JSON.parse(respuesta);
+		//console.log(array_respuesta[0].length);
 
 		var fila = '';
 
-		for (var i = 0; i < array_respuesta.length; i++) {
-					fila += "<option value = \"" + array_respuesta[i].id+ "\">" + array_respuesta[i].nombre+ "</option>";
+		for (var i = 0; i < array_respuesta[0].length; i++) {					
+					fila += "<option value = \"" + array_respuesta[0][i].nCuenta+ "\">" + array_respuesta[0][i].nombre+ "</option>";
 				}
 
 		$('#selectProfesor').append(fila);
@@ -80,20 +82,23 @@ function leerProfesor(datos){
 }
 
 
-/*function leerResp(datos){
-	$.post('cursos/resp.php', 'datos', function(respuesta){
+function leerResp(datos){
+	//console.log(datos);
+	$.post('cursos/resp.php', datos, function(respuesta){
+
 		$('#selectResponsable').empty();
 		var array_respuesta = JSON.parse(respuesta);
+		//console.log(array_respuesta[0].length);
 
 		var fila = '';
 
-		for (var i = 0; i < array_respuesta.length; i++) {
-					fila += "<option value = \"" + array_respuesta[i].id+ "\">" + array_respuesta[i].nombre+ "</option>";
+		for (var i = 0; i < array_respuesta[0].length; i++) {					
+					fila += "<option value = \"" + array_respuesta[0][i].nCuenta+ "\">" + array_respuesta[0][i].nombre+ "</option>";
 				}
 
 		$('#selectResponsable').append(fila);
 	});
-}*/
+}
 
 
 function array(lectura){
