@@ -297,41 +297,18 @@
                                 
 
                                 <div class="col-sm-1 col-lg-1 d-flex justify-content-center" id="div_btn_agregarHorario">
-                                    <button class="btn" type="button" id="btn_agregarHorario"><i class="fas fa-plus"></i>
+                                    <!--button class="btn" type="button" id="btn_agregarHorario"><i class="fas fa-plus"></i-->
                                 </div>    
                             </div>
 
                             <div class="row mt-2 d-flex justify-content-center" id="tablaHorario">
-                                <table class="table">
-                                    <thead class="titulo-tabla">
-                                        <tr class="text-center">
-                                            <th>Fecha</th>
-                                            <th>Hora de Inicio</th>
-                                            <th>Hora de Termino</th>
-                                            <th>Eliminar</th>    
-                                        </tr>
+                                <table class="table" >
+                                    <thead class="titulo-tabla" id = "tableHeadHorario">
+
                                     </thead>
 
-                                    <tbody id = "divHorario">
-                                        <tr id="tableHorario">
-                                            <td>
-                                                <select id="selectFecha" class="form-control" name="selectFecha">                                        
-                                                </select>                           
-                                            </td>
-                                            <td>
-                                                <select id="selectHoraI" class="form-control" name="selectHoraI">
-                                                </select> 
-                                            </td>
-                                            <td>
-                                                <select id="selectHoraF" class="form-control" name="selectHoraF">                            
-                                                </select>
-                                            </td>
-
-                                            <td>
-                                                <button class="btn" type="button" id="btn_quitarHorario"><i class="fas fa-minus"></i>
-                                            </td>
-
-                                        </tr>
+                                    <tbody id = "tableBodyHorario">
+                                        
                                     </tbody>
                                 </table>     
                             </div>
@@ -472,16 +449,17 @@
         </div>
 
         <div class="row mt-5">
-                <div class="col-lg-2 col-sm-0"></div>
-                <div class="col-lg-8 col-sm-12">
+                <div class="col-lg-0 col-sm-0"></div>
+                <div class="col-lg-12 col-sm-12">
                     <!--form method="post" action = "usuario/plantillaUsuario.php"-->
                         <table class="table align-center text-center">
                             <thead>
                                 <tr class="texto-tabla">
                                     <th>Título</th>
-                                    <th>Ponente</th>
-                                    <th hidden="">Editar</th>
-                                    <th hidden="">Eliminar</th>
+                                    <th>Ponente(s)</th>
+                                    <th>Horario</th>
+                                    <th >Editar</th>
+                                    <th >Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody id="tablaCurso">
@@ -490,7 +468,7 @@
                         </table>
                     <!--/form-->  
                 </div>
-                <div class="col-lg-2 col-sm-0"></div>
+                <div class="col-lg-0 col-sm-0"></div>
         </div>
 
         
@@ -498,6 +476,7 @@
     <script src= "../../js/admin/funciones.js"></script>
     <script src= "../../js/admin/cursos.js"></script>
     <script src= "../../js/admin/agregarCampos.js"></script>
+    <script src= "../../js/admin/mostrar.js"></script>
 
 </body>
 </html>

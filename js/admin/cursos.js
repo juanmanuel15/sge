@@ -1,11 +1,6 @@
 $(document).ready(function(){
-
-
 	
-
 	confIniciales();
-
-	
 
 	$('input[name = "confMaterial"]').change(function(){
 		var confMaterial = $(this).val();
@@ -31,14 +26,13 @@ $(document).ready(function(){
 		leerProfesor(datosHorario());
 		leerResp(datosHorario());
 
-
 	});
 
 
 	$('#btn_AceptarProfesor').on('click', function(){
 		$('#divProfesorConf').hide();
 		$('#divRespConf').show();
-		//leerResponsable(datosHorario());
+
 
 
 
@@ -85,6 +79,11 @@ $(document).ready(function(){
 	//Al presionar el botón agregar se crean los archivos
 
 	$('#btn_agregar').click(function(){
+		confIniciales();
+
+		$('#divBotonCalcularHorario').show();
+		$('#formCurso')[0].reset();
+		selectHorario();
 		leerRequerimientos();
 		leerTipoActividad();
 		leerHora();
@@ -127,7 +126,7 @@ $(document).ready(function(){
 				texto +=  `
 					
 					<table class="table">
-	                        <thead class="titulo-tabla">
+	                        <thead class="titulo-tabla" id="tableHeadHorario">
 	                            <tr class="text-center">
 	                                <th>Fecha</th>
 	                                <th>Hora de Inicio</th>
@@ -136,7 +135,7 @@ $(document).ready(function(){
 	                            </tr>
 	                        </thead>
 
-	                        <tbody id = "divHorario"> `;			
+	                        <tbody id = "tableBodyHorario"> `;			
 
 				
 				for (var i = 0; i < respuesta.HF.length; i++) {
@@ -221,7 +220,7 @@ $(document).ready(function(){
 $(document).on('click', '#btn_aceptarLugar', function(){
 	$('#divBotonesHorario').show();
 	$('#divBotonCalcularHorario').hide();
-	$('#selectLugar').prop('disabled', true);
+	$('select[name = "selectLugar"]').prop('disabled', true);
 
 
 });
@@ -256,7 +255,7 @@ $(document).on('click', '#btn_reiniciarLugar', function(){
                             </tr>
                         </thead>
 
-                        <tbody id = "divHorario">
+                        <tbody id = "tableBodyHorario">
                             <tr id="tableHorario">
                                 <td>
                                     <select id="selectFecha" class="form-control" name="selectFecha">                                        

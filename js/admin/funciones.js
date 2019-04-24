@@ -100,6 +100,72 @@ function leerResp(datos){
 	});
 }
 
+function selectHorario(){
+	$('#divBotonCalcularHorario').empty();
+	$('#tableBodyHorario').empty();
+	$('#tableHeadHorario').empty();
+	$('#msg_error_horario').empty();
+
+
+	var texto = `
+         <button class="btn" type="button" id="btn_agregarHorario"><i class="fas fa-plus"></i>
+	`;
+
+
+	$('#div_btn_agregarHorario').append(texto);
+
+	 texto = `
+            <tr class="text-center">
+                <th>Fecha</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Termino</th>
+                <th>Eliminar</th>    
+            </tr>
+	`;
+
+	$('#tableHeadHorario').append(texto);
+
+	texto = `
+		<tr id="tableHorario">
+         	<td>
+	            <select id="selectFecha" class="form-control" name="selectFecha">                                        
+	            </select>                           
+	        </td>
+	        <td>
+	            <select id="selectHoraI" class="form-control" name="selectHoraI">
+	            </select> 
+	        </td>
+	        <td>
+	            <select id="selectHoraF" class="form-control" name="selectHoraF">                            
+	            </select>
+	        </td>
+
+	        <td>
+	            <button class="btn" type="button" id="btn_quitarHorario"><i class="fas fa-minus"></i>
+	        </td>
+
+	    </tr>
+
+	`;
+
+
+
+	$('#tableBodyHorario').append(texto);
+
+
+	texto = `
+		
+		<div class="col-12 col-lg-12 d-flex justify-content-center">
+            <span class="btn btn-secondary mx-2 col-4" id="btn_CalcularHorario">Calcular</span>
+        </div>
+	`;
+
+	$('#divBotonCalcularHorario').append(texto);
+
+
+
+}
+
 
 function array(lectura){
 
@@ -112,6 +178,8 @@ function array(lectura){
 		return array;
 
 }
+
+
 
 
 

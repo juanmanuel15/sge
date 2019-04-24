@@ -57,7 +57,7 @@ $(document).on('click', '#btn_agregarHorario', function(){
 		if(k == 10){
 			k = k;
 		}else {
-			$('#tableHorario').clone().appendTo("#divHorario");			
+			$('#tableHorario').clone().appendTo("#tableBodyHorario");			
 			k++;
 		}
 });
