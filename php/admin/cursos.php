@@ -395,6 +395,12 @@
 
     <!-- Estilos propios -->
     <link rel="stylesheet" href="../../css/main.css"> 
+
+    <style>
+        .size-tabla{
+            font-size: 12px;
+        }
+    </style>
     
 </head>
 <body>
@@ -442,7 +448,7 @@
                 <form id="formBuscar">
                     <div class="input-group d-flex justify-content-center">
                         <input id="txt_buscar" type="text" class="form-control col-sm-auto" name="txt_buscar" placeholder="Buscar">
-                        <button class="btn btn-outline-secondary input-group-append" type="submit" id="btn_buscar"><i class="fas fa-search"></i></button>
+                        <span class="btn btn-outline-secondary input-group-append" type="submit" id="btn_buscar"><i class="fas fa-search"></i></span>
                     </div>                        
                 </form>
             </div>
@@ -457,12 +463,11 @@
                                 <tr class="texto-tabla">
                                     <th>Título</th>
                                     <th>Ponente(s)</th>
+                                    <th>Responsable</th>
                                     <th>Horario</th>
-                                    <th >Editar</th>
-                                    <th >Eliminar</th>
                                 </tr>
                             </thead>
-                            <tbody id="tablaCurso">
+                            <tbody id="tablaCurso" class="size-tabla">
 
                             </tbody>
                         </table>
@@ -477,6 +482,8 @@
     <script src= "../../js/admin/cursos.js"></script>
     <script src= "../../js/admin/agregarCampos.js"></script>
     <script src= "../../js/admin/mostrar.js"></script>
+    <script src= "../../js/admin/editar.js"></script>
+    <script src= "../../js/admin/eliminar.js"></script>
 
 </body>
 </html>

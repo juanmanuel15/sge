@@ -8,7 +8,7 @@ $(document).ready(function (){
         $('#btn_aceptar').val('Agregar');
     });
 
-    $(document).on('click', '#btn_editar',function(){
+    $(document).on('click', '#btn_editar', function(){
          
         quitarClases();
         $('#exampleModalLabel').text('Actualizar Tipo de Actividad');

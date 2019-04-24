@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	
 	confIniciales();
+	mostrar();
 
 	$('input[name = "confMaterial"]').change(function(){
 		var confMaterial = $(this).val();
@@ -13,11 +14,16 @@ $(document).ready(function(){
 	});
 
 
+
+
+
 	//Botones para aceptar cada uno de los formularios
 
 	$('#btn_AceptarDatosCurso').on('click', function(){
 		$("#divDatosCurso").hide();
 		$('#divHorarioConf').show();
+		
+
 	});
 
 	$('#btn_AceptarHorario').on('click', function(){

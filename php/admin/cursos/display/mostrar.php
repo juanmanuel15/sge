@@ -27,18 +27,19 @@
 
     $resultado->free();
 
-    datosCurso($curso);
+    $respuesta = datosCurso($conexion,$curso);
 
 
     cerrarConexion($conexion);
+
     
- 	echo  json_encode($curso);
+ 	echo  json_encode($respuesta);
 
 
 
 
 
-    function datosCurso($conexion, $curso){
+    function datosCurso($conexion,$curso){
 
 	    for ($i=0; $i < sizeof($curso); $i++) { 
 
@@ -93,7 +94,7 @@
 
 
 						 $respuesta [] =[
-						 	'curso' => $curso[$i]
+						 	'curso' => $curso[$i],
 						 	'prof' => $profesor,
 						 	'resp' => $resp,
 						 	'horario' => $horario
