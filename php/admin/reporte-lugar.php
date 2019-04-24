@@ -81,7 +81,7 @@
                             <thead>
                                 <tr class="texto-tabla">
                                     <th>Nombre</th>
-                                    <th>Lugares</th>                                
+                                    <th>Ver</th>             
                                     <th hidden="">Generar</th>
                                 </tr>
                             </thead>
@@ -100,6 +100,8 @@
             </div>                  
         </footer-->
     </div>
+
+    <script src= "../../js/admin/reporte-lugar/main.js"></script>
 
 
 </body>
