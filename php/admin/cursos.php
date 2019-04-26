@@ -178,6 +178,11 @@
                             </div>
 
 
+                            <div class="row mt-0 mb-3">
+                                 <div class="col-12 d-flex justify-content-center" id="divMensajeDatosCurso" ></div>
+                            </div>
+
+
                             <div class="row mb-4 mt-2">
                                 <div class="col-12 col-lg-12 d-flex justify-content-center">
                                     <span class="btn btn-success mx-2 col-4" id="btn_AceptarDatosCurso">Aceptar</span>

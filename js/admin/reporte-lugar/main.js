@@ -18,7 +18,7 @@ function leer(){
 		console.log(respuesta);
 
 		var texto = '';
-
+ 
 		for (var i = 0; i < respuesta.length; i++) {
 			id = respuesta[i].id;
 			nombre = respuesta[i].nombre;

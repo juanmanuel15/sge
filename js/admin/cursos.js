@@ -20,8 +20,93 @@ $(document).ready(function(){
 	//Botones para aceptar cada uno de los formularios
 
 	$('#btn_AceptarDatosCurso').on('click', function(){
-		$("#divDatosCurso").hide();
-		$('#divHorarioConf').show();
+
+		$('#divMensajeDatosCurso').empty();
+
+
+		var obj_titulo = $('#txt_titulo');
+		var obj_requisitos = $('#txt_requisitos');		
+		var obj_dirigido = $('#txt_dirigido');
+		var obj_description = $('#txt_description');
+		var obj_cantidad = $('#txt_cantidad');
+
+		var titulo = valor(obj_titulo);
+		var requisitos = valor(obj_requisitos);
+		var description= valor(obj_description);
+		var dirigido= valor(obj_dirigido);
+		var cantidad = valor(obj_cantidad);
+
+		var vacioTitulo = vacio(obj_titulo);
+		var vacioReq = vacio(obj_requisitos);
+		var vacioDesc = vacio(obj_description);
+		var vacioDiri = vacio(obj_dirigido);
+		var vacioCanti = vacio(obj_cantidad);
+
+		if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad)){
+			$('#divMensajeDatosCurso').addClass("mensaje-error");
+			$('#divMensajeDatosCurso').append("<label>Campos vacíos</label>");
+		}else {
+						
+		}
+
+		
+
+		if($('input[name = "confMaterial"]:checked').val() === 'true'){
+
+			
+			var obj_material = $('input[name = "txt_material"]');
+			var obj_cantidadMaterial = $('input[name = "txt_materialCantidad"]');
+
+			var material = array(obj_material);
+			var cantidadMaterial = array(obj_cantidadMaterial);
+			var campoVacioMaterial;
+			var campoVacioCantidadMaterial;
+
+			/*	Calculamos si hay algún campo vacío, es decir 
+				-1  -> Si hay
+				0-n -> No hay
+			*/
+
+			campoVacioMaterial = valorArray(obj_material, material).indexOf(0);
+			campoVacioCantidadMaterial = valorArray(obj_cantidadMaterial, cantidadMaterial).indexOf(0);
+
+			if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad) || campoVacioMaterial != -1 || campoVacioMaterial  != -1){
+				//Procedimiento cuando estan vacíos
+				
+				$('#divMensajeDatosCurso').addClass("mensaje-error");
+				$('#divMensajeDatosCurso').append("<label>Campos vacíos</label>");
+
+			}else {
+
+					$('#divMensajeDatosCurso').removeClass("mensaje-error");
+					$("#divDatosCurso").hide();
+					$('#divHorarioConf').show();
+			}
+
+
+
+		}else {
+
+		}
+
+
+		/*if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad)){
+			//Procedimiento cuando estan vacíos
+			
+			$('#divMensaje').addClass("mensaje-error");
+			$('#divMensaje').append("<label>Campos vacíos</label>");
+
+		}else {
+
+
+		}*/
+
+
+		//$("#divDatosCurso").hide();
+		//$('#divHorarioConf').show();
+
+
+
 		
 
 	});
@@ -334,4 +419,56 @@ function datosHorario(){
 
 
 
+}
+
+
+function vacio(obj){
+
+	var respuesta;
+
+	if(obj.val().length>0){
+		obj.removeClass('input-vacio');
+		respuesta = false;
+	}else {
+		obj.addClass('input-vacio');
+		respuesta = true;
+	}
+
+	return respuesta;
+}
+
+
+function array(lectura){
+
+	var  array= [];
+
+	for (var i = 0; i < lectura.length; i++) {
+			array.push(lectura[i].value);
+		}
+
+		return array;
+
+}
+
+function valor(obj){
+	return obj.val();
+}
+
+
+function valorArray(obj,array){
+
+	var respuesta = [];
+	for (var i = 0; i < array.length; i++) {
+
+		if(array[i] == ''){
+			obj.addClass('input-vacio');
+			respuesta.push(0);
+		}else {
+			obj.removeClass('input-vacio');
+			respuesta.push (1);
+		}
+		
+	}
+
+	return respuesta;
 }
