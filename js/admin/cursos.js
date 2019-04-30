@@ -3,6 +3,26 @@ $(document).ready(function(){
 	confIniciales();
 	mostrar();
 
+
+
+	var titulo;
+	var requisitos;
+	var description;
+	var dirigido;
+	var cantidad;
+	var material;
+	var cantidadMaterial;
+	var profesor;
+	var responsable;
+	var req;
+	var tActividad;
+	var fecha;
+	var horaI;
+	var horaF;
+	var lugar;
+	var vacioConfMaterial;
+
+
 	$('input[name = "confMaterial"]').change(function(){
 		var confMaterial = $(this).val();
 
@@ -28,101 +48,168 @@ $(document).ready(function(){
 		var obj_requisitos = $('#txt_requisitos');		
 		var obj_dirigido = $('#txt_dirigido');
 		var obj_description = $('#txt_description');
-		var obj_cantidad = $('#txt_cantidad');
+		var obj_cantidad = $('#txt_cantidad');		
+		var obj_req = $('select[name = "selectReq"]');
+		var obj_tactividad = $('select[name = "select_tActividad"]');
 
-		var titulo = valor(obj_titulo);
-		var requisitos = valor(obj_requisitos);
-		var description= valor(obj_description);
-		var dirigido= valor(obj_dirigido);
-		var cantidad = valor(obj_cantidad);
-
+		tActividad = array(obj_tactividad);
+		req = array(obj_req);
 		var vacioTitulo = vacio(obj_titulo);
 		var vacioReq = vacio(obj_requisitos);
 		var vacioDesc = vacio(obj_description);
 		var vacioDiri = vacio(obj_dirigido);
 		var vacioCanti = vacio(obj_cantidad);
 
-		if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad)){
-			$('#divMensajeDatosCurso').addClass("mensaje-error");
-			$('#divMensajeDatosCurso').append("<label>Campos vacíos</label>");
-		}else {
-						
-		}
-
+		var mensaje = '<ul>';
+		var repetidoReq = [];
 		
 
-		if($('input[name = "confMaterial"]:checked').val() === 'true'){
+		if(req.length === 1 ){
+			repetidoReq.push(0);
+		}else {
+			for (var i = 0; i<req.length-1; i++) {
+				for (var j = i+1; j < req.length; j++) {
+					req[i] == req[j] ? repetidoReq.push(1) : repetidoReq.push(0);
+				}
+			}
+		}
 
-			
+		var repetido;
+
+		repetidoReq.indexOf(1) >= 0 ? repetido = true :  repetido = false;
+		
+
+		if(repetido){
+			$('#divMensajeDatosCurso').addClass("mensaje-error");
+			mensaje += "<li>Requerimientos Repetidos </li>";
+			//$('#divMensajeDatosCurso').append("<li>Requerimientos Repetidos </li>");
+
+		}
+
+
+
+		$('input[name = "confMaterial"]'). is(':checked') ? vacioConfMaterial = false : vacioConfMaterial = true;
+
+         		if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad) || vacioConfMaterial || repetido){
+					$('#divMensajeDatosCurso').addClass("mensaje-error");
+					//$('#divMensajeDatosCurso').append("<li> Campos vacíos</li><br>");
+					mensaje += "<li>Campos vacíos</li>";
+
+
+
+
+
+		}else {
+
+
 			var obj_material = $('input[name = "txt_material"]');
 			var obj_cantidadMaterial = $('input[name = "txt_materialCantidad"]');
 
-			var material = array(obj_material);
-			var cantidadMaterial = array(obj_cantidadMaterial);
+			
 			var campoVacioMaterial;
 			var campoVacioCantidadMaterial;
 
-			/*	Calculamos si hay algún campo vacío, es decir 
-				-1  -> Si hay
-				0-n -> No hay
-			*/
+			
 
-			campoVacioMaterial = valorArray(obj_material, material).indexOf(0);
-			campoVacioCantidadMaterial = valorArray(obj_cantidadMaterial, cantidadMaterial).indexOf(0);
 
-			if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad) || campoVacioMaterial != -1 || campoVacioMaterial  != -1){
-				//Procedimiento cuando estan vacíos
+			if($('input[name = "confMaterial"]:checked').val() === 'true'){
+
+				/*	Calculamos si hay algún campo vacío en Material (cantidad o descripcion), es decir 
+					-1  -> Si hay
+					0-n -> No hay
+				*/
+
+				material = array(obj_material);
+				cantidadMaterial = array(obj_cantidadMaterial);
+
+				campoVacioMaterial = valorArray(obj_material, material).indexOf(0);
+				campoVacioCantidadMaterial = valorArray(obj_cantidadMaterial, cantidadMaterial).indexOf(0);
+
 				
-				$('#divMensajeDatosCurso').addClass("mensaje-error");
-				$('#divMensajeDatosCurso').append("<label>Campos vacíos</label>");
+
+				if(campoVacioMaterial != -1 || campoVacioCantidadMaterial  != -1){
+					//Procedimiento cuando estan vacíos los campos de Material
+					$('#divMensajeDatosCurso').empty();
+					$('#divMensajeDatosCurso').addClass("mensaje-error");
+					mensaje += "<li>Campos vacíos</li>";
+					//$('#divMensajeDatosCurso').append("<li>Campos vacíos</li><br>");
+					
+
+				} else {
+
+						$('#divMensajeDatosCurso').removeClass("mensaje-error");
+						$("#divDatosCurso").hide();
+						$('#divHorarioConf').show();
+
+				}
 
 			}else {
-
-					$('#divMensajeDatosCurso').removeClass("mensaje-error");
-					$("#divDatosCurso").hide();
-					$('#divHorarioConf').show();
+				material = '';
+				cantidadMaterial = '';
+				$("#divDatosCurso").hide();
+				$('#divHorarioConf').show();
 			}
 
+			
+
+			titulo = valor(obj_titulo);
+			requisitos = valor(obj_requisitos);
+			description= valor(obj_description);
+			dirigido= valor(obj_dirigido);
+			cantidad = valor(obj_cantidad);
 
 
-		}else {
+
 
 		}
 
 
-		/*if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad)){
-			//Procedimiento cuando estan vacíos
+		mensaje += "</ul>" 
+
 			
-			$('#divMensaje').addClass("mensaje-error");
-			$('#divMensaje').append("<label>Campos vacíos</label>");
-
-		}else {
-
-
-		}*/
-
-
-		//$("#divDatosCurso").hide();
-		//$('#divHorarioConf').show();
-
-
-
+			$('#divMensajeDatosCurso').append(mensaje);
+						
 		
 
 	});
 
 	$('#btn_AceptarHorario').on('click', function(){
+		
+		var obj_fecha = $('input[name = "selectFecha"]');
+		var obj_horaI = $('input[name = "selectHoraI"]');
+		var obj_horaF = $('input[name = "selectHoraF"]');
+		var obj_lugar = $('select[name = "selectLugar"]');
+
+
+		fecha = array(obj_fecha);
+		horaI = array(obj_horaI);
+		horaF = array(obj_horaF);
+		lugar = array(obj_lugar);
+
+
 		$('#divProfesorConf').show();
 		$('#divHorarioConf').hide();
 		leerProfesor(datosHorario());
 		leerResp(datosHorario());
 
+
+
+
 	});
 
 
 	$('#btn_AceptarProfesor').on('click', function(){
+		
+		var obj_profesor = $('select[name = "selectProfesor"]');
+		profesor = array(obj_profesor);
+
 		$('#divProfesorConf').hide();
 		$('#divRespConf').show();
+
+
+
+
+
 
 
 
@@ -130,8 +217,16 @@ $(document).ready(function(){
 	});
 
 	$('#btn_AceptarResp').click(function(){
+
+		var obj_responsable = $('select[name = "selectResponsable"]');
+		responsable = array(obj_responsable);
+
+
+
 		$('#divConfirmarCurso').show();
 		$('#divRespConf').hide();
+
+
 	});
 
 
@@ -164,6 +259,41 @@ $(document).ready(function(){
 	
 	$('#formCurso').submit(function(e){
 		e.preventDefault();
+
+
+		var enviar = {
+
+			'titulo' : titulo,
+			'descripcion': description,
+			'requisitos': requisitos,
+			'tActividad' : tActividad,
+			'profesor' : profesor,
+			'responsable' : responsable,
+			'dirigido' : dirigido, 
+			'profesor' : profesor,
+			'responsable' : responsable,
+			'fecha': fecha,
+			'horaI' : horaI,
+			'horaF': horaF,
+			'lugar' : lugar,
+			'req' :req,
+			'material' : material,
+			'cantidadMaterial': cantidadMaterial,
+			'cantidad': cantidad,
+			'radioMaterial' : vacioConfMaterial
+			};
+
+
+			console.log(enviar);
+
+
+			$.post('cursos/insertar1.php',enviar, function(respuesta){
+				var respuesta = JSON.parse(respuesta);
+
+			});
+
+
+
 	});
 
 
@@ -189,9 +319,9 @@ $(document).ready(function(){
 		var obj_horaF = $('select[name = "selectHoraF"]');
 		
 
-		var fecha = array(obj_fecha);
-		var horaI = array(obj_horaI);
-		var horaF = array(obj_horaF);
+		fecha = array(obj_fecha);
+		horaI = array(obj_horaI);
+		horaF = array(obj_horaF);
 		
 
 		var datosLugar = {
@@ -203,8 +333,6 @@ $(document).ready(function(){
 		$.post('cursos/lugar.php', datosLugar, function(respuesta){
 			respuesta = JSON.parse(respuesta);
 			$('#msg_error_horario').empty();
-
-			//console.log(respuesta.lugar[0][0].id);
 			
 			if(respuesta != false){
 

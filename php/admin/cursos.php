@@ -117,8 +117,8 @@
 
 
                             <div class="row mb-4 mt-2">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="row mt-2">
+                                <div class="col-12 d-flex justify-content-center" >
+                                    <div class="row mt-2" id="MaterialesVacio">
                                         <div class="col-12 col-lg-12">
                                             <label>¿El participante debe llevar materiales? </label>
                                             <label><input type="radio" id="cbox1" value="true" name="confMaterial"> Si</label>
