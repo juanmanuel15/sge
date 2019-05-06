@@ -233,6 +233,12 @@
                                 </table>                         
                             </div>
 
+
+                            <div class="row mt-0 mb-3">
+                                 <div class="col-12 d-flex justify-content-center" id="divMensajeProfesor" ></div>
+                            </div>
+
+
                             <div class="row mb-4 mt-2">
                                 <div class="col-12 col-lg-12 d-flex justify-content-center">
                                     <span class="btn btn-success mx-2 col-4" id="btn_AceptarProfesor">Aceptar</span>
@@ -274,6 +280,10 @@
                                         </tr>  
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div class="row mt-0 mb-3">
+                                 <div class="col-12 d-flex justify-content-center" id="divMensajeResp" ></div>
                             </div>
 
                             <div class="row mb-4 mt-2">
@@ -357,11 +367,16 @@
 
 
                             <div class="row mt-4 form-inline">
-                                <div class="col-lg-6 col-sm-12 mt-2 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-danger col-sm-5 col-lg-6" id="btn_aceptar">Agregar</button>
+                                <div class="col-lg-4 col-sm-12 mt-2 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-danger col-sm-8 col-lg-8" id="btn_aceptar">Agregar</button>
                                 </div>
-                                <div class="col-lg-6 col-sm-12 mt-2 d-flex justify-content-center">
-                                    <button type="button" class="btn btn-secondary col-sm-5 col-lg-6" data-dismiss="modal" id="btn_cancelar">Cancelar</button>
+
+                                <div class="col-lg-4 col-sm-12 mt-2 d-flex justify-content-center">
+                                    <button type="button" class="btn btn-primary col-sm-8 col-lg-8" id="btn_regresarGuardarCurso">Regresar</button>
+                                </div>
+
+                                <div class="col-lg-4 col-sm-12 mt-2 d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary col-sm-8 col-lg-8" data-dismiss="modal" id="btn_cancelar">Cancelar</button>
                                 </div>
                             </div>
 

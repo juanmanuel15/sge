@@ -36,165 +36,74 @@
 
 		$conexion= abrirConexion();
 
-		$id_curso = id_curso($titulo);		
+		$id_curso = id_curso($titulo);	
 
-		$query = "";
-		$valores_repetidos = [];
-		$vacioMaterial;
 
-		/*
-			true = vacio 
-			false = con valores 
-		*/
 
-		$comprobarVacio  = [$titulo, $descripcion, $requisitos, $dirigido, $cantidad];
+		$datosBasicos  = [$titulo, $descripcion, $requisitos, $dirigido, $cantidad];
 
-		if(camposVacios($comprobarVacio) || camposVacios($profesor) || camposVacios($responsable) || camposVacios($fecha) || camposVacios($horaI) || camposVacios($horaF) || camposVacios($lugar) || camposVacios($lugar) || camposVacios($req)){
+		if(camposVacios($datosBasicos) || camposVacios($profesor) || camposVacios($responsable) || camposVacios($fecha) || camposVacios($horaI) || camposVacios($horaF) || camposVacios($lugar) || camposVacios($req)){
 			$respuesta = false;
 
 		}else {
 
-			/* 
-				true = repetido
-				false = no repetido
-			*/
-
-
 			$profesorRepetido = valoresRepetidos($profesor);
 			$responsableRepetido = valoresRepetidos($responsable);
 			$reqRepetido = valoresRepetidos($req);
-			$horaIgual;
-			$horaMayor;
-
-			$hora = [];
-			$mayorHora = [];
-
-			// Verificamos que el valor de las horas no sea el mismo. 
-			//Si es el mismo marca TRUE, de lo contrario marca FALSE
-			if(count($horaI) == 1 && count($horaF) == 1){
-
-				if($horaI != $horaF){
-						$horaIgual= false;
-					}else {
-						$horaIgual= true; 
-					}
-			}else {
-
-				$horaIgual;
-				for ($i=0; $i <sizeof($horaI); $i++) { 
-
-					$horaI[$i] = trim($horaI[$i]);
-					$horaF[$i] = trim($horaF[$i]);
-
-					if($horaI[$i] != $horaF[$i]){
-						$hora [] = false; 
-					}else {
-						$hora[] = true; 
-					}
-					
-				}
-
-				$horaIgual = !valoresRepetidos($hora);
-
-				
-			}
-
-
-
-			//Si HF>HI = TRUE, HI<HF = FALSE
-
-			$horaI1 = arrayIntHora($horaI);
-			$horaF1 = arrayIntHora($horaF);
-
-			$hora = [];
-
-			if( count($horaI1) == 1 && count($horaF1) == 1){
+			$horaMayor = mayorHora($horaI, $horaF);
+			$horaIgual = horaIgual($horaI, $horaF);
 			
-				if($horaF1[0] > $horaI1[0]){
-						$horaMayor = false;
-					}else {
-						$horaMayor = true; 
-					}
-			}else {
-				for ($i=0; $i <sizeof($horaI); $i++) { 
-					//echo ($horaF1[$i] . ">" . $horaI1[$i] . "\n");
-					if($horaF1[$i] < $horaI1[$i] ){
-						$hora[] = true;
-					//	echo "hola";
-					}else {
-						$hora[] = false;
-					//	echo "adios";
-					}
+			$respuesta = [
 
-					
-				}
-				//print_r($hora);
+				$profesorRepetido,
+				$responsableRepetido,
+				$reqRepetido,
+				$horaMayor,
+				$horaIgual
+			];
+
+			
 
 
-				$horaMayor = !camposVacios($hora);
-
-				
-			}
-
-
-
-
-			if (!$radioMaterial) {
-
-				$material = '';
-				$cantidadMaterial = '';	
-
-				$materialVacio = false;
-				$materialCantidadVacio = false;
-
-				$datos = [
-				'profesor' => $profesorRepetido,
-				'responsable' => $responsableRepetido,
-				'horaIgual' => $horaIgual,
-				'horaMayor' => $horaMayor,
-				'req' => $reqRepetido
-				];
-
-
-
-
-				
-			}else {
-				$material = arrayLower($material);
-				$vacioMaterial = camposVacios($material);
-				$vacioCantidadMaterial = camposVacios($cantidadMaterial);
-				$materialIgual = valoresRepetidos($material);
-
-
-				if($vacioMaterial || $vacioCantidadMaterial){
-					$materialVacio = true;
-					$materialCantidadVacio = true;
-				}else {
-					$materialVacio = false;
-					$materialCantidadVacio = false;
-				}
-
-
-				$datos = [
-				'profesor' => $profesorRepetido,
-				'responsable' => $responsableRepetido,
-				'horaIgual' => $horaIgual,
-				'horaMayor' => $horaMayor,
-				'req' => $reqRepetido,
-				'materialCantidadVacio' => $materialCantidadVacio,
-				'materialVacio' => $materialVacio,
-				];
-
-			}
-
-
-			var_dump($datos);
+			
 
 
 
 			
 
-			$respuesta = $datos;
+			
+
+
+			$query = "";
+			$valores_repetidos = [];
+			$vacioMaterial;
+
+
+
+
+
+			/*if( camposVacios($material) || camposVacios($cantidadMaterial)){
+				
+			}
+			else {
+				$respuesta = 'Material lleno';
+			}
+
+			$respuesta  = [
+				'profesor' => $profesor,
+				'titulo' => $titulo,
+				'descripcion' => $descripcion,
+				'requisitos' => $req,
+				'dirigido' => $dirigido, 
+				'cantidad' => $cantidad,
+				'material' => $material,
+				'cantidadMaterial' => $cantidadMaterial,
+				'resp' => $responsable, 
+				'fecha' => $fecha,
+				'HI' => $horaI, 
+				'HF' => $horaF,
+				'lugar' => $lugar
+			];*/
 		}
 
 		
@@ -206,17 +115,30 @@
 
 
 	function camposVacios($array){
-		$valor = [];
-		for ($i=0; $i <count($array) ; $i++) { 
-			if(empty($array[$i])) {
-				$valor []= true;
-			}else {
-				$valor []= false;
+
+		if(is_array($array)) {
+
+			$valor = [];
+			for ($i=0; $i <count($array) ; $i++) { 
+				if(empty($array[$i])) {
+					$valor []= true;
+				}else {
+					$valor []= false;
+				}
 			}
+
+			$respuesta =  in_array(true, $valor);
+
+		}else {
+			if (empty($array)) {
+					$respuesta = true;
+				}else {
+					$respuesta = false;
+			}			
 		}
 
-
-		return in_array(true, $valor);
+		return $respuesta;
+		
 	}
 
 
@@ -255,12 +177,7 @@
 
 	}
 
-	function campoVacio($variable) {
-		if(empty($variable))
-			return true;
-		else
-			return false;
-	}
+	
 
 
 	function arrayLower($array){
@@ -373,5 +290,86 @@
 
 		return $resp;
  	}
+
+
+ 	function mayorHora($horaI, $horaF){
+
+		//Si HF>HI = TRUE, HI<HF = FALSE
+
+		$horaI1 = arrayIntHora($horaI);
+		$horaF1 = arrayIntHora($horaF);
+
+		$hora = [];
+
+		if( count($horaI1) == 1 && count($horaF1) == 1){
+		
+			if($horaF1[0] > $horaI1[0]){
+					$horaMayor = false;
+				}else {
+					$horaMayor = true; 
+				}
+		}else {
+			for ($i=0; $i <sizeof($horaI); $i++) { 
+				//echo ($horaF1[$i] . ">" . $horaI1[$i] . "\n");
+				if($horaF1[$i] < $horaI1[$i] ){
+					$hora[] = true;
+				//	echo "hola";
+				}else {
+					$hora[] = false;
+				//	echo "adios";
+				}
+
+				
+			}
+			//print_r($hora);
+
+
+			$horaMayor = !camposVacios($hora);
+
+			
+		}
+
+		return $horaMayor;
+	}
+
+
+		function horaIgual($horaI, $horaF){
+				$hora = [];
+				$mayorHora = [];
+
+				// Verificamos que el valor de las horas no sea el mismo. 
+				//Si es el mismo marca TRUE, de lo contrario marca FALSE
+				if(count($horaI) == 1 && count($horaF) == 1){
+
+					if($horaI != $horaF){
+							$horaIgual= false;
+						}else {
+							$horaIgual= true; 
+						}
+				}else {
+
+					$horaIgual;
+					for ($i=0; $i <sizeof($horaI); $i++) { 
+
+						$horaI[$i] = trim($horaI[$i]);
+						$horaF[$i] = trim($horaF[$i]);
+
+						if($horaI[$i] != $horaF[$i]){
+							$hora [] = false; 
+						}else {
+							$hora[] = true; 
+						}
+						
+					}
+
+					$horaIgual = !valoresRepetidos($hora);
+
+					
+				}
+
+				return $horaIgual;
+			}
+
+
 
 ?>

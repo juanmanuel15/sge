@@ -73,3 +73,53 @@ $(document).on('click', '#btn_quitarHorario', function(){
 			k--;
 		}
 	});
+
+$('#btn_agregarProfesor').on('click', function(){
+
+		if(j == 10){
+			j = j;
+		}else {
+			$('#tableProfesor').clone().appendTo("#divProfesor");
+			j++;
+		}
+});
+
+
+$(document).on('click', '#btn_quitarProfesor', function(){
+		//
+		if(j == 1){
+			j = j;
+		}else {
+
+			$(this).parent('td').parent('tr').remove()	;
+			j--;
+		}
+});
+
+
+$('#btn_agregarResponsable').on('click', function(){
+
+		if(i == 5){
+			i = i;
+		}else {
+			$('#tableResponsable').clone().appendTo("#divResponsable");
+			i++;
+		}
+});
+
+$(document).on('click', '#btn_quitarResponsable', function(){
+		//
+		if(i == 1){
+			i = i;
+		}else {
+
+			$(this).parent('td').parent('tr').remove();
+
+			i--;
+		}
+	});
+
+
+
+
+
