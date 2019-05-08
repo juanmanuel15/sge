@@ -30,7 +30,7 @@
 	if(!isset($titulo, $descripcion, $requisitos, $tActividad, $dirigido, $profesor, $responsable, $fecha, $horaI, $horaF, $lugar, $req, $material, $cantidadMaterial)){
 
 
-		$respuesta = false;
+		$respuesta [0] = ['curso' => false];
 
 	}else{	
 
@@ -43,7 +43,7 @@
 		$datosBasicos  = [$titulo, $descripcion, $requisitos, $dirigido, $cantidad];
 
 		if(camposVacios($datosBasicos) || camposVacios($profesor) || camposVacios($responsable) || camposVacios($fecha) || camposVacios($horaI) || camposVacios($horaF) || camposVacios($lugar) || camposVacios($req)){
-			$respuesta = false;
+			$respuesta [0] = ['curso' => false];
 
 		}else {
 
@@ -74,7 +74,6 @@
 				$cantidadMaterialVacio = camposVacios($cantidadMaterial);
 
 				$vacios = [
-
 					$profesorRepetido,
 					$responsableRepetido,
 					$reqRepetido,
@@ -178,7 +177,7 @@
 	$conexion->close();
 
 
-	$respuesta [0] = ['curso' => false];
+	//$respuesta [0] = ['curso' => false];
 
 	echo json_encode($respuesta);
 

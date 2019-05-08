@@ -68,9 +68,9 @@
                                 <div class="col-lg-3 col-sm-12">
                                     <label for="select_tActividad" class="col-form-label">Tipo de Actividad: </label>
                                 </div>
-                                <div class="col-lg-9 col-sm-12">
-                                    <select id="select_tActividad" name = "select_tActividad" class="form-control">
-                                    </select>
+                                <div class="col-lg-9 col-sm-12" id="divselect_tActividad" >
+                                    <!--select id="select_tActividad" name = "select_tActividad" class="form-control">
+                                    </select-->
                                 </div>
                             </div>
 
@@ -100,17 +100,7 @@
                                     <thead>
                                         
                                     </thead>
-                                    <tbody id="divReq">
-                                        <tr id="tableReq">
-                                            <td class="col-lg-11 col-sm-11">
-                                                <select id="selectReq" name = "selectReq"  class="form-control">
-                                                </select>
-                                            </td>
-
-                                            <td class="col-lg-1 col-sm-1">
-                                                <button class="btn" type="button" id="btn_quitarReq"><i class="fas fa-minus"></i>
-                                            </td>                        
-                                        </tr>  
+                                    <tbody id="divReq">                     
                                     </tbody>
                                 </table>
                             </div>
@@ -218,16 +208,7 @@
                                     </thead>
                                     <tbody id="divProfesor">
 
-                                        <tr id="tableProfesor">
-                                            <td class="col-lg-11 col-sm-11">
-                                                <select id="selectProfesor" name = "selectProfesor"  class="form-control">
-                                                </select>
-                                            </td>
-
-                                            <td class="col-lg-1 col-sm-1" id="Ocultar_btnProfesor">
-                                                <button class="btn" type="button" id="btn_quitarProfesor"><i class="fas fa-minus"></i>
-                                            </td>                        
-                                        </tr>  
+                                        
                                     </tbody>
 
                                 </table>                         
@@ -267,17 +248,7 @@
                                 <table class="table">
                                     <thead>                                    
                                     </thead>
-                                    <tbody id="divResponsable">
-                                        <tr id="tableResponsable">
-                                            <td class="col-lg-11 col-sm-11">
-                                                <select id="selectResponsable" name = "selectResponsable"  class="form-control">
-                                                </select>
-                                            </td>
-
-                                            <td class="col-lg-1 col-sm-1">
-                                                <button class="btn" type="button" id="btn_quitarResponsable"><i class="fas fa-minus"></i>
-                                            </td>                        
-                                        </tr>  
+                                    <tbody id="divResponsable">         
                                     </tbody>
                                 </table>
                             </div>

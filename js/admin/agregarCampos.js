@@ -75,7 +75,7 @@ $(document).on('click', '#btn_quitarHorario', function(){
 	});
 
 $('#btn_agregarProfesor').on('click', function(){
-
+		console.log(j);
 		if(j == 10){
 			j = j;
 		}else {
@@ -86,7 +86,7 @@ $('#btn_agregarProfesor').on('click', function(){
 
 
 $(document).on('click', '#btn_quitarProfesor', function(){
-		//
+		console.log(j);
 		if(j == 1){
 			j = j;
 		}else {

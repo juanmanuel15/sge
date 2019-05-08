@@ -347,12 +347,24 @@ $(document).ready(function(){
 				
 				var respuesta = JSON.parse(respuesta);
 
-				if(respuesta[0].curso){
-					cerrarModal();
+				if(typeof respuesta.curso !== 'undefined'){
+					if(respuesta.curso === false ){
+
+					}else {
+						
+					}
+						
 				}else {
-					$('#divMensajeFinal').addClass('mensaje-error');
-					$('#divMensajeFinal').append('No se pudo Insertar el curso, por favor verifique sus datos');
-				}				
+					if(respuesta[0].curso){						
+						mostrar();
+						cerrarModal();
+					}else {
+						$('#divMensajeFinal').addClass('mensaje-error');
+						$('#divMensajeFinal').append('No se pudo Insertar el curso, por favor verifique sus datos');
+					}
+				}
+
+							
 
 			});
 
@@ -365,11 +377,7 @@ $(document).ready(function(){
 
 	$('#btn_agregar').click(function(){
 		confIniciales();
-		i = 0;
-		j = 0;
-		k = 0;
-		l = 0; 
-		m = 0;
+		
 
 		$('#divBotonCalcularHorario').show();
 		$('#formCurso')[0].reset();

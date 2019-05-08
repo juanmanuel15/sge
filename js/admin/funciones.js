@@ -1,30 +1,39 @@
 function leerRequerimientos(){
 	$.get('cursos/req.php', function(respuesta){
-		$('#selectReq').empty();
+		$('#divReq').empty();
 		var array_respuesta = JSON.parse(respuesta);
-		var fila = '';
+		var fila = `<tr id="tableReq">
+                        <td class="col-lg-11 col-sm-11">                        	
+							<select id="selectReq" name = "selectReq"  class="form-control">`;
 
 		for (var i = 0; i < array_respuesta.length; i++) {
 					fila += "<option value = \"" + array_respuesta[i].id+ "\">" + array_respuesta[i].nombre+ "</option>";
 				}
-
-		$('#selectReq').append(fila);
+		fila += `		</select>
+					</td>
+					<td class="col-lg-1 col-sm-1">
+						<button class="btn" type="button" id="btn_quitarReq"><i class="fas fa-minus"></i>
+	                </td>                        
+                </tr> 
+					`;
+		$('#divReq').append(fila);
 	});
 }
 
 
 function leerTipoActividad(){
 	$.get('cursos/tactividad.php', function(respuesta){
-		$('#select_tActividad').empty();
+		$('#divselect_tActividad').empty();
 		var array_respuesta = JSON.parse(respuesta);
 
-		var fila = '';
+		var fila = `<select id="select_tActividad" name = "select_tActividad" class="form-control">`;
 
 		for (var i = 0; i < array_respuesta.length; i++) {
 					fila += "<option value = \"" + array_respuesta[i].id+ " \">" + array_respuesta[i].nombre+ "</option>";
 				}
+			fila += '</select>';
 
-				$('#select_tActividad').append(fila);
+				$('#divselect_tActividad').append(fila);
 	});
 }
 
@@ -67,17 +76,29 @@ function leerProfesor(datos){
 	//console.log(datos);
 	$.post('cursos/profesor.php', datos, function(respuesta){
 
-		$('#selectProfesor').empty();
+		$('#divProfesor').empty();
 		var array_respuesta = JSON.parse(respuesta);
 		//console.log(array_respuesta[0].length);
 
-		var fila = '';
+		var fila = ` <tr id="tableProfesor">
+                        <td class="col-lg-11 col-sm-11">
+                            <select id="selectProfesor" name = "selectProfesor"  class="form-control">
+                   `;
 
 		for (var i = 0; i < array_respuesta[0].length; i++) {					
 					fila += "<option value = \"" + array_respuesta[0][i].nCuenta+ "\">" + array_respuesta[0][i].nombre+ "</option>";
 				}
 
-		$('#selectProfesor').append(fila);
+				fila += `
+						</select>
+                   </td>
+                   <td class="col-lg-1 col-sm-1" id="Ocultar_btnProfesor">
+                        <button class="btn" type="button" id="btn_quitarProfesor"><i class="fas fa-minus"></i>
+                    </td>                        
+                </tr>  
+				`;
+
+		$('#divProfesor').append(fila);
 	});
 }
 
@@ -86,17 +107,30 @@ function leerResp(datos){
 	//console.log(datos);
 	$.post('cursos/resp.php', datos, function(respuesta){
 
-		$('#selectResponsable').empty();
+		$('#divResponsable').empty();
 		var array_respuesta = JSON.parse(respuesta);
 		//console.log(array_respuesta[0].length);
 
-		var fila = '';
+		var fila = `
+				<tr id="tableResponsable">
+                    <td class="col-lg-11 col-sm-11">
+                        <select id="selectResponsable" name = "selectResponsable"  class="form-control">
+		`;
 
 		for (var i = 0; i < array_respuesta[0].length; i++) {					
 					fila += "<option value = \"" + array_respuesta[0][i].nCuenta+ "\">" + array_respuesta[0][i].nombre+ "</option>";
 				}
 
-		$('#selectResponsable').append(fila);
+		fila += `
+			</select>
+			</td>
+
+            <td class="col-lg-1 col-sm-1">
+            	<button class="btn" type="button" id="btn_quitarResponsable"><i class="fas fa-minus"></i>
+            </td>                        
+         </tr>  
+		`;
+		$('#divResponsable').append(fila);
 	});
 }
 

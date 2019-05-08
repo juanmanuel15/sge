@@ -547,16 +547,17 @@ function selectores () {
 
 	//Obtenermos el Selector para el tipo de Actividad
 	$.get('cursos/tactividad.php', function(respuesta){
-		$('#select_tActividad').empty();
+		$('#divselect_tActividad').empty();
 		var array_respuesta = JSON.parse(respuesta);
 
-		var fila = '';
+		var fila = `<select id="select_tActividad" name = "select_tActividad" class="form-control">`;
 
 		for (var i = 0; i < array_respuesta.length; i++) {
 					fila += "<option value = \"" + array_respuesta[i].id+ " \">" + array_respuesta[i].nombre+ "</option>";
 				}
+			fila += '</select>';
 
-				$('#select_tActividad').append(fila);
+				$('#divselect_tActividad').append(fila);
 	});
 
 	//Obtenemos el selector para los profesores
