@@ -182,7 +182,7 @@
 
 		if(count(array_unique($datos)) == 1){
 
-			$resp = [];
+			
 
 			$queryCurso  = "INSERT INTO curso (id_curso, titulo, id_tipo_actividad, descripcion, prerrequisitos, dirigido, lugares) VALUES('$id_curso', '$titulo', $tActividad, '$descripcion', '$requisitos', '$dirigido', '$cantidad')";
 

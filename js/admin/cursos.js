@@ -340,8 +340,19 @@ $(document).ready(function(){
 			console.log(enviar);
 
 
-			$.post('cursos/insertar1.php',enviar, function(respuesta){
+			$.post('cursos/insertar1.php',enviar, function(respuesta){	
+
+				$('#divMensajeFinal').removeClass('mensaje-error');
+				$('#divMensajeFinal').empty();
+				
 				var respuesta = JSON.parse(respuesta);
+
+				if(respuesta[0].curso){
+					cerrarModal();
+				}else {
+					$('#divMensajeFinal').addClass('mensaje-error');
+					$('#divMensajeFinal').append('No se pudo Insertar el curso, por favor verifique sus datos');
+				}				
 
 			});
 
@@ -354,6 +365,11 @@ $(document).ready(function(){
 
 	$('#btn_agregar').click(function(){
 		confIniciales();
+		i = 0;
+		j = 0;
+		k = 0;
+		l = 0; 
+		m = 0;
 
 		$('#divBotonCalcularHorario').show();
 		$('#formCurso')[0].reset();
@@ -572,6 +588,7 @@ function confIniciales(){
 }
 
 function cerrarModal(){
+	$('#divMensajeFinal').empty();
 	$('#modalCurso').modal('hide');
 	$('#formCurso')[0].reset();	
 }

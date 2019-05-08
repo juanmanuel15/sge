@@ -363,6 +363,11 @@
                                 </div> 
 
                             </div>
+
+
+                            <div class="row mt-0 mb-3">
+                                <div class="col-12 d-flex justify-content-center" id="divMensajeFinal" ></div>
+                            </div>
                             
 
 
@@ -379,6 +384,8 @@
                                     <button type="button" class="btn btn-secondary col-sm-8 col-lg-8" data-dismiss="modal" id="btn_cancelar">Cancelar</button>
                                 </div>
                             </div>
+
+                            
 
                         </div>
                     </div>

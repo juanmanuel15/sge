@@ -47,69 +47,138 @@
 
 		}else {
 
+
 			$profesorRepetido = valoresRepetidos($profesor);
 			$responsableRepetido = valoresRepetidos($responsable);
 			$reqRepetido = valoresRepetidos($req);
 			$horaMayor = mayorHora($horaI, $horaF);
 			$horaIgual = horaIgual($horaI, $horaF);
 			
-			$respuesta = [
-
-				$profesorRepetido,
-				$responsableRepetido,
-				$reqRepetido,
-				$horaMayor,
-				$horaIgual
-			];
-
 			
 
+			if($radioMaterial == 'false'){
+				$vacios = [
+					$profesorRepetido,
+					$responsableRepetido,
+					$reqRepetido,
+					$horaMayor,
+					$horaIgual
+				];
 
-			
-
-
-
-			
-
-			
-
-
-			$query = "";
-			$valores_repetidos = [];
-			$vacioMaterial;
-
-
-
-
-
-			/*if( camposVacios($material) || camposVacios($cantidadMaterial)){
+				$materialVacio = false;
+				$cantidadMaterialVacio = false;
 				
 			}
 			else {
-				$respuesta = 'Material lleno';
+				$materialVacio = camposVacios(arrayLower($material));
+				$cantidadMaterialVacio = camposVacios($cantidadMaterial);
+
+				$vacios = [
+
+					$profesorRepetido,
+					$responsableRepetido,
+					$reqRepetido,
+					$horaMayor,
+					$horaIgual,
+					$materialVacio,
+					$cantidadMaterialVacio
+
+				];
+				
 			}
 
-			$respuesta  = [
-				'profesor' => $profesor,
-				'titulo' => $titulo,
-				'descripcion' => $descripcion,
-				'requisitos' => $req,
-				'dirigido' => $dirigido, 
-				'cantidad' => $cantidad,
-				'material' => $material,
-				'cantidadMaterial' => $cantidadMaterial,
-				'resp' => $responsable, 
-				'fecha' => $fecha,
-				'HI' => $horaI, 
-				'HF' => $horaF,
-				'lugar' => $lugar
-			];*/
+			
+
+			#Buscamos un valor true dentro de nuestra cadena.
+
+
+			if(array_search(true, $vacios)){
+				$respuesta = $vacios;
+			} else {
+
+				$tActividad = $tActividad[0];
+
+
+				$queryCurso  = "INSERT INTO curso (id_curso, titulo, id_tipo_actividad, descripcion, prerrequisitos, dirigido, lugares) VALUES('$id_curso', '$titulo', $tActividad, '$descripcion', '$requisitos', '$dirigido', '$cantidad')";
+
+				$respCurso = $conexion->query($queryCurso);	
+
+				if($respCurso){
+
+					$resp =[];
+
+				
+
+					for ($i=0; $i <count($profesor) ; $i++) { 
+			
+						$profesor[$i] = trim($profesor[$i]);
+						$queryProfesor =  "INSERT INTO curso_usuario_org (id, nCuenta, id_curso) VALUES (NULL, '$profesor[$i]', '$id_curso');";
+						$respProfesor [] = $conexion->query($queryProfesor);
+					}
+
+					
+					foreach ($responsable as $key ) {
+					
+						$queryResponsable = "INSERT INTO curso_usuario_resp (id, nCuenta, id_curso) VALUES (NULL, '$key', '$id_curso');";
+						$respResponsable [] = $conexion ->query($queryResponsable);
+
+					}
+
+					
+					
+					for ($i=0; $i <count($fecha) ; $i++) { 
+						$queryHorario = "INSERT INTO horario (fecha, hora_inicio, hora_final, id_curso, id_lugar) VALUES ('$fecha[$i]', '$horaI[$i]', '$horaF[$i]' , '$id_curso', '$lugar[$i]');";
+						$respHorario [] = $conexion->query($queryHorario); 
+					}
+
+					
+					foreach ($req as $key) {
+						$queryReq = "INSERT INTO req_curso (id_req, id_curso) VALUES ('$key', '$id_curso');";
+						$respReq [] = $conexion->query($queryReq);
+					}
+
+					if(!$radioMaterial == 'false'){
+
+						for ($i=0; $i <count($material) ; $i++) { 
+						$queryMaterial = "INSERT INTO material (nombre_material, cantidad, id_curso) VALUES ('$material[$i]', $cantidadMaterial[$i], '$id_curso');";
+						$respMaterial [] = $conexion->query($queryMaterial);
+						
+						}
+
+					}else {
+						$respMaterial [] = true;
+					}
+
+
+					
+
+
+					$resp [] = ['curso' => $respCurso];
+					$resp [] = ['profesor' => $respProfesor];
+					$resp [] = ['responsable' => $respResponsable];
+					$resp [] = ['horario' => $respHorario];
+					$resp [] = ['req' => $respReq];
+					$resp [] = ['material' => $respMaterial]; 
+
+					
+					
+					$respuesta = $resp;
+				}
+
+				else {
+					$respuesta [0] = ['curso' => false];
+				}
+			}
 		}
 
 		
 
 	}
 
+	$conexion->close();
+
+
+	$respuesta [0] = ['curso' => false];
 
 	echo json_encode($respuesta);
 
