@@ -199,6 +199,31 @@ function selectHorario(){
 
 
 }
+function incluirCamposMaterial(){
+
+	$('#divMaterial').empty();
+
+	var texto = `
+		<tr id="tableMaterial">
+	        <td>
+	            <input type="text" name="txt_material"  class="form-control">
+
+	        </td>
+
+	        <td>
+	            <input type="number" name="txt_materialCantidad" id="txt_materialCantidad" class="form-control">
+
+	        </td>
+
+	        <td >
+	            <button class="btn" type="button" id="btn_quitarMaterial"><i class="fas fa-minus"></i>
+	        </td>                        
+	    </tr>
+	`;
+
+	$('#divMaterial').append(texto);
+
+}
 
 
 function array(lectura){

@@ -377,7 +377,11 @@ $(document).ready(function(){
 
 	$('#btn_agregar').click(function(){
 		confIniciales();
-		
+		i = 0;
+		k = 0;
+		j = 0;
+		l = 0;
+		m = 0;
 
 		$('#divBotonCalcularHorario').show();
 		$('#formCurso')[0].reset();
@@ -386,11 +390,12 @@ $(document).ready(function(){
 		leerTipoActividad();
 		leerHora();
 		leerFecha();
+		incluirCamposMaterial();
 	});
 
 	$(document).on('click', '#btn_CalcularHorario', function(){
 
-		
+
 		var obj_fecha = $('select[name = "selectFecha"]');
 		var obj_horaI = $('select[name = "selectHoraI"]');
 		var obj_horaF = $('select[name = "selectHoraF"]');
@@ -585,11 +590,11 @@ $(document).on('click', '#btn_reiniciarLugar', function(){
 
 function confIniciales(){
 
-	$('#divDatosCurso').show();
+	$('#divDatosCurso').hide();
 	$('#divMaterialConf').hide();
 	$('#divProfesorConf').hide();
 	$('#divRespConf').hide();
-	$('#divHorarioConf').hide();
+	$('#divHorarioConf').show();
 	$('#divConfirmarCurso').hide();
 	$('#divBotonesHorario').hide();
 	

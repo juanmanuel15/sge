@@ -145,21 +145,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="divMaterial">
-                                                <tr id="tableMaterial">
-                                                    <td>
-                                                        <input type="text" name="txt_material"  class="form-control">
-
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="number" name="txt_materialCantidad" id="txt_materialCantidad" class="form-control">
-
-                                                    </td>
-
-                                                    <td >
-                                                        <button class="btn" type="button" id="btn_quitarMaterial"><i class="fas fa-minus"></i>
-                                                    </td>                        
-                                                </tr>  
+                                                  
                                             </tbody>
                                         </table>
                                     </div>
@@ -308,9 +294,10 @@
 
                             <div class="row mb-4 mt-2" id = "divBotonesHorario">
                                 <div class="col-12 col-lg-12 d-flex justify-content-center">
-                                    <span class="btn btn-success mx-2 col-4" id="btn_AceptarHorario">Aceptar</span>
-                                    <span class="btn btn-primary mx-2 col-4" id="btn_regresarHorario">Regresar</span>
-                                    <span class="btn btn-secondary mx-2 col-4" id="btn_salirHorario">Salir</span>
+                                    <span class="btn btn-success mx-2 col-3" id="btn_AceptarHorario">Aceptar</span>
+                                    <span class="btn btn-success mx-2 col-3" id="btn_ReiniciarHorario">Reiniciar</span>
+                                    <span class="btn btn-primary mx-2 col-3" id="btn_regresarHorario">Regresar</span>
+                                    <span class="btn btn-secondary mx-2 col-3" id="btn_salirHorario">Salir</span>
                                 </div>
                             </div>
 
