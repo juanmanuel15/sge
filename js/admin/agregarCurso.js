@@ -27,6 +27,7 @@ $(document).ready(function(){
 		var confMaterial = $(this).val();
 
 		if(confMaterial === 'true'){
+			
 			$('#divMaterialConf').show();
 		}else {
 			$('#divMaterialConf').hide();
@@ -257,18 +258,38 @@ $(document).ready(function(){
 
 		$('#divMensajeResp').empty();
 		var obj_responsable = $('select[name = "selectResponsable"]');
+		var obj_profesor = $('select[name = "selectProfesor"]');
+		profesor = array(obj_profesor);
 		responsable = array(obj_responsable);
 
-		console.log(valoresRepetidos(responsable).indexOf(1));
-		if(valoresRepetidos(responsable).indexOf(1) === -1){
+		var valor = [];
+		var mensaje = '<ul>';
+
+		for(var i = 0; i< responsable.length; i++){
+			for (var j = 0; j<profesor.length; j++){
+				responsable[i] === profesor[j] ? valor.push(1) : valor.push(0);
+			}
+		}
+
+		console.log(valor);
+
+		if(valor.indexOf(1) === -1 && valoresRepetidos(responsable).indexOf(1) === -1){
 			$('#divMensajeResp').removeClass('mensaje-error');
 			$('#divRespConf').hide();
 			$('#divConfirmarCurso').show();
-
 		}else {
 
-			$('#divMensajeResp').addClass("mensaje-error");
-			$('#divMensajeResp').append("Responsables Repetidos");
+			if(valor.indexOf(1) != -1){
+				mensaje += "<li>Usuario ya asignado en Profesor</li>";
+			}if(valoresRepetidos(responsable).indexOf(1) != -1){
+				mensaje += "<li>Responsables Repetidos</li>"
+			}
+
+			mensaje += '</ul>';
+
+			
+			$('#divMensajeResp').addClass('mensaje-error');
+			$('#divMensajeResp').append(mensaje);
 
 		}
 
@@ -377,11 +398,7 @@ $(document).ready(function(){
 
 	$('#btn_agregar').click(function(){
 		confIniciales();
-		i = 0;
-		k = 0;
-		j = 0;
-		l = 0;
-		m = 0;
+		
 
 		$('#divBotonCalcularHorario').show();
 		$('#formCurso')[0].reset();
@@ -411,6 +428,7 @@ $(document).ready(function(){
 			'horaI': horaI,
 			'horaF' : horaF
 		};
+
 
 		$.post('cursos/lugar.php', datosLugar, function(respuesta){
 			respuesta = JSON.parse(respuesta);
@@ -528,6 +546,16 @@ $(document).on('click', '#btn_aceptarLugar', function(){
 
 
 $(document).on('click', '#btn_reiniciarLugar', function(){
+	reiniciar();
+});
+
+$(document).on('click', '#btn_ReiniciarHorario', function(){
+	reiniciar();
+	$('#divBotonesHorario').hide();
+	$('#divBotonCalcularHorario').show();
+});
+
+function reiniciar(){
 
 	k = 1;
 		$('#divBotonCalcularHorario').empty();
@@ -583,18 +611,24 @@ $(document).on('click', '#btn_reiniciarLugar', function(){
 		$('#tablaHorario').append(tabla);
 		leerHora();
 		leerFecha();
-});	
+}	
 
 
 
 
 function confIniciales(){
 
-	$('#divDatosCurso').hide();
+	i = 1;
+	k = 1;
+	j = 1;
+	l = 1;
+	m = 1;
+
+	$('#divDatosCurso').show();
 	$('#divMaterialConf').hide();
 	$('#divProfesorConf').hide();
 	$('#divRespConf').hide();
-	$('#divHorarioConf').show();
+	$('#divHorarioConf').hide();
 	$('#divConfirmarCurso').hide();
 	$('#divBotonesHorario').hide();
 	

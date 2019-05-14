@@ -295,7 +295,7 @@
                             <div class="row mb-4 mt-2" id = "divBotonesHorario">
                                 <div class="col-12 col-lg-12 d-flex justify-content-center">
                                     <span class="btn btn-success mx-2 col-3" id="btn_AceptarHorario">Aceptar</span>
-                                    <span class="btn btn-success mx-2 col-3" id="btn_ReiniciarHorario">Reiniciar</span>
+                                    <span class="btn btn-warning mx-2 col-3" id="btn_ReiniciarHorario">Reiniciar</span>
                                     <span class="btn btn-primary mx-2 col-3" id="btn_regresarHorario">Regresar</span>
                                     <span class="btn btn-secondary mx-2 col-3" id="btn_salirHorario">Salir</span>
                                 </div>
@@ -464,7 +464,8 @@
         
     </div>
     <script src= "../../js/admin/funciones.js"></script>
-    <script src= "../../js/admin/cursos.js"></script>
+    <script src= "../../js/admin/agregarCurso.js"></script>
+    <script src= "../../js/admin/editarCurso.js"></script>
     <script src= "../../js/admin/agregarCampos.js"></script>
     <script src= "../../js/admin/mostrar.js"></script>
     <script src= "../../js/admin/editar.js"></script>

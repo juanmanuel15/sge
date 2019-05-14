@@ -17,7 +17,6 @@
 
 
 
-
          if(!isset($fecha, $hora_final, $hora_inicio)){
             #No están definidos los valores del tipo POST
 
@@ -35,6 +34,10 @@
                     
                     $igual = horaIgual($hora_inicio, $hora_final);
                     $mayor = horaMayor($hora_inicio, $hora_final);
+
+
+
+                   
 
                     if(!$igual && !$mayor ){
                         #En el dado caso de que solo sea una fecha, solo obtenemos los lugares para ese horario.
@@ -94,42 +97,34 @@
 
     function horaIgual ($horaI, $horaF){
 
-        if(count($horaI) == 1 && count($horaF) == 1){
+        $HI = [];
+        $HF = [];
 
-            if($horaI != $horaF){
-                    $igualHora= false;
-                }else {
-                    $igualHora= true; 
-                }
-        }else {
 
-            for ($i=0; $i <count($horaI); $i++) { 
 
-                $horaI[$i] = trim($horaI[$i]);
-                $horaF[$i] = trim($horaF[$i]);
 
-                if($horaI[$i] != $horaF[$i]){
-                    $hora [] = false; 
-                }else {
-                    $hora[] = true; 
-                }
-                
-            }
+        for ($i=0; $i <count($horaI) ; $i++) { 
             
-            //echo count($hora) . "==" . count(array_unique($hora));
-            
+            $HI = hora($horaI[$i]);
+            $HF= hora($horaF[$i]);
 
-            if (count(array_unique($hora)) == 1) {
-                $hora = array_unique($hora);
-                if(!$hora[0]){
-                    $igualHora = false;
-                }else {
-                    $igualHora = true;
-                }
+            if($HI == $HF){
+                $hora []= true;
             }else {
-                $igualHora = true;
+                $hora []= false;
             }
+
         }
+
+
+        $igualHora = array_search(true, $hora);
+
+        if($igualHora === false ){
+            $igualHora = false;
+        }else {
+            $igualHora = true;
+        }
+
 
         return $igualHora;
 
@@ -138,47 +133,37 @@
 
     function horaMayor($horaI, $horaF){
 
-        //Si HF>HI = TRUE, HI<HF = FALSE
+        $HI = [];
+        $HF = [];
 
-        $horaI1 = arrayIntHora($horaI);
-        $horaF1 = arrayIntHora($horaF);
 
-        $hora = [];
 
-        if( count($horaI1) == 1 && count($horaF1) == 1){
-        
-            if($horaF1[0] > $horaI1[0]){
-                    $mayorHora= false;
-                }else {
-                    $mayorHora= true; 
-                }
-        }else {
-            for ($i=0; $i <sizeof($horaI); $i++) { 
-                //echo ($horaF1[$i] . ">" . $horaI1[$i] . "\n");
-                if($horaF1[$i] < $horaI1[$i] ){
-                    $hora[] = true;
-                //  echo "hola";
-                }else {
-                    $hora[] = false;
-                //  echo "adios";
-                }
 
-                
-            }
-            //print_r($hora);
+        for ($i=0; $i <count($horaI) ; $i++) { 
+            
+            $HI = hora($horaI[$i]);
+            $HF= hora($horaF[$i]);
 
-            if (count(array_unique($hora)) == 1) {
-                $hora = array_unique($hora);
-                if(!$hora[0]){
-                    $mayorHora = false;
-                }else {
-                    $mayorHora = true;
-                }
+            if($HI > $HF){
+                $hora []= true;
             }else {
-                $mayorHora = true;
+                $hora []= false;
             }
+
         }
 
+
+
+        $mayorHora = array_search(true, $hora);
+
+        if($mayorHora === false ){
+            $mayorHora = false;
+        }else {
+            $mayorHora = true;
+        }
+
+
+       
         return $mayorHora;
 
     }
@@ -256,7 +241,7 @@
     function hora($hora){
         $hora = str_replace(':', '', $hora);
         $hora = substr($hora, 0, -2);
-
+        //print_r($hora);
         return $hora;
     }
 
