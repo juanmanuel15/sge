@@ -223,8 +223,7 @@
                 $('#titulo_curso').text(respuesta.curso[0].titulo);
                 $('#descripcion').text(respuesta.curso[0].descripcion);
                 $('#tipo_Actividad').text(respuesta.curso[0].tipo_actividad);
-                $('#requisitos').text(respuesta.curso[0].requisi
-                    tos);
+                $('#requisitos').text(respuesta.curso[0].requisitos);
                 $('#dirigido').text(respuesta.curso[0].dirigido);
 
                 var profesor = "";

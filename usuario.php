@@ -223,7 +223,7 @@
 
         
 
-        <div class="row mt-4 d-flex justify-content-center">
+        <!--div class="row mt-4 d-flex justify-content-center">
             <div class="col-sm-12 col-12 col-md-8 col-lg-6 d-flex justify-content-center">
                 <h5>Cursos inscritos</h5>
             </div>
@@ -263,7 +263,7 @@
                         </div>  
                     </div>
             </div>
-        </div>
+        </div-->
 
         <hr>
 

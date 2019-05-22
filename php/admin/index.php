@@ -53,7 +53,7 @@
         
         <div class="row mt-3">
             <div class="col-3 d-flex justify-content-center">
-                    <a href="req.php" class="btn-sm btn-primary col-sm col-lg-5 txt-button d-flex justify-content-center p-3" id ="btn_ver_req">Requerimientos</a>
+                    <a href="req.php" class="btn-sm btn-primary col-sm col-lg-5 txt-button d-flex justify-content-center p-3" id ="btn_ver_req">Materiales</a>
             </div>
             <div class="col-3 d-flex justify-content-center ">
                     <a href="lugar.php"class="btn-sm btn-primary col-sm col-lg-5 txt-button text-center p-3" id ="btn_ver_lugar">Lugar</a>

@@ -80,12 +80,9 @@
                         <table class="table align-center text-center">
                             <thead>
                                 <tr class="texto-tabla">
-                                    <th>Profesor</th>
-                                    <th>Título</th>
-                                    <th>Fecha</th>
-                                    <th>Hora Inicial</th>
-                                    <th>Hora Final</th>
-                                    <th hidden="">Generar</th>
+                                    <th>#</th>
+                                    <th>Nombre del Curso</th>         
+                                    <th>Generar</th>
                                 </tr>
                             </thead>
                             <tbody id="tablaReporteCurso">
@@ -102,7 +99,7 @@
             <div class="footer"> 
             </div>                  
         </footer-->
-        <script src="../../js/reporte-curso.js"></script>
+        <script src="../../js/admin/reporte-curso.js"></script>
     </div>
 
 
