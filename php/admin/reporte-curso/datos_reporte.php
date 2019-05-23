@@ -75,6 +75,31 @@
 
     	return $respuesta;
 
+    }
+
+
+    function horario ($id){
+        $conexion = abrirConexion();
+        $query = "SELECT horario.hora_inicio, horario.hora_final, horario.fecha, lugar.nombre_lugar FROM horario, lugar, curso WHERE horario.id_lugar = lugar.id_lugar AND curso.id_curso = horario.id_curso AND curso.id_curso = '$id'";
+
+        $resultado = leerDatos($conexion, $query);
+
+        
+
+        while($row  = $resultado->fetch_array()){
+            $respuesta [] = [
+                'HI' => $row[0],
+                'HF' => $row[1],
+                'fecha' => $row[2],
+                'lugar' => $row[3],
+            ];
+        }
+
+        $resultado->free();
+        cerrarConexion($conexion);
+
+        return $respuesta;
+
     }    
     
 

@@ -9,6 +9,11 @@
 	$profesores = profesor($id);
 	$curso = curso($id);
 
+    $horario = horario($id);
+
+    //print_r($horario);
+
+
 
     // create new PDF document
     $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -79,7 +84,23 @@
     $pdf->Multicell(47, 5, 'Hora de Inicio', 'B', 'C', 0, 0, '', '', true);
     $pdf->Multicell(47, 5, 'Hora de Termino', 'B', 'C', 0, 0, '', '', true);
     $pdf->Multicell(47, 5, 'Lugar', 'B', 'C', 0, 1, '', '', true);
+    
+
+    for ($i=0; $i <sizeof($horario) ; $i++) { 
+
+        $pdf->SetFont('times','',8);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFillColor(255, 255, 255); 
+        $pdf->MultiCell(47,5, $horario[$i]['fecha'], 0, 'C', 0, 0, '',  '', true );
+        $pdf->MultiCell(47,5, $horario[$i]['HI'], 0, 'C', 0, 0, '',  '', true);
+        $pdf->MultiCell(47,5, $horario[$i]['HF'], 0, 'C', 0, 0, '',  '', true);
+        $pdf->MultiCell(47,5, $horario[$i]['lugar'], 0, 'C', 0, 1, '',  '', true);
+        
+    }
+
     $pdf->Ln(10);
+
+
 
     #Alumnos
     $pdf->SetFillColor(204, 204, 204);
