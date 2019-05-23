@@ -1,0 +1,1 @@
+SELECT usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo FROM usuario, curso_usuario_insc, curso WHERE curso.id_curso = '1305190325arduinop' AND curso_usuario_insc.nCuenta = usuario.nCuenta;
