@@ -9,7 +9,7 @@
 
     	$conexion = abrirConexion();
 
-    	$query = "SELECT usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta FROM usuario, curso_usuario_insc, curso WHERE curso.id_curso = '$id' AND curso_usuario_insc.nCuenta = usuario.nCuenta order by usuario.apellidoP ASC; ";
+    	$query = "SELECT usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta FROM usuario, curso_usuario_insc, curso WHERE curso.id_curso = '$id' AND curso_usuario_insc.nCuenta = usuario.nCuenta AND curso_usuario_insc.id_curso = curso.id_curso order by usuario.apellidoP ASC; ";
 
     	$resultado = leerDatos($conexion, $query);
 
@@ -33,7 +33,7 @@
 
     	$conexion = abrirConexion();
 
-    	$query = "SELECT usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta FROM usuario, curso_usuario_org, curso WHERE curso.id_curso = '$id' AND curso_usuario_org.nCuenta = usuario.nCuenta ORDER BY usuario.apellidoP ASC;";
+    	$query = "SELECT usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta FROM usuario, curso_usuario_org, curso WHERE curso.id_curso = '$id' AND curso_usuario_org.nCuenta = usuario.nCuenta AND curso_usuario_org.id_curso = curso.id_curso ORDER BY usuario.apellidoP ASC;";
 
     	$resultado = leerDatos($conexion, $query);
 
@@ -101,6 +101,29 @@
         return $respuesta;
 
     }    
+
+
+    function colaborador($id){
+        $conexion = abrirConexion();
+
+        $query = "SELECT usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta FROM usuario, curso_usuario_resp, curso WHERE curso.id_curso = '$id' AND curso_usuario_resp.nCuenta = usuario.nCuenta AND curso_usuario_resp.id_curso = curso.id_curso ORDER BY usuario.apellidoP ASC;";
+
+        $resultado = leerDatos($conexion, $query);
+
+        $respuesta = [];
+
+        while($row  = $resultado->fetch_array()){
+            $respuesta [] = [
+                'nombre' => $row[1] . " " . $row[2] . " " . $row[0],
+                'cuenta' => $row[3]
+            ];
+        }
+
+        $resultado->free();
+        cerrarConexion($conexion);
+
+        return $respuesta;           
+    }
     
 
 

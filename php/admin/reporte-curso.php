@@ -80,8 +80,9 @@
                         <table class="table align-center text-center">
                             <thead>
                                 <tr class="texto-tabla">
-                                    <th>#</th>
-                                    <th>Nombre del Curso</th>         
+                                    <th>id</th>
+                                    <th>Nombre del Curso</th>
+                                    <th>Inscritos</th>
                                     <th>Generar</th>
                                 </tr>
                             </thead>

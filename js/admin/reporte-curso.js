@@ -25,8 +25,9 @@ function leer(){
                
                fila += `
                     <tr id = ${id}>
-                        <td>${i+1}</td>
-                        <td>${titulo}</td>                
+                        <td>${id}</td>
+                        <td>${titulo}</td>
+                        <td>/</td>                
                         <td><span id = "btn_generar"><a href = "reporte-curso/reporte.php?id=${id}"><i class="fas fa-edit"></a></i></span></td>
                     </tr>
                `;

@@ -91,9 +91,11 @@ $(document).ready(function(){
 
 
 		if(repetido){
-			$('#divMensajeDatosCurso').addClass("mensaje-error");
-			mensaje += "<li>Requerimientos Repetidos.</li>";
+			
 		}
+
+		console.log(repetidoReq.indexOf(1));
+		console.log(repetido);
 
 		/*
 			Verificamos si esta seleccionado el material, casos: 
@@ -102,7 +104,7 @@ $(document).ready(function(){
 		*/
 
 
-		$('input[name = "confMaterial"]'). is(':checked') ? vacioConfMaterial = false : vacioConfMaterial = true;
+		$('input[name = "confMaterial"]').is(':checked') ? vacioConfMaterial = false : vacioConfMaterial = true;
 
 		
 
@@ -114,9 +116,15 @@ $(document).ready(function(){
 			Agregamos un mensaje en el caso de que se encuentren vacíos.
 		*/
 
-        if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad) || vacioConfMaterial){
-			$('#divMensajeDatosCurso').addClass("mensaje-error");			
-			mensaje += "<li>Campos vacíos. </li>";
+        if(vacio(obj_titulo) || vacio(obj_description) || vacio(obj_requisitos) || vacio(obj_dirigido) || vacio(obj_cantidad) || vacioConfMaterial || repetido){
+			$('#divMensajeDatosCurso').addClass("mensaje-error");
+			if (repetido) {
+				mensaje += "<li>Requerimientos Repetidos.</li>";
+			} else {
+				mensaje += "<li>Campos vacíos. </li>";	
+			}
+
+			
 
 		}else {
 
@@ -398,8 +406,6 @@ $(document).ready(function(){
 
 	$('#btn_agregar').click(function(){
 		confIniciales();
-		
-
 		$('#divBotonCalcularHorario').show();
 		$('#formCurso')[0].reset();
 		selectHorario();
@@ -559,12 +565,7 @@ function reiniciar(){
 
 	k = 1;
 		$('#divBotonCalcularHorario').empty();
-			var btn_reiniciar = `
-			<div class="col-12 col-lg-12 d-flex justify-content-center">
-                <span class="btn btn-secondary mx-2 col-4" id="btn_CalcularHorario">Calcular</span>
-            </div>
-			`;
-		$('#divBotonCalcularHorario').append(btn_reiniciar);
+		btnCalcularHorario();
 		$('#tablaHorario').empty();
 		 var btn_agregarHorario = `			
 			<button class="btn" type="button" id="btn_agregarHorario"><i class="fas fa-plus"></i>
@@ -624,11 +625,11 @@ function confIniciales(){
 	l = 1;
 	m = 1;
 
-	$('#divDatosCurso').show();
+	$('#divDatosCurso').hide();
 	$('#divMaterialConf').hide();
 	$('#divProfesorConf').hide();
 	$('#divRespConf').hide();
-	$('#divHorarioConf').hide();
+	$('#divHorarioConf').show();
 	$('#divConfirmarCurso').hide();
 	$('#divBotonesHorario').hide();
 	

@@ -8,6 +8,7 @@
 	$alumnos = alumno($id);
 	$profesores = profesor($id);
 	$curso = curso($id);
+    $colaboradores = colaborador($id);
 
     $horario = horario($id);
 
@@ -71,6 +72,29 @@
 
 
     $pdf->MultiCell(0,5, $profesor, 0, 'C', 0, 1, '', '', true);
+    $pdf->Ln(1);
+
+    #Colaboradores
+    $pdf->SetFont('times', 'B', 9);
+    $pdf->MultiCell(30, 5, 'Colaborador(es): ', 0, 'R', 0, 0, '', '', true);
+    $profesor = '';
+
+    $pdf->SetFont('times', '', 8);
+    for ($i=0; $i <$tamanoColaborador = sizeof($colaboradores) ; $i++) { 
+        if($tamanoColaborador == 1 ){
+            $profesor .= $colaboradores[$i]['nombre']. ".";
+        }else {
+            if ($i >= $tamanoColaborador-1) {
+                $profesor .= " " . $colaboradores[$i]['nombre']. ".";
+            }else {
+                $profesor .= " " . $colaboradores[$i]['nombre']. ",";
+            }
+        }
+        
+    }
+
+
+    $pdf->MultiCell(0,5, $profesor, 0, 'C', 0, 1, '', '', true);
     $pdf->Ln(5);
 
     #Horario
@@ -123,39 +147,6 @@
 	}
 
 
-
-// set style for barcode
-$style = array(
-    'border' => true,
-    'vpadding' => 'auto',
-    'hpadding' => 'auto',
-    'fgcolor' => array(0,0,0),
-    'bgcolor' => false, //array(255,255,255)
-    'module_width' => 1, // width of a single module in points
-    'module_height' => 1 // height of a single module in points
-);
-
-// write RAW 2D Barcode
-
-$code = '111011101110111,010010001000010,010011001110010,010010000010010,010011101110010';
-$pdf->write2DBarcode($code, 'RAW', 80, 30, 30, 20, $style, 'N');
-
-    /*// set style for barcode
-    $style = array(
-        'border' => 2,
-        'vpadding' => 'auto',
-        'hpadding' => 'auto',
-        'fgcolor' => array(0,0,0),
-        'bgcolor' => false, //array(255,255,255)
-        'module_width' => 1, // width of a single module in points
-        'module_height' => 1 // height of a single module in points
-    );
-
-
-
-    // QRCODE,H : QR-CODE Best error correction
-    $pdf->write2DBarcode('www.tcpdf.org', 'QRCODE,H', 20, 210, 50, 50, $style, 'N');
-    $pdf->Text(20, 205, 'QRCODE H');*/
 
     
 

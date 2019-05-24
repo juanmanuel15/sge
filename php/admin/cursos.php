@@ -46,7 +46,7 @@
 
                             <div class="row mt-2">                     
                                 <div class="col-lg-3">
-                                    <label for="txt_cantidad" class="col-form-label">Cantidad: </label>
+                                    <label for="txt_cantidad" class="col-form-label">Asistentes:</label>
                                 </div>
                                 <div class="col-lg-9">
                                     <input type="number" class="form-control" id="txt_cantidad">
@@ -287,9 +287,10 @@
 
 
                             <div class="row mb-4 mt-2" id = "divBotonCalcularHorario">
-                                <div class="col-12 col-lg-12 d-flex justify-content-center">
-                                    <span class="btn btn-secondary mx-2 col-4" id="btn_CalcularHorario">Calcular</span>
-                                </div>
+                                <!--div class="col-12 col-lg-12 d-flex justify-content-center">
+                                    <span class="btn btn-secondary mx-2 col-4" id="btn_CalcularHorario">Verificar Lugar</span>
+                                    <span class="btn btn-secondary mx-2 col-4" id="btn_RegresarVerificar">Regresar</span>
+                                </div-->
                             </div>
 
                             <div class="row mb-4 mt-2" id = "divBotonesHorario">
