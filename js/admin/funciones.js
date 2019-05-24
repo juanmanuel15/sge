@@ -186,17 +186,6 @@ function selectHorario(){
 
 	$('#tableBodyHorario').append(texto);
 
-
-	/* = `
-		
-		<div class="col-12 col-lg-12 d-flex justify-content-center">
-            <span class = " btn btn-secondary mx-2 col-4" id="btn_CalcularHorario" > Calcular </span>
-            <span class = " btn btn-secondary mx-2 col-4" id="btn_RegresarHorario" > Regresar </span>
-        </div>
-	`;
-
-	$('#divBotonCalcularHorario').append(texto);*/
-
 	btnCalcularHorario();
 
 
@@ -208,7 +197,7 @@ function btnCalcularHorario(){
 	var texto  = ` 
 		<div class="col-12 col-lg-12 d-flex justify-content-center">
             <span class = " btn btn-secondary mx-2 col-4" id="btn_CalcularHorario" > Verificar Lugar </span>
-            <span class = " btn btn-primary mx-2 col-4" id="btn_RegresarHorario" > Regresar </span>
+            <span class = " btn btn-primary mx-2 col-4" id="btn_RegresarCalcularHorario" > Regresar </span>
         </div>
      `;
 

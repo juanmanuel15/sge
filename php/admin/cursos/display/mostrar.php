@@ -76,20 +76,41 @@
 
 				$query = "SELECT horario.hora_inicio, horario.hora_final, horario.fecha, lugar.nombre_lugar FROM horario, lugar, curso WHERE horario.id_lugar = lugar.id_lugar AND curso.id_curso = horario.id_curso AND curso.id_curso = '". $curso[$i]['id']. "';";
 
-				    	$resultado = leerDatos($conexion, $query);
+		    	$resultado = leerDatos($conexion, $query);
 
-						    $horario = [];
-						    while($row = $resultado->fetch_array()){
-						        
-						        $horario []  = [
-						        	'HI' => $row[0],
-						        	'HF' => $row[1],
-						        	'fecha' => $row[2],
-						        	'lugar' => $row[3]
-						        ];
-						    }
+				    $horario = [];
+				    while($row = $resultado->fetch_array()){
+				        
+				        $horario []  = [
+				        	'HI' => $row[0],
+				        	'HF' => $row[1],
+				        	'fecha' => $row[2],
+				        	'lugar' => $row[3]
+				        ];
+				    }
 
-						 $resultado->free();
+				$resultado->free();
+
+				
+
+
+				$query = "SELECT curso.lugares,  COUNT(curso_usuario_insc.id_curso = '" .$curso[$i]['id'] ."') AS inscritos FROM curso, curso_usuario_insc WHERE curso_usuario_insc.id_curso = curso.id_curso AND curso.id_curso = '" .$curso[$i]['id'] ."'";
+
+				$resultado = leerDatos($conexion, $query);
+				$lugares = [];
+
+				while($row = $resultado->fetch_array()){
+
+					$lugares [] = [						
+						'inscritos' => $row[1],
+						'lugares' => $row[0]
+					];
+				}
+
+				$resultado->free();
+
+				
+
 
 
 
@@ -97,7 +118,8 @@
 						 	'curso' => $curso[$i],
 						 	'prof' => $profesor,
 						 	'resp' => $resp,
-						 	'horario' => $horario
+						 	'horario' => $horario,
+						 	'lugar' => $lugares
 
 						 ]; 
 	    }

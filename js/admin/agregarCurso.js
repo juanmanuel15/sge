@@ -314,6 +314,13 @@ $(document).ready(function(){
 		$('#divDatosCurso').show();
 	});
 
+
+	$(document).on('click', '#btn_RegresarCalcularHorario', function(){
+		$('#divHorarioConf').hide();
+		$('#divDatosCurso').show();
+	});
+
+
 	$('#btn_regresarProfesor').click(function(){
 		$('#divProfesorConf').hide();
 		$('#divHorarioConf').show();
@@ -625,11 +632,11 @@ function confIniciales(){
 	l = 1;
 	m = 1;
 
-	$('#divDatosCurso').hide();
+	$('#divDatosCurso').show();
 	$('#divMaterialConf').hide();
 	$('#divProfesorConf').hide();
 	$('#divRespConf').hide();
-	$('#divHorarioConf').show();
+	$('#divHorarioConf').hide();
 	$('#divConfirmarCurso').hide();
 	$('#divBotonesHorario').hide();
 	

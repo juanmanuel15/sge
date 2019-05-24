@@ -123,3 +123,7 @@
   .curso-inscrito {
     border-style: groove;
   }
+
+  .alinear-tabla {
+    text-align: center;
+  }

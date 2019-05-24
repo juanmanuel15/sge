@@ -85,6 +85,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/main.css"> 
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <style>
         .modal_estilo{
             font-size:14px;
@@ -131,12 +132,12 @@
         <div class="col-lx-4 col-sm-1"></div>
         <div class="col-lx-4 col-sm-10">
             
-            <table class="table">
-                <thead class = "text_tabla">
-                                        <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope = "col"># Lugares </th>
+            <table class="table text-center">
+                <thead >
+                    <tr>
+                        <th >Nombre</th>
+                        <th >Lugares</th>
+                        <th ></th>
                     </tr>
                 
                 </thead>

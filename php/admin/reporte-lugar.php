@@ -49,50 +49,33 @@
 
         <div class="row d-flex justify-content-center">
                 <div class="col-xl-6 col-sm-12">
-                    <h4 class="d-flex justify-content-center mt-4 linea-arriba linea-abajo">Reporte Lugar</h4>
+                    <h4 class="d-flex justify-content-center mt-4">Reporte Lugar</h4>
                 </div>  
         </div>
 
-        <div class="row d-flex justify-content-around mt-4">
-           
-            <div class="col-lg-3 col-sm-4 d-flex justify-content-center">
-                <a href="../admin" class="btn btn-salir">Salir</a>
-            </div>
+        
 
+        
+        <div class="mt-4 d-flex justify-content-center mb-0" >
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-justify">Por favor seleccione el <b>lugar</b> que desea ver la disponibilidad de horario</p>
+                </div>
+            </div>
             
         </div>
 
-        <div class="row mt-4 d-flex justify-content-center">
-            <div class="col-lg-8 col-sm-10">
-                <form id="formBuscar">
-                    <div class="input-group d-flex justify-content-center">
-                        <input id="txt_buscar" type="text" class="form-control col-sm-auto" name="txt_buscar" placeholder="Buscar">
-                        <button class="btn btn-outline-secondary input-group-append" type="submit" id="btn_buscar"><i class="fas fa-search"></i></button>
-                    </div>                        
-                </form>
+        <div class="row  d-flex justify-content-center mt-1"> 
+            <div class="col-sm-12 col-lg-4 mx-0" id="idSelectLugar">
+                <select name="" id="selectLugar" class="form-control">
+                    <option>
+                </select>
             </div>
         </div>
 
-        <div class="row mt-5">
-                <div class="col-lg-1 col-sm-0"></div>
-                <div class="col-lg-10 col-sm-12">
-                    <!--form method="post" action = "usuario/plantillaUsuario.php"-->
-                        <table class="table align-center text-center">
-                            <thead>
-                                <tr class="texto-tabla">
-                                    <th>Nombre</th>
-                                    <th>Ver</th>             
-                                    <th hidden="">Generar</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tablaReporteLugar">
+        
 
-                            </tbody>
-                        </table>
-                    <!--/form-->  
-                </div>
-                <div class="col-lg-1 col-sm-0"></div>
-        </div>
+       
 
         <!-- Es el footer>
         <footer class="mt-4">            

@@ -33,3 +33,9 @@
 a:hover {
     text-decoration: none;
 }
+
+
+.text_tabla{
+    font-size: 10px;
+    color: blue;
+}
