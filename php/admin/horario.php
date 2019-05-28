@@ -125,6 +125,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/main.css"> 
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <style>
         .modal_estilo{
             font-size:14px;
@@ -158,34 +159,34 @@
 
         <div class="row">
             <div class="col-xl-12 col-sm-12">
-                <h3 class="d-flex justify-content-center mt-4">Horario</h3>
+                <h3 class="d-flex justify-content-center mt-4"><b>Horario</b></h3>
             </div>  
         </div>
 
 
-        <div class="row mt-4">
+        <!--div class="row mt-4">
             <div class="col-12 d-flex justify-content-center">
                 <a href="../admin" class="btn btn-salir">Salir</a>
             </div>
-        </div>
+        </div-->
 
 
         <div class="row mt-4">
             
             <div class="col-lg-5 col-sm-12">
-                <div class="row">
+                <!--div class="row">
                      <div class="col-lx-4 col-sm-12 d-flex justify-content-center">
                         <button type="button" class="btn btn-agregar" data-toggle="modal" data-target="#modal_agregar_hora" id ="btn_agregarHora">Agregar</button>            
                      </div>
-                </div>
+                </div-->
 
                 <div class="row mt-5">
                     <table class="table text-center">
                         <thead class = "text_tabla">
                             <tr>
                                 <th scope="col">Hora</th>
-                                <th hidden>Editar</th>
-                                <th hidden>Eliminar</th>
+                                <th class="text-right">Agregar</th>
+                                <th class="text-left"><span data-toggle="modal" data-target="#modal_agregar_hora" id ="btn_agregarHora"><i class="fas fa-plus i_mostrar"></i></span></th>
                             </tr>                
                         </thead>
 
@@ -199,9 +200,9 @@
 
             <div class="col-lg-5 col-sm-12 ">
                 <div class="row">
-                     <div class="col-lx-4 col-sm-12 d-flex justify-content-center">
+                     <!--div class="col-lx-4 col-sm-12 d-flex justify-content-center">
                         <button type="button" class="btn btn-agregar" data-toggle="modal" data-target="#modal_agregar_fecha" id ="btn_agregarFecha">Agregar</button>            
-                     </div>
+                     </div-->
                 </div>
 
                 <div class="row mt-5">
@@ -209,8 +210,8 @@
                         <thead class = "text_tabla">
                             <tr>
                                 <th scope="col">Fecha</th>
-                                <th hidden>Editar</th>
-                                <th hidden>Eliminar</th>
+                                <th class="text-right">Agregar</th>
+                                <th class="text-left"><span data-toggle="modal" data-toggle="modal" data-target="#modal_agregar_fecha" id ="btn_agregarFecha"><i class="fas fa-plus i_mostrar"></i></span></th>
                             </tr>                
                         </thead>
 

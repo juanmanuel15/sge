@@ -83,8 +83,8 @@ function mostrar(){
 				<td>${profesor}</td>
 				<td>${resp}</td>
 				<td>${horario}</td>
-				<td><span id = "btn_editar"><i class="fas fa-edit"></i></span></td>
-				<td><span id = "btn_eliminar"><i class="fas fa-trash"></i></span>
+				<td><span id = "btn_editar" class = "i_editar"><i class="fas fa-edit"></i></span></td>
+				<td><span id = "btn_eliminar" class = "i_eliminar"><i class="fas fa-trash"></i></span>
 			</tr>
 		`;
 

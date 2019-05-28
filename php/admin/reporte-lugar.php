@@ -49,7 +49,7 @@
 
         <div class="row d-flex justify-content-center">
                 <div class="col-xl-6 col-sm-12">
-                    <h4 class="d-flex justify-content-center mt-4">Reporte Lugar</h4>
+                    <h4 class="d-flex justify-content-center mt-4"><b>Reporte Lugar</b></h4>
                 </div>  
         </div>
 
@@ -68,8 +68,16 @@
         <div class="row  d-flex justify-content-center mt-1"> 
             <div class="col-sm-12 col-lg-4 mx-0" id="idSelectLugar">
                 <select name="" id="selectLugar" class="form-control">
-                    <option>
+                    <option value = "default">Seleccione la opción</option>
                 </select>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12" id = "divReporteLugar">
+                <table id = tabla_ReporteLugar class="table text-center table-bordered">
+                    
+                </table>
             </div>
         </div>
 

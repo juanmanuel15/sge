@@ -160,8 +160,8 @@ $(document).ready(function (){
                     fila += "<tr id=\"" + element['id'] + "\">";
                     fila += "<td>" + element['nombreLugar'] + "</td>";
                     fila += "<td>" + element['cantidadLugar'] + "</td>";
-                    fila += `<td><span id = \"btn_editar\" ><i class="fas fa-edit"></i></span>`;
-                    fila += `<td><span id = \"btn_eliminar\"><i class="fas fa-trash"></i></span>`;
+                    fila += `<td><span id = btn_editar ><i class="fas fa-edit i_editar"></i></span>`;
+                    fila += `<td><span id = btn_eliminar><i class="fas fa-trash i_eliminar"></i></span>`;
                     fila += "</tr>";
                     
                     

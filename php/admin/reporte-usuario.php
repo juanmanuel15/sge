@@ -49,18 +49,18 @@
 
         <div class="row d-flex justify-content-center">
                 <div class="col-xl-6 col-sm-12">
-                    <h4 class="d-flex justify-content-center mt-4 linea-arriba linea-abajo">Reporte Profesor</h4>
+                    <h4 class="d-flex justify-content-center mt-4 "><b>Constancias</b></h4>
                 </div>  
         </div>
 
-        <div class="row d-flex justify-content-around mt-4">
+        <!--div class="row d-flex justify-content-around mt-4">
            
             <div class="col-lg-3 col-sm-4 d-flex justify-content-center">
                 <a href="../admin" class="btn btn-salir">Salir</a>
             </div>
 
             
-        </div>
+        </div-->
 
         <div class="row mt-4 d-flex justify-content-center">
             <div class="col-lg-8 col-sm-10">

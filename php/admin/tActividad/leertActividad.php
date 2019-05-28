@@ -7,7 +7,7 @@
     
     $conexion = abrirConexion();
 
-     $query = "SELECT * FROM tipo_actividad";
+     $query = "SELECT * FROM tipo_actividad ORDER BY nombre_tipo_actividad ASC";
 
    $resultado = leerDatos($conexion, $query);
     

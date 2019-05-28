@@ -5,7 +5,7 @@
     
     $conexion = abrirConexion();
 
-    $query = "SELECT * FROM lugar";
+    $query = "SELECT * FROM lugar ORDER BY nombre_lugar ASC";
 
     $resultado = leerDatos($conexion, $query);
     

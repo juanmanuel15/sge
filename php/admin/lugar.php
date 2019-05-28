@@ -115,18 +115,18 @@
 
     <div class="row">
         <div class="col-xl-12 col-sm-12">
-                <h3 class="d-flex justify-content-center mt-4">Lugar</h3>
+                <h3 class="d-flex justify-content-center mt-4"><b>Lugar</b></h3>
         </div>  
     </div>
 
-    <div class="row mt-5">
+    <!--div class="row mt-5">
         <div class="col-lx-4 col-sm-2"></div>
         <div class="col-lx-4 col-sm-8 d-flex justify-content-around">
             <button type="button" class="btn btn-agregar" data-toggle="modal" data-target="#modal_agregar" id ="btn_agregar">Agregar</button>
             <a href="../admin" class="btn btn-salir">Salir</a>
         </div>
         <div class="col-lx-4 col-sm-2"></div>
-    </div>
+    </div-->
 
     <div class="row mt-5">
         <div class="col-lx-4 col-sm-1"></div>
@@ -136,8 +136,9 @@
                 <thead >
                     <tr>
                         <th >Nombre</th>
-                        <th >Lugares</th>
-                        <th ></th>
+                        <th>Lugares</th>
+                        <th class="text-right">Agregar</th>
+                        <th class="text-left"><span data-toggle="modal" data-target="#modal_agregar" id ="btn_agregar"><i class="fas fa-plus i_mostrar"></i></span></span></th>
                     </tr>
                 
                 </thead>

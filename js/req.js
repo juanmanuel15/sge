@@ -155,8 +155,8 @@ $(document).ready(function (){
                     console.log(element);
                     fila += "<tr id=\"" + element['id_req'] + "\">";
                     fila += "<td>" + element['nombre_req'] + "</td>";                    
-                    fila += `<td><span id = \"btn_editar\" ><i class="fas fa-edit"></i></span>`;
-                    fila += `<td><span id = \"btn_eliminar\"><i class="fas fa-trash"></i></span>`;
+                    fila += `<td><span id = "btn_editar" ><i class="fas fa-edit i_editar"></i></span>`;
+                    fila += `<td><span id = "btn_eliminar"><i class="fas fa-trash i_eliminar"></i></span>`;
                     fila += "</tr>";
                     
                     

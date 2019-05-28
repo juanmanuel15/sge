@@ -6,7 +6,7 @@
 
     $conexion = abrirConexion();
 
-    $query = "SELECT * FROM hora";
+    $query = "SELECT * FROM hora ORDER BY TIME(hora)";
 
 
     $resultado = leerDatos($conexion, $query);

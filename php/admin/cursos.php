@@ -408,12 +408,12 @@
 
         <div class="row d-flex justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-12">
-                <h4 class="d-flex justify-content-center mt-4 linea-arriba linea-abajo">Cursos</h4>
+                <h4 class="d-flex justify-content-center mt-4 "><b>Cursos</b></h4>
             </div>  
         </div>
 
 
-        <div class="row d-flex justify-content-around mt-2">
+        <!--div class="row d-flex justify-content-around mt-2">
 
 
             <div class="col-lg-3 col-sm-0"></div>
@@ -426,7 +426,7 @@
             </div>
 
             <div class="col-lg-3 col-sm-0"></div>
-        </div>
+        </div-->
 
 
         <div class="row mt-4 d-flex justify-content-center">
@@ -451,6 +451,8 @@
                                     <th>Ponente(s)</th>
                                     <th>Responsable</th>
                                     <th>Horario</th>
+                                    <th class="text-right">Agregar</th>
+                                    <th class="text-left"><span data-toggle="modal" data-target="#modalCurso" id ="btn_agregar"><i class="fas fa-plus i_mostrar"></i></span></th>
                                 </tr>
                             </thead>
                             <tbody id="tablaCurso" class="size-tabla">
@@ -464,13 +466,14 @@
 
         
     </div>
-    <script src= "../../js/admin/funciones.js"></script>
-    <script src= "../../js/admin/agregarCurso.js"></script>
-    <script src= "../../js/admin/editarCurso.js"></script>
-    <script src= "../../js/admin/agregarCampos.js"></script>
-    <script src= "../../js/admin/mostrar.js"></script>
-    <script src= "../../js/admin/editar.js"></script>
-    <script src= "../../js/admin/eliminar.js"></script>
+    <script src= "../../js/admin/curso/funciones.js"></script>
+    <script src= "../../js/admin/curso/agregarCurso.js"></script>
+    <script src= "../../js/admin/curso/editarCurso.js"></script>
+    <script src= "../../js/admin/curso/agregarCampos.js"></script>
+    <script src= "../../js/admin/curso/mostrar.js"></script>
+    <script src= "../../js/admin/curso/editar.js"></script>
+    <script src= "../../js/admin/curso/eliminar.js"></script>
+    <script src= "../../js/admin/curso/buscar.js"></script>
 
 </body>
 </html>

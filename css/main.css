@@ -127,3 +127,20 @@
   .alinear-tabla {
     text-align: center;
   }
+
+  .i_eliminar {
+    color: rgb(220,53,69);
+  }
+
+  .i_editar {
+    color: rgb(108,117,125);
+  }
+
+  .i_mostrar {
+    text-decoration: none;
+    color: blue;
+  }
+
+  .size-tabla {
+    font-size: 12px;
+  }

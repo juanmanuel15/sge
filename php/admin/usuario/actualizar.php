@@ -16,12 +16,15 @@
 	$tipoUser = (int) htmlspecialchars($_POST['tipoUser']);
 	$nCuenta_actual = htmlspecialchars($_POST['nCuenta_actual']);
 
+
+	//echo($nombre);
+
 	//echo ($nCuenta.$nombre.$apellidoP.$apellidoM.$correo.$usuario.$pass.$telefono.$tipoUser);
  	if(isset($nCuenta, $nombre,$apellidoP,$apellidoM,$correo, $usuario,$pass,$telefono,$tipoUser, $nCuenta_actual)){
 
 		$conexion = abrirConexion();
 
-    	$query = "UPDATE usuario SET nCuenta = '$nCuenta',  apellidoP = '$apellidoP', apellidoM = '$apellidoM', tipo_usuario = $tipoUser, correo = '$correo', usuario = '$usuario', pass = '$pass', telefono = '$telefono' WHERE nCuenta = '$nCuenta_actual'" ;
+    	$query = "UPDATE usuario SET nCuenta = '$nCuenta',  apellidoP = '$apellidoP', apellidoM = '$apellidoM', tipo_usuario = $tipoUser, correo = '$correo', usuario = '$usuario', pass = '$pass', telefono = '$telefono' , nombre = '$nombre' WHERE nCuenta = '$nCuenta_actual'" ;
 
 
    		$respuesta = insertarDatos($conexion, $query);

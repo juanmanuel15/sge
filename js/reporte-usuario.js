@@ -24,7 +24,7 @@ function leer(){
                 fila += "<td >" + usuario[i].numeroCuenta + "</td>";   
                 fila += "<td >" + usuario[i].nombreCompleto+ "</td>";
                 fila += "<td >" +usuario[i].titulo + "</td>";           
-                fila += "<td><button type=\"button\" id = \"btn_generar\" class= \"btn btn-generar\" >Generar</button>";
+                //fila += "<td><button type=\"button\" id = \"btn_generar\" class= \"btn btn-generar\" >Generar</button>";
                 fila += "</tr>";
             }
             

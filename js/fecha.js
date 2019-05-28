@@ -8,11 +8,7 @@ $(document).ready(function (){
         $('#btn_aceptarFecha').val('Agregar');
     });
 
-    $('#btn_agregarFecha').on('click', function(){
-        quitarClases(); 
-        $('#exampleModalLabel').text('Agregar Fecha');
-        $('#btn_aceptarFecha').val('Agregar');
-    });
+    
 
     $(document).on('click', '#btn_editarFecha',function(){
          
@@ -156,8 +152,8 @@ $(document).ready(function (){
                 respuesta.forEach(function (element) {
                     fila += "<tr id=\"" + element['id'] + "\">";
                     fila += "<td >" + element['fecha'] + "</td>";
-                    fila += "<td><button type=\"button\" id = \"btn_editarFecha\" class= \"btn btn-editar\">Editar</button>";
-                    fila += "<td><button type=\"button\" id = \"btn_eliminarFecha\" class= \"btn btn-eliminar\">Eliminar</button>";
+                    fila += `<td><span id = "btn_editarFecha"  class = "i_editar"><i class="fas fa-edit"></i></span></td>`;
+                    fila += `<td><span id = "btn_eliminarFecha" class = "i_eliminar"><i class="fas fa-trash"></i></span></td>`;
                     fila += "</tr>";
                     
                     

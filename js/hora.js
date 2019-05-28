@@ -156,8 +156,8 @@ $(document).ready(function (){
                 respuesta.forEach(function (element) {
                     fila += "<tr id=\"" + element['id'] + "\">";
                     fila += "<td >" + element['hora'] + "</td>";
-                    fila += "<td><button type=\"button\" id = \"btn_editarHora\" class= \"btn btn-editar\">Editar</button>";
-                    fila += "<td><button type=\"button\" id = \"btn_eliminarHora\" class= \"btn btn-eliminar\">Eliminar</button>";
+                    fila += `<td><span  id = "btn_editarHora" class = "i_editar"><i class="fas fa-edit"></i></span></td>`;
+                    fila += `<td><span  id = "btn_eliminarHora" class = "i_eliminar"> <i class="fas fa-trash"></i></span></td>`;
                     fila += "</tr>";
                     
                     

@@ -17,7 +17,7 @@
 
     while($row = $resultado->fetch_array()){
         
-        $user []  = [
+        $user  = [
             'nCuenta' => $row[0],
             'nombre' => $row[1],
             'apellidoP' => $row[2],

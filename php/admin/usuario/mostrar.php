@@ -11,7 +11,7 @@
     
     $conexion = abrirConexion();
 
-    $query = "SELECT nCuenta, nombre, apellidoP, apellidoM, usuario FROM usuario WHERE nCuenta = $nCuenta";
+    $query = "SELECT nCuenta, nombre, apellidoP, apellidoM, usuario FROM usuario WHERE nCuenta = $nCuenta ORDER BY apellidoP ASC";
 
     $resultado = leerDatos($conexion, $query);
 
@@ -21,7 +21,7 @@
         
         $user []  = [
             'numeroCuenta' => $row[0],
-            'nombreCompleto' => $row[1]. " " . $row[2] . " " . $row[3], 
+            'nombreCompleto' => $row[3]. " " . $row[2] . " " . $row[1], 
             'usuario' => $row[4]
         ];
     }

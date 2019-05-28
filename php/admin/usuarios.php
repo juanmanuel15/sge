@@ -126,6 +126,9 @@
 </div>
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,11 +172,11 @@
         
         <div class="row d-flex justify-content-center">
             <div class="col-xl-6 col-sm-12">
-                <h4 class="d-flex justify-content-center mt-4 linea-arriba linea-abajo">Usuarios</h4>
+                <h4 class="d-flex justify-content-center mt-4 "><b>Usuarios</b></h4>
             </div>  
         </div>
 
-        <div class="row d-flex justify-content-around mt-4">
+        <!--div class="row d-flex justify-content-around mt-4">
 
 
             <div class="col-lg-3 col-sm-0"></div>
@@ -186,7 +189,7 @@
             </div>
 
             <div class="col-lg-3 col-sm-0"></div>
-        </div>
+        </div-->
 
         <div class="row mt-4 d-flex justify-content-center">
             <div class="col-lg-8 col-sm-10">
@@ -211,7 +214,8 @@
                                     <th>Nombre</th>
                                     <th>Usuario</th>
                                     <th>Tipo de usuario</th>
-                                    <th hidden="">Generar</th>
+                                    <th class="text-right">Agregar</th>
+                                    <th class="text-left" data-toggle="modal" data-target="#modal_AgregarUsuario" id ="btn_agregar"><i class="fas fa-plus i_mostrar"></i></th>
                                 </tr>
                             </thead>
                             <tbody id="tablaUsuario">

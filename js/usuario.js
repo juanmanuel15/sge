@@ -163,8 +163,9 @@ $(document).ready(function(){
 						respuesta = JSON.parse(respuesta);
 						if (verificarFormulario(respuesta.Verificar_correo, respuesta.Verificar_cuenta, respuesta.Verificar_usuario)){
 							actualizar(datosUsuario);
-							leerUsuario();
 							vaciarFormulario();
+							//leerUsuario();
+							
 						}
 
 
@@ -201,20 +202,21 @@ $(document).ready(function(){
 
 			$('#modal_AgregarUsuario').modal('show');
 			respuesta = JSON.parse(respuesta);
+			console.log(respuesta);
 
-			var nCuenta_actual = respuesta[0].nCuenta;
-			var usuario_actual = respuesta[0].usuario;
-			var correo_actual = respuesta[0].correo;
+			var nCuenta_actual = respuesta.nCuenta;
+			var usuario_actual = respuesta.usuario;
+			var correo_actual = respuesta.correo;
 
-			$('#txt_ncuenta').val(respuesta[0].nCuenta);
-			$('#txt_nombre').val(respuesta[0].nombre);
-			$('#txt_apellidoP').val(respuesta[0].apellidoP);
-			$('#txt_apellidoM').val(respuesta[0].apellidoM);
-			$('#txt_correo').val(respuesta[0].correo);
-			$('#txt_usuario').val(respuesta[0].usuario);
-			$('#txt_telefono').val(respuesta[0].telefono);
-			$('#txt_pass').val(respuesta[0].pass);
-			$('#txt_pass2').val(respuesta[0].pass);
+			$('#txt_ncuenta').val(respuesta.nCuenta);
+			$('#txt_nombre').val(respuesta.nombre);
+			$('#txt_apellidoP').val(respuesta.apellidoP);
+			$('#txt_apellidoM').val(respuesta.apellidoM);
+			$('#txt_correo').val(respuesta.correo);
+			$('#txt_usuario').val(respuesta.usuario);
+			$('#txt_telefono').val(respuesta.telefono);
+			$('#txt_pass').val(respuesta.pass);
+			$('#txt_pass2').val(respuesta.pass);
 			selector();
 
 			removerAttr();
@@ -254,8 +256,8 @@ function buscarUsuario(dato){
 	                fila += "<td >" + element['numeroCuenta'] + "</td>";   
 	                fila += "<td >" + element['nombreCompleto'] + "</td>";
 	                fila += "<td >" + element['usuario'] + "</td>";
-	                fila += "<td><button type=\"button\" id = \"btn_editar\" class= \"btn btn-editar\" >Editar</button>";
-                	fila += "<td><button type=\"button\" id = \"btn_eliminar\" class= \"btn btn-eliminar\" >Eliminar</button>";
+	                fila += `<td><span id = "btn_editar"><i class="fas fa-edit i_editar"></i></span>`;
+                	fila += `<td><span id = "btn_eliminar"><i class="fas fa-trash i_eliminar"></i></span>`;
 	                fila += "</tr>";
 			
 			});
@@ -285,8 +287,9 @@ function leerUsuario(){
                 fila += "<td >" + element['nombreCompleto'] + "</td>";
 				fila += "<td >" + element['usuario'] + "</td>";           
 				fila += "<td >" + element['tipo_usuario'] + "</td>";           
-                fila += "<td><button type=\"button\" id = \"btn_editar\" class= \"btn btn-editar\" >Editar</button>";
-                fila += "<td><button type=\"button\" id = \"btn_eliminar\" class= \"btn btn-eliminar\" >Eliminar</button>";
+                fila += `<td><span id = "btn_editar"><i class="fas fa-edit i_editar"></i></span>`;
+                fila += `<td><span id = "btn_eliminar"><i class="fas fa-trash i_eliminar"></i></span>`;
+                //fila += "<td><button type=\"button\" id = \"btn_eliminar\" class= \"btn btn-eliminar\" >Eliminar</button>";
                 fila += "</tr>";
 		
 		});

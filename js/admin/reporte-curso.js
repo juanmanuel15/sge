@@ -32,7 +32,7 @@ function leer(){
                         <td>${id}</td>
                         <td>${titulo}</td>
                         <td>${inscritos}/${lugares}</td>                
-                        <td><span id = "btn_generar"><a href = "reporte-curso/reporte.php?id=${id}"><i class="fas fa-edit"></a></i></span></td>
+                        <td><span id = "btn_generar" class = "i_mostrar"><a href = "reporte-curso/reporte.php?id=${id}"><i class="fas fa-eye"></i></a></i></span></td>
                     </tr>
                `;
             }

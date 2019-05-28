@@ -10,6 +10,7 @@
     $conexion = abrirConexion();
 
     $query = "INSERT INTO fecha (id_fecha, fecha) VALUES(NULL, '$fecha')";
+    
 
     $respuesta = insertarDatos($conexion, $query);
     

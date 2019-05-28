@@ -5,7 +5,7 @@
     
     $conexion = abrirConexion();
 
-    $query = "SELECT * FROM fecha";
+    $query = "SELECT * FROM fecha ORDER BY DATE(fecha)";
 
     $resultado = leerDatos($conexion, $query);
     

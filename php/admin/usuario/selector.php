@@ -7,7 +7,7 @@
 
     $conexion = abrirConexion();
 
-    $query = "SELECT * FROM tipo_usuario";
+    $query = "SELECT * FROM tipo_usuario ORDER BY usuario ASC";
 
     $resultado = leerDatos($conexion, $query);
     

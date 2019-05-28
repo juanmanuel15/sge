@@ -1,27 +1,32 @@
 <?php
+	
+	include ('../../base1.php');
 
-	require ('../../base.php');
-    require ('../../consulta.php');
+	$bd = new conexionBase();
 
-    //header('Content-Type: application/json');
-    header("Content-Type: text/html;charset=utf-8");
-    
-    $conexion = abrirConexion();
+	$bd->conectar();
+	
+	$query = "SELECT id_lugar, nombre_lugar, lugares FROM lugar ORDER BY nombre_lugar";
+	
+	$resultado = $bd->leer($query);
 
-    $query = "SELECT id_lugar, nombre_lugar, lugares FROM lugar ORDER BY nombre_lugar";
 
-    $resultado = leerDatos($conexion, $query);
+ 
+	if($resultado != false){
+		while($row = $resultado->fetch_array()){
+			$lugar[] = [
+	    		'id' => $row[0],
+	    		'nombre' => $row[1]
+	    	];
+		}
 
-    $lugar = [];
+		$respuesta = $lugar;
+	}else {
+		$respuesta = ['valor'=>false];
+	}
 
-    while($row = $resultado->fetch_array()){
 
-    	$lugar[] = [
-    		'id' => $row[0],
-    		'nombre' => $row[1]
-    	];
+	echo json_encode($respuesta);
+	
 
-    }
-
-    echo json_encode($lugar);
 ?>

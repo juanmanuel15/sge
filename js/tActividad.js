@@ -148,10 +148,10 @@ $(document).ready(function (){
                 var fila = '';
                 respuesta.forEach(function (element) {
                     fila += "<tr id=\"" + element['id'] + "\">";
-                    fila += "<td >" + element['id'] + "</td>";
-                    fila += "<td>" + element['nombre_act'] + "</td>";                    
-                    fila += `<td><span id = \"btn_editar\" ><i class="fas fa-edit"></i></span>`;
-                    fila += `<td><span id = \"btn_eliminar\"><i class="fas fa-trash"></i></span>`;
+                    //fila += "<td >" + element['id'] + "</td>";
+                    fila += `<td class = "text-center">${element['nombre_act']}</td>`;                    
+                    fila += `<td ><span id = btn_editar ><i class="fas fa-edit i_editar"></i></span>`;
+                    fila += `<td><span id = btn_eliminar><i class="fas fa-trash i_eliminar"></i></span>`;
                     fila += "</tr>";
                     
                     

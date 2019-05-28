@@ -8,9 +8,7 @@
     
     $conexion = abrirConexion();
 
-     $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.usuario, tipo_usuario.usuario
-                FROM usuario, tipo_usuario
-                WHERE usuario.tipo_usuario = tipo_usuario.id_tipoUsuario;";
+     $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.usuario, tipo_usuario.usuario FROM usuario, tipo_usuario WHERE usuario.tipo_usuario = tipo_usuario.id_tipoUsuario order by usuario.apellidoP;";
 
    $resultado = leerDatos($conexion, $query);
     
@@ -20,7 +18,7 @@
         
         $user []  = [
             'numeroCuenta' => $row[0],
-            'nombreCompleto' => $row[1]. " " . $row[2] . " " . $row[3], 
+            'nombreCompleto' => $row[2]. " " . $row[3] . " " . $row[1], 
             'usuario' => $row[4],
             'tipo_usuario' => $row[5]
         ];
