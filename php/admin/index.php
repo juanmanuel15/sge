@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -28,14 +28,10 @@
     
 </head>
 <body>
-    <!-- Se crea la parte de la navegación -->
-    <nav class="navbar navbar-dark bg-dark justify-content-between">
-            <a href="#" class="navbar-brand ml-3">Administrador</a>
-            <form action="" class="form-inline">
-                <a href="cerrarSesion.php" class="btn btn-outline-dark letra_nav btn_cerrarSesion" type="button" id="btn_cerrar_sesion">CERRAR SESIÓN</a>
-            </form>
-
-            
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-dark nav-admin justify-content-between p-2">
+            <a href="#" class="navbar-brand ml-4"><small class="nav-letras-admin">Administrador</small></a>
+            <a href="cerrarSesion.php"><span class="btn btn-outline-light px-3 py-1 cerrarsesion">Cerrar Sesión</span></a>            
     </nav>
 
     <div class="container">
@@ -107,12 +103,12 @@
          
     </div>
 
-    <footer class="mt-4" >
+    <!--footer class="mt-4" >
             
         <div class="footer"> 
         </div>
                   
-    </footer>
+    </footer-->
 
     
     

@@ -392,13 +392,9 @@
 <body>
     
     <!-- Barra de navegación -->
-    <nav class="navbar navbar-dark bg-dark justify-content-between">
-            <a href="#" class="navbar-brand ml-3">Administrador</a>
-            <form action="" class="form-inline">
-                <a href="cerrarSesion.php" class="btn btn-outline-dark letra_nav btn_cerrarSesion" type="button" id="btn_cerrar_sesion">CERRAR SESIÓN</a>
-            </form>
-
-            
+    <nav class="navbar navbar-dark nav-admin justify-content-between p-2">
+            <a href="index.php" class="navbar-brand ml-3 "><small class="nav-letras-admin">Administrador</small></a>
+            <a href="cerrarSesion.php"><span class="btn btn-outline-light px-3 py-1 cerrarsesion">Cerrar Sesión</span></a>            
     </nav>
 
 

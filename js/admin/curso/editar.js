@@ -7,6 +7,7 @@ $(document).on('click', '#btn_editar', function(){
 	};
 
 
+
 	$.post('cursos/editar/mostrar.php', dato, function(respuesta){
 		console.log(respuesta);
 	});

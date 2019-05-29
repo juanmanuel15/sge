@@ -144,3 +144,26 @@
   .size-tabla {
     font-size: 12px;
   }
+
+
+  .nav-admin {
+    color:white;
+    background-color: rgb(41,81,51);
+  }
+
+  .nav-letras-admin:hover {
+    color: rgb(233,209,48);
+  }
+
+  .cerrarsesion {
+    border-color: #F0CC5F;
+    font-size: 14px;
+  }
+
+  .cerrarsesion:hover {    
+    background-color: rgb(233,209,48);
+    border-color:rgb(41,81,51);
+    font-size: 14px;
+    
+  }
+
