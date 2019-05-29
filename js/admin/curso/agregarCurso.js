@@ -429,6 +429,8 @@ $(document).ready(function(){
 		var obj_fecha = $('select[name = "selectFecha"]');
 		var obj_horaI = $('select[name = "selectHoraI"]');
 		var obj_horaF = $('select[name = "selectHoraF"]');
+
+
 		
 
 		fecha = array(obj_fecha);
@@ -439,7 +441,8 @@ $(document).ready(function(){
 		var datosLugar = {
 			'fecha': fecha,
 			'horaI': horaI,
-			'horaF' : horaF
+			'horaF' : horaF,
+			'cantidad' : parseInt(cantidad, 10)
 		};
 
 

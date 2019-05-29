@@ -14,6 +14,7 @@
         $fecha = $_POST['fecha'];
         $hora_inicio = $_POST['horaI'];
         $hora_final = $_POST['horaF'];
+        $cantidad = $_POST['cantidad'];
 
 
 
@@ -43,7 +44,7 @@
                         #En el dado caso de que solo sea una fecha, solo obtenemos los lugares para ese horario.
                         if(count($fecha) == 1){
 
-                            $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final));
+                            $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final, $cantidad));
 
 
 
@@ -54,7 +55,7 @@
                             #Verificamos que todas las fechas sean diferentes
                             if(count($fecha) ==  count(array_unique($fecha))){
                                 #Si es el caso, solo necesitamos introducir los datos
-                                $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final));
+                                $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final, $cantidad));
                                 
                             }else {
 
@@ -66,7 +67,7 @@
                                 if($valor) {
                                     #Mandamos a llamar la función que nos permite obtener los datos y enviarlos al seleccionador
 
-                                    $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final));            
+                                    $respuesta = respuesta($fecha, $hora_inicio, $hora_final, lugaresDisponibles($conexion, $fecha, $hora_inicio, $hora_final, $cantidad));            
 
                                    
                                 } else{
@@ -255,13 +256,17 @@
         return $resp;
     }
 
-    function lugaresDisponibles($conn, $fecha, $HI, $HF){
+    function lugaresDisponibles($conn, $fecha, $HI, $HF, $cantidad){
         $respuesta =  [];
         for ($i=0; $i <count($fecha) ; $i++) {
 
             $resultado = [];
 
-            $query = "SELECT id_lugar, nombre_lugar  FROM lugar WHERE id_lugar NOT IN  (SELECT DISTINCT lugar.id_lugar FROM lugar INNER JOIN horario ON lugar.id_lugar =  horario.id_lugar AND horario.hora_inicio < '$HF[$i]' AND horario.hora_final > '$HI[$i]' AND horario.fecha = '$fecha[$i]')";
+            //$query = "SELECT id_lugar, nombre_lugar  FROM lugar WHERE id_lugar NOT IN  (SELECT DISTINCT lugar.id_lugar FROM lugar INNER JOIN horario ON lugar.id_lugar =  horario.id_lugar AND horario.hora_inicio < '$HF[$i]' AND horario.hora_final > '$HI[$i]' AND horario.fecha = '$fecha[$i]')";
+
+            $query = "SELECT id_lugar, lugar.nombre_lugar, lugar.lugares FROM lugar WHERE lugar.lugares >= $cantidad  AND id_lugar NOT IN (SELECT lugar.id_lugar FROM lugar, horario WHERE lugar.id_lugar = horario.id_lugar  AND horario.hora_inicio < '$HF[$i]' AND horario.hora_final > '$HI[$i]' AND horario.fecha = '$fecha[$i]');";
+
+            //echo $query;
 
             $lectura = leerDatos($conn, $query);
 
