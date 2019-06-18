@@ -67,14 +67,17 @@
 
 
 			
-			/*$respuesta [] = [
-				'curso' => $curso,
-				'horario' => $horario,
-				'profesor' => $profesor
-			];*/ 
+			$valor [] = [
+					'curso' => $curso[$i],
+					'horario' => $horario,
+					'profesor' => $profesor
+			]; 
 		}
 
-		print_r($horario);
+
+		$respuesta = $valor;
+
+		
 
 
 		

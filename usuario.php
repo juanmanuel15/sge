@@ -227,11 +227,16 @@
             <div class="col-sm-12 col-12 col-md-8 col-lg-6 d-flex justify-content-center">
                 <h5>Cursos inscritos</h5>
             </div>
-        </div>            
+        </div>
+        <hr>
         
 
-        <div class="row d-flex justify-content-center mt-4 mb-4">
-            <div class="col-4 col-lg-2 usuario-curso-imagen curso-inscrito">                
+        <div class="row d-flex justify-content-center mb-4" >
+          <div class="col-12" id = "cursoInscrito">
+
+            
+          </div>
+            <!--div class="col-4 col-lg-2 usuario-curso-imagen curso-inscrito">                
             </div>
             <div class="col-5 col-lg-3  usuario-curso-description curso-inscrito">
                 <div class="row">
@@ -261,13 +266,15 @@
                             <button class="btn-cancelarCurso btn btn-danger col-12">Eliminar</button>
                         </div>  
                     </div>
-            </div>
+            </div-->
         </div>
 
-        <hr>
+        
+
+       
 
     </div>
-    
+    <script src="js/usuario/cursos_inscrito.js"></script>
     <script>
         $(document).ready(function(){
 
@@ -280,9 +287,35 @@
             $('#usuario').text(usuario);
             leer();
             leerCursosInscritos();
+            //leerConstancias();
             
 
             var nombreI, apellidoMI, apellidoPI, correoI, passI;
+
+
+            $(document).on('click', '#btn_eliminarCurso', function(respuesta){
+              var id = $(this).attr('valor');
+
+              var dato = {'id': id}
+              var eliminar = confirm('¿Está seguro que desea eliminarlo?');
+
+              if(eliminar){
+
+                  $.post('php/usuario/eliminar_curso.php', dato, function(respuesta){
+                  
+                    respuesta = JSON.parse(respuesta);
+
+                    console.log(respuesta);
+
+                    if(respuesta){
+                      alert('Curso eliminado');
+                      leerCursosInscritos();
+                    }
+
+                  });
+
+              }
+            });
             
 
             $('#btn-usuario-editar').on('click', function(){               
@@ -456,9 +489,21 @@
             function leerCursosInscritos(){
               $.post('php/usuario/cursos_inscritos.php', datos, function(respuesta){
                 respuesta = JSON.parse(respuesta);
-                  console.log(respuesta);
+                vista_cursoInscrito(respuesta);
+                  
               });
+
+
+            function leerConstancias(){
+                $.post('php/usuario/constancias.php', datos, function(respuesta){
+                  respuesta = JSON.parse(respuesta);
+                  console.log(respuesta);
+                  vista_constancias(respuesta);
+                });
+              }
             }
+
+
 
             
             
