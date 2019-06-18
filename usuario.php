@@ -223,7 +223,7 @@
 
         
 
-        <!--div class="row mt-4 d-flex justify-content-center">
+        <div class="row mt-4 d-flex justify-content-center">
             <div class="col-sm-12 col-12 col-md-8 col-lg-6 d-flex justify-content-center">
                 <h5>Cursos inscritos</h5>
             </div>
@@ -231,8 +231,7 @@
         
 
         <div class="row d-flex justify-content-center mt-4 mb-4">
-            <div class="col-4 col-lg-2 usuario-curso-imagen curso-inscrito">
-                
+            <div class="col-4 col-lg-2 usuario-curso-imagen curso-inscrito">                
             </div>
             <div class="col-5 col-lg-3  usuario-curso-description curso-inscrito">
                 <div class="row">
@@ -263,7 +262,7 @@
                         </div>  
                     </div>
             </div>
-        </div-->
+        </div>
 
         <hr>
 
@@ -280,6 +279,7 @@
 
             $('#usuario').text(usuario);
             leer();
+            leerCursosInscritos();
             
 
             var nombreI, apellidoMI, apellidoPI, correoI, passI;
@@ -451,6 +451,13 @@
                 $('#correo').text(respuesta.correo);
 
             });
+            }
+
+            function leerCursosInscritos(){
+              $.post('php/usuario/cursos_inscritos.php', datos, function(respuesta){
+                respuesta = JSON.parse(respuesta);
+                  console.log(respuesta);
+              });
             }
 
             

@@ -190,7 +190,7 @@
                 };
 
 
-             botonInscribir(datos, curso1);
+             botonInscribir(datos, curso1, usuario);
 
            
 
@@ -208,7 +208,7 @@
                     }else {
                         alert("Curso inscrito correctamente");
                         $('#btn_inscribir_CS').text("Ticket");
-                        var cadena = 'ticket.php?curso=' + curso1; 
+                        var cadena = 'ticket.php?curso=' + curso1 + '&usuario=' + usuario; 
                         $("a[id = btn_inscribir_CS]").attr('href', cadena);
 
 
@@ -264,10 +264,9 @@
         });
 
 
-        function botonInscribir(datos, curso1){
+        function botonInscribir(datos, curso1, usuario){
 
-            var id_curso = curso1;
-            
+            var id_curso = curso1.replace(" ","");            
 
             $.post('php/usuario/curso/verificar.php', datos, function(respuesta){
                 respuesta = JSON.parse(respuesta);
@@ -278,7 +277,8 @@
 
 
                 }else {
-                    var cadena = 'ticket.php?curso=' + id_curso; 
+
+                    var cadena = `ticket.php?curso=${id_curso}&usuario=${usuario}`; 
                     $('#btn_inscribir_CS').text('Ticket');
                     $("a[id = btn_inscribir_CS]").attr('href', cadena);
                     

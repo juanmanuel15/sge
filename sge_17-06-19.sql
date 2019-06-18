@@ -1,19 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2019 a las 18:15:08
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.2
+-- Tiempo de generación: 17-06-2019 a las 17:32:57
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-CREATE DATABASE sam;
-USE sam;
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -24,15 +21,37 @@ USE sam;
 --
 -- Base de datos: `sam`
 --
+CREATE DATABASE IF NOT EXISTS `sam` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `sam`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `area`
+--
+-- Creación: 14-06-2019 a las 21:12:15
+--
+
+CREATE TABLE `area` (
+  `id_area` varchar(20) NOT NULL,
+  `nombre_area` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELACIONES PARA LA TABLA `area`:
+--
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `curso`
 --
+-- Creación: 14-06-2019 a las 21:10:54
+--
 
 CREATE TABLE `curso` (
   `id_curso` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `id_area` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `titulo` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `id_tipo_actividad` int(11) NOT NULL,
   `descripcion` varchar(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -42,60 +61,91 @@ CREATE TABLE `curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELACIONES PARA LA TABLA `curso`:
+--   `id_tipo_actividad`
+--       `tipo_actividad` -> `id_tipo_actividad`
+--
+
+--
 -- Volcado de datos para la tabla `curso`
 --
 
-INSERT INTO `curso` (`id_curso`, `titulo`, `id_tipo_actividad`, `descripcion`, `prerrequisitos`, `dirigido`, `lugares`) VALUES
-('220319javap', 'Java para principiantes', 11, 'En este curso se verÃ¡n los conceptos bÃ¡sicos de Java', 'Ninguno', 'A cualquier persona interesada en el Ã¡rea de java', 45),
-('2305190942sdhgs', 'sdhgsdg', 8, 'kdjed', 'shdjwhj', 'shdgshd', 2),
-('2705190212asdjasdj', 'asdjasdjkhajk', 13, 'dnaskdnaksj', 'dnaskdnsa', 'zncaskdajk', 1212342);
+INSERT INTO `curso` (`id_curso`, `id_area`, `titulo`, `id_tipo_actividad`, `descripcion`, `prerrequisitos`, `dirigido`, `lugares`) VALUES
+('220319javap', '', 'Java para principiantes', 11, 'En este curso se verÃ¡n los conceptos bÃ¡sicos de Java', 'Ninguno', 'A cualquier persona interesada en el Ã¡rea de java', 45),
+('2905190238android', '', 'Android: ProgramaciÃ³n bÃ¡sica', 1, 'En este curso aprenderÃ¡s a realizar tus primeras aplicaciones mÃ³viles', 'Ninguno', 'A cualquier estudiante Interesado en programar', 30);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `curso_usuario_insc`
 --
+-- Creación: 12-06-2019 a las 16:58:01
+--
 
 CREATE TABLE `curso_usuario_insc` (
   `id` int(11) NOT NULL,
   `nCuenta` varchar(20) NOT NULL,
-  `id_curso` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+  `id_curso` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `asistencia_entrada` smallint(6) NOT NULL,
+  `asistencia_salida` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `curso_usuario_insc`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--   `nCuenta`
+--       `usuario` -> `nCuenta`
+--
 
 --
 -- Volcado de datos para la tabla `curso_usuario_insc`
 --
 
-INSERT INTO `curso_usuario_insc` (`id`, `nCuenta`, `id_curso`) VALUES
-(24, '1730709', '220319javap'),
-(30, '17307111', '220319javap'),
-(31, '123462', '220319javap');
+INSERT INTO `curso_usuario_insc` (`id`, `nCuenta`, `id_curso`, `asistencia_entrada`, `asistencia_salida`) VALUES
+(24, '1730709', '220319javap', 0, 0),
+(30, '17307111', '220319javap', 0, 0),
+(31, '123462', '220319javap', 0, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `curso_usuario_org`
 --
+-- Creación: 14-06-2019 a las 21:13:05
+--
 
 CREATE TABLE `curso_usuario_org` (
   `id` int(11) NOT NULL,
   `nCuenta` varchar(20) NOT NULL,
-  `id_curso` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+  `id_area` varchar(20) NOT NULL,
+  `id_curso` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `asistencia` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `curso_usuario_org`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--   `nCuenta`
+--       `usuario` -> `nCuenta`
+--
 
 --
 -- Volcado de datos para la tabla `curso_usuario_org`
 --
 
-INSERT INTO `curso_usuario_org` (`id`, `nCuenta`, `id_curso`) VALUES
-(112, '1830700', '220319javap'),
-(114, '1730709', '2305190942sdhgs'),
-(116, '1830700', '2705190212asdjasdj');
+INSERT INTO `curso_usuario_org` (`id`, `nCuenta`, `id_area`, `id_curso`, `asistencia`) VALUES
+(112, '1830700', '', '220319javap', 0),
+(117, '17307111', '', '2905190238android', 0),
+(118, '1830700', '', '2905190238android', 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `curso_usuario_resp`
+--
+-- Creación: 29-05-2019 a las 16:19:12
 --
 
 CREATE TABLE `curso_usuario_resp` (
@@ -105,24 +155,37 @@ CREATE TABLE `curso_usuario_resp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELACIONES PARA LA TABLA `curso_usuario_resp`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--   `nCuenta`
+--       `usuario` -> `nCuenta`
+--
+
+--
 -- Volcado de datos para la tabla `curso_usuario_resp`
 --
 
 INSERT INTO `curso_usuario_resp` (`id`, `nCuenta`, `id_curso`) VALUES
 (80, '1730709', '220319javap'),
-(81, '17307111', '2305190942sdhgs'),
-(82, '1730709', '2705190212asdjasdj');
+(83, '123462', '2905190238android');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `fecha`
 --
+-- Creación: 29-05-2019 a las 16:19:12
+--
 
 CREATE TABLE `fecha` (
   `id_fecha` int(11) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `fecha`:
+--
 
 --
 -- Volcado de datos para la tabla `fecha`
@@ -140,6 +203,8 @@ INSERT INTO `fecha` (`id_fecha`, `fecha`) VALUES
 --
 -- Estructura de tabla para la tabla `grupo_invitado`
 --
+-- Creación: 29-05-2019 a las 16:19:12
+--
 
 CREATE TABLE `grupo_invitado` (
   `id_grupo` int(11) NOT NULL,
@@ -147,16 +212,26 @@ CREATE TABLE `grupo_invitado` (
   `id_curso` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- RELACIONES PARA LA TABLA `grupo_invitado`:
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `hora`
+--
+-- Creación: 29-05-2019 a las 16:19:12
 --
 
 CREATE TABLE `hora` (
   `id_hora` int(11) NOT NULL,
   `hora` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `hora`:
+--
 
 --
 -- Volcado de datos para la tabla `hora`
@@ -198,6 +273,8 @@ INSERT INTO `hora` (`id_hora`, `hora`) VALUES
 --
 -- Estructura de tabla para la tabla `horario`
 --
+-- Creación: 29-05-2019 a las 16:19:12
+--
 
 CREATE TABLE `horario` (
   `id_horario` int(11) NOT NULL,
@@ -209,20 +286,32 @@ CREATE TABLE `horario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELACIONES PARA LA TABLA `horario`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--   `id_lugar`
+--       `lugar` -> `id_lugar`
+--
+
+--
 -- Volcado de datos para la tabla `horario`
 --
 
 INSERT INTO `horario` (`id_horario`, `fecha`, `hora_inicio`, `hora_final`, `id_curso`, `id_lugar`) VALUES
 (84, '2019-05-28', '07:00:00', '09:00:00', '220319javap', 1),
 (85, '2019-05-29', '07:00:00', '09:00:00', '220319javap', 1),
-(86, '2019-05-30', '07:00:00', '09:00:00', '2305190942sdhgs', 4),
-(91, '2019-05-28', '09:00:00', '11:00:00', '2305190942sdhgs', 5),
-(92, '2019-05-27', '11:00:00', '13:00:00', '2705190212asdjasdj', 2);
+(93, '2019-05-27', '09:00:00', '11:00:00', '2905190238android', 8),
+(94, '2019-05-27', '07:00:00', '11:00:00', '2905190238android', 8),
+(95, '2019-05-29', '09:00:00', '11:00:00', '2905190238android', 8),
+(96, '2019-05-30', '09:00:00', '11:00:00', '2905190238android', 8),
+(97, '2019-05-31', '09:00:00', '11:00:00', '2905190238android', 8);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `lugar`
+--
+-- Creación: 29-05-2019 a las 16:19:12
 --
 
 CREATE TABLE `lugar` (
@@ -230,6 +319,10 @@ CREATE TABLE `lugar` (
   `nombre_lugar` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `lugares` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `lugar`:
+--
 
 --
 -- Volcado de datos para la tabla `lugar`
@@ -250,6 +343,8 @@ INSERT INTO `lugar` (`id_lugar`, `nombre_lugar`, `lugares`) VALUES
 --
 -- Estructura de tabla para la tabla `material`
 --
+-- Creación: 29-05-2019 a las 16:19:12
+--
 
 CREATE TABLE `material` (
   `id_mat` int(11) NOT NULL,
@@ -257,6 +352,12 @@ CREATE TABLE `material` (
   `cantidad` int(11) NOT NULL,
   `id_curso` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `material`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--
 
 --
 -- Volcado de datos para la tabla `material`
@@ -270,11 +371,17 @@ INSERT INTO `material` (`id_mat`, `nombre_material`, `cantidad`, `id_curso`) VAL
 --
 -- Estructura de tabla para la tabla `requerimientos`
 --
+-- Creación: 29-05-2019 a las 16:19:12
+--
 
 CREATE TABLE `requerimientos` (
   `id_req` int(11) NOT NULL,
   `nombre_req` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `requerimientos`:
+--
 
 --
 -- Volcado de datos para la tabla `requerimientos`
@@ -284,7 +391,7 @@ INSERT INTO `requerimientos` (`id_req`, `nombre_req`) VALUES
 (3, 'Equipo de audio'),
 (4, 'Presente institucional'),
 (5, 'Mesas'),
-(8, 'CaÃ±on'),
+(8, 'CaÃ±Ã³n'),
 (9, 'Agua'),
 (10, 'Computadora');
 
@@ -292,6 +399,8 @@ INSERT INTO `requerimientos` (`id_req`, `nombre_req`) VALUES
 
 --
 -- Estructura de tabla para la tabla `req_curso`
+--
+-- Creación: 29-05-2019 a las 16:19:12
 --
 
 CREATE TABLE `req_curso` (
@@ -301,22 +410,38 @@ CREATE TABLE `req_curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELACIONES PARA LA TABLA `req_curso`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--   `id_req`
+--       `requerimientos` -> `id_req`
+--
+
+--
 -- Volcado de datos para la tabla `req_curso`
 --
 
 INSERT INTO `req_curso` (`id`, `id_req`, `id_curso`) VALUES
-(69, 8, '220319javap');
+(69, 8, '220319javap'),
+(70, 8, '2905190238android'),
+(71, 10, '2905190238android');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tipo_actividad`
 --
+-- Creación: 29-05-2019 a las 16:19:12
+--
 
 CREATE TABLE `tipo_actividad` (
   `id_tipo_actividad` int(11) NOT NULL,
   `nombre_tipo_actividad` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `tipo_actividad`:
+--
 
 --
 -- Volcado de datos para la tabla `tipo_actividad`
@@ -339,11 +464,17 @@ INSERT INTO `tipo_actividad` (`id_tipo_actividad`, `nombre_tipo_actividad`) VALU
 --
 -- Estructura de tabla para la tabla `tipo_usuario`
 --
+-- Creación: 29-05-2019 a las 16:19:12
+--
 
 CREATE TABLE `tipo_usuario` (
   `id_tipoUsuario` int(1) NOT NULL,
   `usuario` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `tipo_usuario`:
+--
 
 --
 -- Volcado de datos para la tabla `tipo_usuario`
@@ -360,6 +491,8 @@ INSERT INTO `tipo_usuario` (`id_tipoUsuario`, `usuario`) VALUES
 --
 -- Estructura de tabla para la tabla `usuario`
 --
+-- Creación: 29-05-2019 a las 16:19:12
+--
 
 CREATE TABLE `usuario` (
   `nCuenta` varchar(20) NOT NULL,
@@ -372,6 +505,12 @@ CREATE TABLE `usuario` (
   `tipo_usuario` int(1) NOT NULL,
   `telefono` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELACIONES PARA LA TABLA `usuario`:
+--   `tipo_usuario`
+--       `tipo_usuario` -> `id_tipoUsuario`
+--
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -387,6 +526,12 @@ INSERT INTO `usuario` (`nCuenta`, `nombre`, `apellidoP`, `apellidoM`, `correo`, 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `area`
+--
+ALTER TABLE `area`
+  ADD PRIMARY KEY (`id_area`);
 
 --
 -- Indices de la tabla `curso`
@@ -501,19 +646,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `curso_usuario_insc`
 --
 ALTER TABLE `curso_usuario_insc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `curso_usuario_org`
 --
 ALTER TABLE `curso_usuario_org`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT de la tabla `curso_usuario_resp`
 --
 ALTER TABLE `curso_usuario_resp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de la tabla `fecha`
@@ -531,13 +676,13 @@ ALTER TABLE `grupo_invitado`
 -- AUTO_INCREMENT de la tabla `hora`
 --
 ALTER TABLE `hora`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT de la tabla `lugar`
@@ -561,7 +706,7 @@ ALTER TABLE `requerimientos`
 -- AUTO_INCREMENT de la tabla `req_curso`
 --
 ALTER TABLE `req_curso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_actividad`
