@@ -58,5 +58,5 @@ function vista_cursoInscrito(respuesta){
 
 
 function vista_constancias(datos){
-
+	
 }	

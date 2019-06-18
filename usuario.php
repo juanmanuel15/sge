@@ -287,7 +287,7 @@
             $('#usuario').text(usuario);
             leer();
             leerCursosInscritos();
-            //leerConstancias();
+            leerConstancias();
             
 
             var nombreI, apellidoMI, apellidoPI, correoI, passI;
@@ -489,19 +489,27 @@
             function leerCursosInscritos(){
               $.post('php/usuario/cursos_inscritos.php', datos, function(respuesta){
                 respuesta = JSON.parse(respuesta);
-                vista_cursoInscrito(respuesta);
+
+                if(respuesta.datos != false){
+                  vista_cursoInscrito(respuesta);
+                }else {
+                  $('#cursoInscrito').empty();
+                }
+                
                   
               });
 
+            }
+
 
             function leerConstancias(){
-                $.post('php/usuario/constancias.php', datos, function(respuesta){
+                $.post('php/usuario/constancia.php', datos, function(respuesta){
                   respuesta = JSON.parse(respuesta);
                   console.log(respuesta);
                   vista_constancias(respuesta);
                 });
               }
-            }
+            
 
 
 

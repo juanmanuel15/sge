@@ -18,7 +18,10 @@
 		$query = "SELECT curso.id_curso, curso.titulo FROM curso, curso_usuario_insc, usuario WHERE usuario.usuario = '$id_usuario' AND curso.id_curso = curso_usuario_insc.id_curso AND usuario.nCuenta = curso_usuario_insc.nCuenta";
 
 		$resultado = $bd->leer($query);
-		$curso = [];
+
+		if($resultado->num_rows>=1){
+
+			$curso = [];
 		while($row = $resultado->fetch_array()){
 			$curso [] = [
 				'id' => $row[0],
@@ -27,6 +30,8 @@
 		}
 
 		$resultado->free();
+
+		
 
 
 		$respuesta = $curso[0]['id'];
@@ -74,8 +79,18 @@
 			]; 
 		}
 
-
 		$respuesta = $valor;
+
+		} else {
+			$respuesta = ['datos' =>false];
+		}
+
+
+
+		
+
+
+		
 
 		
 
