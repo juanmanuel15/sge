@@ -11,12 +11,13 @@
 
     } else {
 
-    	$id = $_POST['id'];
+    	$id_curso = $_POST['id'];
+        $id_usuario = $_POST['usuario'];
 
 
-    	if($id != ''){
+    	if($id_curso != ''){
 
-    		$query = "DELETE FROM curso_usuario_insc WHERE id_curso = '$id'";
+    		$query = "DELETE FROM curso_usuario_insc WHERE id_curso = '$id_curso' AND nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$id_usuario')";
     		$resultado = eliminarDatos($conexion, $query);
 
     		if($resultado['valor']){

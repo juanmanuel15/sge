@@ -114,14 +114,14 @@ $style = array(
 
 $pdf->Ln(15);
 $pdf->SetFont('times', 'B', 10);
-$pdf->MultiCell(0,5, 'Código para el acceso a la actividad', 0, 'C', 0, 1, '',  '', true);
+//$pdf->MultiCell(0,5, 'Código para el acceso a la actividad', 0, 'C', 0, 1, '',  '', true);
 
 $pdf->Ln(15);
 
 
 // QRCODE,H : QR-CODE Best error correction
 
-$pdf->write2DBarcode($cadena, 'QRCODE,H', 74, 110, 60, 0, $style, 'N');
+$pdf->write2DBarcode($cadena, 'QRCODE,H', 74, 200, 60, 0, $style, 'N');
 $pdf->Ln(5);
 
 

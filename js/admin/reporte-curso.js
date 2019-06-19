@@ -5,16 +5,23 @@ $(document).ready(function(){
     $(document).on('click', '#btn_generar', function(){
         var id = { 'id' : $(this).parent().parent().attr("id")};
     });
+
+    $(document).on('click', '#btn_ver', function(){
+        var id = { 'id' : $(this).parent().parent().attr("id")};
+
+        $.post('cursos/reporte-curso/')
+        
+    });
 });
 
 
 function leer(){
     $('#tablaReporteCurso').empty();
 
-    $.post('cursos/display/mostrar.php',function(respuesta) {            
+    $.post('cursos/reporte-curso/mostrar.php',function(respuesta) {            
             var respuesta = JSON.parse(respuesta);
-            console.log(respuesta[0]);            
-            console.log(respuesta[0].lugar['lugares']);
+            //console.log(respuesta[0]);            
+            //console.log(respuesta[0].lugar['lugares']);
             $('#tablaReporteCurso').empty();
             
             var fila = '';
@@ -31,8 +38,9 @@ function leer(){
                     <tr id = ${id}>
                         <td>${id}</td>
                         <td>${titulo}</td>
-                        <td>${inscritos}/${lugares}</td>                
-                        <td><span id = "btn_generar" class = "i_mostrar"><a href = "reporte-curso/reporte.php?id=${id}"><i class="fas fa-eye"></i></a></i></span></td>
+                        <td>${inscritos}/${lugares}</td>
+                        <td><span id = "btn_ver" class = "i_ver"><i class="fas fa-eye"></i></td>                
+                        <td><span id = "btn_generar" class = "i_mostrar"><a href = "reporte-curso/reporte.php?id=${id}"><i class="fas fa-share"></i></i></a></i></span></td>
                     </tr>
                `;
             }

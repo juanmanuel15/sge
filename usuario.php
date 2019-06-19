@@ -287,7 +287,7 @@
             $('#usuario').text(usuario);
             leer();
             leerCursosInscritos();
-            leerConstancias();
+            //leerConstancias();
             
 
             var nombreI, apellidoMI, apellidoPI, correoI, passI;
@@ -296,7 +296,8 @@
             $(document).on('click', '#btn_eliminarCurso', function(respuesta){
               var id = $(this).attr('valor');
 
-              var dato = {'id': id}
+              var dato = {'id': id, 'usuario':usuario};
+              console.log(dato);
               var eliminar = confirm('¿Está seguro que desea eliminarlo?');
 
               if(eliminar){
