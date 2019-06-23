@@ -8,7 +8,7 @@
     
     $conexion = abrirConexion();
 
-     $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.usuario,  curso.titulo FROM curso_usuario_org, curso, usuario WHERE curso.id_curso = curso_usuario_org.id_curso AND usuario.nCuenta = curso_usuario_org.nCuenta";
+    $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.usuario,  curso.titulo, curso.id_curso, usuario.usuario FROM curso_usuario_insc, curso, usuario WHERE curso.id_curso = curso_usuario_insc.id_curso AND usuario.nCuenta = curso_usuario_insc.nCuenta";
 
    $resultado = leerDatos($conexion, $query);
     
@@ -20,7 +20,9 @@
             'numeroCuenta' => $row[0],
             'nombreCompleto' => $row[1]. " " . $row[2] . " " . $row[3], 
             'usuario' => $row[4],
-            'titulo' => $row[5]
+            'titulo' => $row[5],
+            'curso' => $row[6],
+            'usuario' => $row[7] 
         ];
     }
 

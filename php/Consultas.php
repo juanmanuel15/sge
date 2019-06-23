@@ -101,6 +101,14 @@
 		function insertarUsuarioCurso($curso, $usuario){
 			return $query = "INSERT INTO curso_usuario_insc (nCuenta, id_curso) VALUES ( (SELECT nCuenta FROM usuario WHERE usuario = '$usuario') , '$curso');";
 		}
+
+		function buscarHorarioCurso($usuario, $curso){
+			return $query = "SELECT horario.fecha, horario.hora_inicio, horario.hora_final 
+			FROM horario, curso_usuario_insc, usuario, curso WHERE curso.id_curso = curso_usuario_insc.id_curso  AND usuario.nCuenta = curso_usuario_insc.nCuenta 
+			AND usuario.nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario') AND curso_usuario_insc.id_curso = '$curso' 
+			AND horario.id_curso = curso.id_curso ORDER BY DATE(horario.fecha);";
+
+		}
 	}
 
 

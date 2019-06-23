@@ -5,6 +5,66 @@
         header('Location: ../../admin/admin.php' );
     }
 ?>
+
+<!-- Modal -->
+<div class="modal fade" id="asistencia_usuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_usuarioAsistencia"><b>Asistencia</b></h5>
+      </div>
+      <div class="modal-body">
+
+      <div class="row">
+          <div class="col-12 d-flex-justify-content-center">
+              <h6 class = "text-center">Nombre del curso</h6>
+          </div>
+      </div>
+
+
+      <div class="row">
+          <div class="col-12 d-flex justify-content-center" id = "msg_asistencia">
+                
+          </div>
+      </div>
+
+            <div class="row mt-2">
+                <div class="col-12 d-flex justify-content-center">
+                    <table id = "table_asistenciaUsuario" class = "table text-center">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Fecha</th>
+                                <th>Check-in</th>
+                                <th>Check-out</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "tableBody_asistenciaUsuario">
+                            <!--tr>
+                                <td>1</td>
+                                <td>2019-05-21</td>
+                                <td><input type="checkbox" id="cbox1" value="first_checkbox"></td>
+                                <td><input type="checkbox" id="cbox1" value="first_checkbox"></td>
+
+                            </tr-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+      
+      
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <button class="btn btn-danger mx-1 col-lg-4 col-6" id = "btn_actualizar">Actualizar</button>
+                    <button class="btn btn-secondary mx-1 col-lg-4 col-6" id = "btn_cancelar">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -83,7 +143,8 @@
                                     <th>N° Cuenta</th>
                                     <th>Nombre</th>
                                     <th>Curso</th>    
-                                    <th hidden="">Generar</th>
+                                    <th>Asistencia</th>
+                                    <th>Generar</th>
                                 </tr>
                             </thead>
                             <tbody id="tablaReporteUsuario">
@@ -100,7 +161,8 @@
             <div class="footer"> 
             </div>                  
         </footer-->
-        <script src = "../../js/reporte-usuario.js"></script>
+        <script src = "../../js/admin/reporte-usuario/main.js"></script>
+        <script src = "../../js/admin/reporte-usuario/vistas.js"></script>
     </div>
 
 
