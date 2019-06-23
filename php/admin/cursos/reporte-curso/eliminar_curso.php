@@ -1,13 +1,13 @@
 <?php
 	
-	require ('../base.php');
-    require ('../consulta.php');
+	require ('../../../base.php');
+    require ('../../../consulta.php');
     header("Content-Type: text/html;charset=utf-8");
 
     $conexion = abrirConexion();
 
     if(!$_SERVER['REQUEST_METHOD'] == 'POST'){
-        $respuesta = false;
+        $respuesta = ['base' => false];
 
     } else {
 
@@ -17,10 +17,10 @@
 
     	if($id_curso != ''){
 
-    		echo $query = "DELETE FROM curso_usuario_insc WHERE id_curso = '$id_curso' AND nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$id_usuario')";
+    		$query = "DELETE FROM curso_usuario_insc WHERE id_curso = '$id_curso' AND nCuenta = '$id_usuario'";
     		$resultado = eliminarDatos($conexion, $query);
 
-    		if($resultado['valor']){
+    		if($resultado['valor'] == true){
     			$respuesta = true;
     		}else{
     			$respuesta = false;
@@ -30,7 +30,7 @@
     		
 
     	}else {
-    		$respuesta = false;
+    		$respuesta = ['metodo' => false];
     	}
 
 

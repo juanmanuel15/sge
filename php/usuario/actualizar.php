@@ -5,9 +5,9 @@
     
 
     if(!$_SERVER['REQUEST_METHOD'] == 'POST'){
-        print_r($respuesta = [
+        $respuesta = [
             'valor' => false
-        ]);
+        ];
      }else {
 
          $usuario = filter_var($_POST['usuario'],FILTER_SANITIZE_STRING);

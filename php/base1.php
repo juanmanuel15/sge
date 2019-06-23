@@ -12,7 +12,7 @@
 		public function conectar(){
 	
 			$conexion = new mysqli($this->ip, $this->user, $this->pass, $this->bd);
-
+			$conexion->set_charset("utf8");
 			
 
 			if($conexion->connect_errno){
@@ -46,6 +46,18 @@
 
 		public function limpiar($datos){
 			$datos->free();
+		}
+
+
+		public function insertar($query){
+
+			if(!$this->conn){
+				$respuesta =  false;
+			}else {				
+				$respuesta = $this->conn->query($query);
+			}
+
+			return $respuesta;
 		}
 	}
 ?>
