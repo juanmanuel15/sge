@@ -197,6 +197,7 @@
     	$traslape = [];
 
 		for($i = 0; $i<sizeof($horarioOcupado); $i++){
+
 			for ($j=0; $j < sizeof($horarioCurso) ; $j++) { 
 
 				$fecha1 = fecha($horarioOcupado[$i]['fecha']);
@@ -209,8 +210,8 @@
 				//echo "$fecha1  == $fecha2 <br>";
 				//
 				if($fecha1 == $fecha2){
-					//echo "$HI1>$HF2 AND $HF1> $HI2 <BR>";
-					if($HI1>$HF2 || $HF1< $HI2){
+					//echo "$HI1<$HI2 AND $HI1< $HF2 AND $HF1<= $HI2 AND $HF1 < $HF2 ";
+					if($HI1<$HI2 && $HI1< $HF2 && $HF1<= $HI2 && $HF1 < $HF2){
 						$traslape[] = false;
 
 					}else {
