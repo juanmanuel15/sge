@@ -217,7 +217,7 @@
 
         <div class="row mt-4 d-flex justify-content-center">
             <div class="col-lg-8 col-sm-10">
-                <form id="formBuscar">
+                <form id="form_buscarRegistroAsistencia">
                     <div class="input-group d-flex justify-content-center">
                         <input id="buscar_Asistencia" type="text" class="form-control col-sm-auto" name="txt_buscar" placeholder="Buscar">
                         <button class="btn btn-outline-secondary input-group-append" type="submit" id="btn_buscar"><i class="fas fa-search"></i></button>

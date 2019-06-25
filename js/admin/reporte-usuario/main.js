@@ -89,10 +89,40 @@ $(document).ready(function(){
     });
 
 
-    $(document).on('click', '#btn_cancelarAgregarRegistro', function(e){
+    $(document).on('click', '#btn_cancelarAgregarRegistro', function(){
         $('#modal_agregarRegistroAsistencia').hide();
         $('#modal_mostrarAsistencia').show();
         mensaje_limpiar($('#msg_asistencia'));
+    });
+
+
+    $(document).on('submit', '#form_buscarRegistroAsistencia', function(e){
+        e.preventDefault();
+
+        var txt_buscarCursoUsuario = $('#buscar_Asistencia').val();
+        txt_buscarCursoUsuario = {'txt' : txt_buscarCursoUsuario}; 
+
+        if(txt_buscarCursoUsuario === ''){
+            leer();
+        } else {
+            $.post('reporte-usuario/buscarUsuarioCursoAsistencia.php', txt_buscarCursoUsuario, function(respuesta){
+                respuesta = JSON.parse(respuesta);
+                
+    
+                    if(respuesta['servidor']){
+                        console.log("Error al procesar información");
+                        leer();
+                    }else if(respuesta['vacio']){
+                        leer();
+                    }else if(respuesta['usuarios'] != false){
+                        //console.log(respuesta['usuarios']);
+                        vista_principalBuscarCurso(respuesta['usuarios']);                    
+                    }else {
+                         $('#tablaReporteUsuario').empty();
+                    }
+                    
+                });
+        }
     });
 
     
@@ -106,8 +136,6 @@ $(document).on('submit', '#form_actualizarAsistencia', function(e){
 
     var obj_check = $("input[name = 'check']");
     var check = array(obj_check);
-
-    
 
     vista_msg_actualizarAsistencia(check);
     

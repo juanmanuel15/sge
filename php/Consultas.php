@@ -129,6 +129,36 @@
 			return $query = "INSERT INTO asistencia (id_asistencia, fecha_e, fecha_s, hora_e, hora_s, id_usuario, id_curso, check_in, check_out) VALUES ('$id', '$fecha', '$fecha', '$hora_e', '$hora_e', (SELECT ncuenta FROM usuario WHERE usuario = '$id_usuario'), '$id_curso', $entrada, $salida)";
 		}
 
+
+		function buscar_RegistroAsistencia($txt){
+			$busqueda = explode(" ", $txt);
+
+			
+			$query = "SELECT DISTINCT usuario.usuario, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta, curso.id_curso, curso.titulo FROM curso, usuario, asistencia WHERE  asistencia.id_usuario = usuario.nCuenta AND asistencia.id_curso = curso. id_curso AND (";
+
+			for($i=0; $i<sizeof($busqueda); $i++){
+				
+
+
+				$query .= "usuario.usuario 		LIKE 	'%$busqueda[$i]%'	OR 
+						   usuario.nombre		LIKE	'%$busqueda[$i]%'	OR
+						   usuario.apellidoP	LIKE	'%$busqueda[$i]%'	OR
+						   usuario.apellidoM	LIKE	'%$busqueda[$i]%'	OR						   
+						   usuario.ncuenta 		LIKE 	'%$busqueda[$i]%'	OR
+						   curso.titulo			LIKE	'%$busqueda[$i]%'	";
+
+				if($i != sizeof($busqueda)-1){
+					$query .= ")AND(";
+				}
+
+				if($i == sizeof($busqueda)-1){
+					$query .= ")";
+				}
+			}
+
+			return $query;
+		}
+
 	}
 
 
