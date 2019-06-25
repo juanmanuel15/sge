@@ -49,8 +49,30 @@
 		}
 
 
+		public function actualizar($query){
+			if(!$this->conn){
+				$respuesta =  false;
+			}else {
+				
+				$respuesta = $this->conn->query($query);
+			}
+
+			return $respuesta;
+		}
+
+
 		public function insertar($query){
 
+			if(!$this->conn){
+				$respuesta =  false;
+			}else {				
+				$respuesta = $this->conn->query($query);
+			}
+
+			return $respuesta;
+		}
+
+		public function eliminar($query){
 			if(!$this->conn){
 				$respuesta =  false;
 			}else {				

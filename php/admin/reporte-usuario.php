@@ -13,53 +13,146 @@
       <div class="modal-header">
         <h5 class="modal-title" id="modal_usuarioAsistencia"><b>Asistencia</b></h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body">      
 
-      <div class="row">
-          <div class="col-12 d-flex-justify-content-center">
-              <h6 class = "text-center">Nombre del curso</h6>
-          </div>
-      </div>
+            <div class="row" id = "modal_mostrarAsistencia">
+                <div class="col-12">
+                        <div class="row mt-2">
+                            
+                                <div class="col-10 col-lg-11 d-flex justify-content-end">
+                                    <label><b>Agregar Registro</b></label>
+                                </div>
 
 
-      <div class="row">
-          <div class="col-12 d-flex justify-content-center" id = "msg_asistencia">
-                
-          </div>
-      </div>
+                                <div class="col-2 col-lg-1 d-flex justify-content-center">
+                                    <span id= "agregar_registroAsistencia"><i class="fas fa-plus i_mostrar"></i></span>
+                                </div>
+                            
+                        </div>  
 
-            <div class="row mt-2">
-                <div class="col-12 d-flex justify-content-center">
-                    <table id = "table_asistenciaUsuario" class = "table text-center">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Fecha</th>
-                                <th>Check-in</th>
-                                <th>Check-out</th>
-                            </tr>
-                        </thead>
-                        <tbody id = "tableBody_asistenciaUsuario">
-                            <!--tr>
-                                <td>1</td>
-                                <td>2019-05-21</td>
-                                <td><input type="checkbox" id="cbox1" value="first_checkbox"></td>
-                                <td><input type="checkbox" id="cbox1" value="first_checkbox"></td>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center" id = "msg_asistencia">
+                            </div>
+                        </div>
 
-                            </tr-->
-                        </tbody>
-                    </table>
+                        <div class="row mt-2">
+                            <div class="col-12 d-flex justify-content-center">
+                                <table id = "table_asistenciaUsuario" class = "table text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Fecha de Entrada</th>
+                                            <th>Fecha de Salida</th>
+                                            <th>Hora de Entrada</th>
+                                            <th>Hora de Salida</th>
+                                            <th>Entrada</th>
+                                            <th>Salida</th>
+                                        </tr>
+                                    </thead>
+                                    <form id ="form_actualizarAsistencia">
+                                        <tbody id = "tableBody_asistenciaUsuario">
+                                        
+                                            <!--tr>
+                                                <td>1</td>
+                                                <td>2019-05-21</td>
+                                                <td><input type="checkbox" id="cbox1" value="first_checkbox"></td>
+                                                <td><input type="checkbox" id="cbox1" value="first_checkbox"></td>
+
+                                            </tr-->
+                                        </tbody>                        
+                                    
+                                    
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center">
+                                <button type = "submit" class="btn btn-danger mx-1 col-lg-4 col-6" id = "btn_registros">Actualizar</button>
+                                <button type = "button" class="btn btn-secondary mx-1 col-lg-4 col-6" id = "btn_salir">Salir</button>
+                            </div>
+                        </div>
+                        </form>
+
                 </div>
             </div>
-      
-      
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <button class="btn btn-danger mx-1 col-lg-4 col-6" id = "btn_actualizar">Actualizar</button>
-                    <button class="btn btn-secondary mx-1 col-lg-4 col-6" id = "btn_cancelar">Cancelar</button>
+
+            
+
+
+
+            <div class="row" id = "modal_eliminarRegistroAsistencia">
+                <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center text-center">
+                                <h6><b>¿Desea eliminar el registro?</b></h6>
+                            </div>                    
+                        </div>
+
+                        <div class="row mt-4 mb-4">
+                            <div class="col-12 d-flex justify-content-center">
+                                <button class="btn btn-danger mx-2 col-lg-2 col-6" id= "btn_modal_aceptarEliminarRegistro">Aceptar</button>
+                                <button class="btn btn-secondary mx-2 col-lg-2 col-6" id = "btn_modal_cancelarEliminarRegistro">Cancelar</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                        
+                        </div>
                 </div>
             </div>
-        </div>
+
+
+            <div class="row" id = "modal_agregarRegistroAsistencia">
+                <div class="col-12">                     
+
+                    <div class="row" >
+                        <div class="col-12 d-flex justify-content-center" id = "msg_agregarRegistroAsistencia">
+                                                                
+                        </div>
+                    </div>              
+                    <form id = "form_agregarRegistroAsistencia">
+                        <div class="row">
+                            <div class="col-12">
+                                <table class = "table text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Entrada</th>
+                                            <th>Salida</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="date" class = "form-control" name="" id="date_fechaRegistro" min ></td>
+                                            <td><input type="checkbox" name="" id="cbox1" checked = "false" class ="form-check-input"></td>
+                                            <td><input type="checkbox" name="" id="cbox2" checked = "false" class = "form-check-input"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>                      
+                        
+                        </div>
+
+                       
+                        <div class="row mt-2 mb-2">
+                            <div class="col-12 d-flex justify-content-center">
+                                <button type="submit" class = "btn btn-danger col-lg-3 col-6 mx-2">Agregar</button>
+                                <button type="reset" class = "btn btn-secondary col-lg-3 col-6 mx-2" id = "btn_cancelarAgregarRegistro">Cancelar</button>  
+                            </div>
+                            
+                        </div>                        
+                    </form>
+
+
+                    
+                </div>
+            </div>
+
+      
+
+
+    </div>
     </div>
   </div>
 </div>
@@ -126,7 +219,7 @@
             <div class="col-lg-8 col-sm-10">
                 <form id="formBuscar">
                     <div class="input-group d-flex justify-content-center">
-                        <input id="txt_buscar" type="text" class="form-control col-sm-auto" name="txt_buscar" placeholder="Buscar">
+                        <input id="buscar_Asistencia" type="text" class="form-control col-sm-auto" name="txt_buscar" placeholder="Buscar">
                         <button class="btn btn-outline-secondary input-group-append" type="submit" id="btn_buscar"><i class="fas fa-search"></i></button>
                     </div>                        
                 </form>
@@ -163,6 +256,7 @@
         </footer-->
         <script src = "../../js/admin/reporte-usuario/main.js"></script>
         <script src = "../../js/admin/reporte-usuario/vistas.js"></script>
+        <!--script src = "../../js/admin/reporte-usuario/eliminar.js"></script-->
     </div>
 
 

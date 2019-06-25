@@ -17,6 +17,7 @@
         if(empty($id) || sizeof($id)<2){
             $vacio = true;
             $horario = true;
+            $asistencia = true;
         }else{
             $vacio = false;
 
@@ -28,19 +29,30 @@
             if($conexion != false){
                 $conexion = false;
 
-                $query = $consulta->buscarHorarioCurso($usuario, $curso);
+                
+                $asistencia = [];
 
+                $query = $consulta->buscarAsistenciaUsuario($usuario, $curso);
                 $resultado = $base->leer($query);
 
                 while($row = $resultado->fetch_array()){
-                    $horario [] = [
-                        'fecha' => $row[0],
-                        'HI' => $row[1],
-                        'HF' => $row[2]
+                    $asistencia[] = [
+                        'id' => $row[0],
+                        'fecha_e' => $row[3],
+                        'fecha_s' => $row[4],
+                        'hora_e' => $row[1],
+                        'hora_s' => $row[2],
+                        'check_in' => $row[5],
+                        'check_out' => $row[6]
                     ];
                 }
 
-                $resultado->free();
+                if(sizeof($asistencia) == 0){
+                    $asistencia = false;
+                }else {
+                    $asistencia = $asistencia;
+                }
+
 
             }else {
                 $conexion = true;
@@ -54,7 +66,7 @@
         'servidor'=> $servidor,
         'vacio' => $vacio, 
         'conn' => $conexion,
-        'horario' => $horario
+        'asistencia' => $asistencia
     ];
 
     echo json_encode($respuesta);

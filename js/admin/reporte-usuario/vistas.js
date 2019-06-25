@@ -1,37 +1,130 @@
 function vista_modal_horarioCurso(datos){
+    
     $('#tableBody_asistenciaUsuario').empty();
     $.post('reporte-usuario/horarioCurso.php', datos,function(respuesta){
-
         respuesta = JSON.parse(respuesta);
-
-        if(respuesta['servidor'] != false){
-            if(respuesta['vacio'] != false){
-                if(respuesta['conn'] != false){
-                    if(respuesta['horario'] != false){
-                        var horario = respuesta['horario'];
-                        for(var i = 0; i < horario.length; i++){
+        console.log(respuesta);
+        msg = "";
+        if(respuesta['servidor'] != true){
+            if(respuesta['vacio'] != true){
+                if(respuesta['conn'] != true){
+                    if(respuesta['asistencia'] != true){                        
+                            var asistencia = respuesta['asistencia'];
                             
-                            <tr>
-                                <td>${i+1}</td>
-                                <td>${horario['fecha']}</td>
-                                <td></td>
-                            </tr>
+                                msg = "Son iguales";
+                                var texto = ``;
 
-                        }
+                                console.log(asistencia);
+                                
+                                
+                                
+                                for(var i = 0; i < asistencia.length; i++){
+
+                                    texto += `
+
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${asistencia[i]['fecha_e']}</td>
+                                        <td>${asistencia[i]['fecha_s']}</td>
+                                        <td>${asistencia[i]['hora_e']}</td>
+                                        <td>${asistencia[i]['hora_s']}</td>
+                                        <td>
+                                    `;
+
+                                    if(asistencia[i]['check_in'] == '1'){
+                                        texto +=  `<input type = "checkbox" name = "check" valor = '${asistencia[i]['id']}_in' id = "chk${2*i+1}" value = "${asistencia[i]['check_in']}" checked>`;
+                                    }else{
+                                        texto +=  `<input type = "checkbox" name = "check" valor = '${asistencia[i]['id']}_in' id = "chk${2*i+1}" value = "${asistencia[i]['check_in']}" >`;
+                                    }
+
+                                    texto += `</td><td>`
+
+
+                                    if(asistencia[i]['check_out'] == '1'){
+                                        texto +=  `<input type = "checkbox" name = "check" valor = '${asistencia[i]['id']}_out' id = "chk${2*i+2}" value = "${asistencia[i]['check_out']}" checked >`;
+                                    }else{
+                                        texto +=  `<input type = "checkbox" name = "check" valor = '${asistencia[i]['id']}_out' id = "chk${2*i+2}" value = "${asistencia[i]['check_out']}" >`;
+                                    }                                        
+                                    
+                                    texto += `
+                                    </td>
+                                    <td><span valor = "${asistencia[i]['id']}" id = "btn_eliminarRegistroAsistencia"><i class="fas fa-trash i_eliminar"></i></span></td>
+                                    
+                                      
+                                        
+                                    </tr>                                    
+                                    `;  
+                                    
+                                    
+                                    
+                                }
+
+
+                                texto += ``;
+                                //console.log(texto);
+                                $('#tableBody_asistenciaUsuario').append(texto); 
+                            
+                        
                     }else {
-                        msg = "No tienes cursos inscritos";
+                        msg += "No tienes asistencias registradas";
                     }
                 }else {
-                    msg = "Falló la conexión, intenta más tarde";
+                    msg += "Falló la conexión, intenta más tarde";
                 }
             }else {
-                msg = "Campo Vacio";
+                msg += "Campo Vacio";
             }
         }else{
-            msg = "Erroe al procesar la petición";
+            msg += "Error al procesar la petición";
+        }
+
+    });
+
+}
+
+
+function vista_msg_actualizarAsistencia(datos){
+    $('#msg_asistencia').empty();
+    $.post('reporte-usuario/actualizarAsistencia.php', datos, function(respuesta){
+        var error  = 1;
+        respuesta = JSON.parse(respuesta);
+        if(respuesta['servidor'] != true){
+            if(respuesta['vacio'] != true){
+                if(respuesta['conn'] != true){
+                    if(respuesta['asistencia'] != true){
+                        error = 0;
+                        msg = "<label>Asistencia actualizada</label>";
+                    }else{
+                        msg = "<label>La asistencia no se pudo actualizar</label>";
+                    }
+                }else{
+                    msg = "<label>Conexión fallida</label>";
+                }
+
+            }else{
+                msg = "<label>Campos vacíos</label>";
+            }
+        }else{
+            msg = "<label>Conexión fallida</label>";
+        }
+
+        if(error == 0){
+            $('#msg_asistencia').removeClass('mensaje-error');
+            $('#msg_asistencia').addClass('mensaje-success');  
+        
+        }else if(error == 1){            
+            $('#msg_asistencia').removeClass('mensaje-success');
+            $('#msg_asistencia').addClass('mensaje-error');
         }
         
 
+        $('#msg_asistencia').append(msg);
     });
+}
+
+
+function vista_agregar_RegistroAsistencia(id){
+    $('#modal_mostrarAsistencia').hide();
+    $('#modal_agregarRegistroAsistencia').show();
 
 }

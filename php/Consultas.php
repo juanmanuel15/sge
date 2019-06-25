@@ -109,6 +109,26 @@
 			AND horario.id_curso = curso.id_curso ORDER BY DATE(horario.fecha);";
 
 		}
+
+
+		function buscarAsistenciaUsuario($usuario,$curso){
+			return $query = "SELECT id_asistencia, hora_e, hora_s, fecha_e, fecha_s, check_in, check_out FROM asistencia WHERE id_usuario = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario' ) AND id_curso = '$curso';";
+		}
+
+
+		function actualizarAsistenciaUsuario($id, $entrada, $salida){
+			return $query = "UPDATE asistencia SET check_in = $entrada, check_out = $salida WHERE id_asistencia = '$id'";
+		}
+
+
+		function eliminarRegistroAsistencia($id){
+			return $query = "DELETE FROM asistencia where id_asistencia = '$id'"; 
+		}
+
+		function insertarRegistroAsistencia($id, $fecha, $hora_e, $id_usuario, $id_curso, $entrada, $salida){
+			return $query = "INSERT INTO asistencia (id_asistencia, fecha_e, fecha_s, hora_e, hora_s, id_usuario, id_curso, check_in, check_out) VALUES ('$id', '$fecha', '$fecha', '$hora_e', '$hora_e', (SELECT ncuenta FROM usuario WHERE usuario = '$id_usuario'), '$id_curso', $entrada, $salida)";
+		}
+
 	}
 
 

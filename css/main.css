@@ -29,8 +29,8 @@
 }
 
 .mensaje-success {
-    background-color: #03A60B;
-    color:white;
+    background-color: rgb(212,237,218);
+    color:rgb(21,87,36);
 }
 
 .mensaje-update {
