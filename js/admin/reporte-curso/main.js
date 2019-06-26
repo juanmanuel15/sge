@@ -18,7 +18,7 @@ $(document).ready(function(){
             leer();
         } else {
 
-            $.post('cursos/reporte-curso/buscarCurso.php', txt_buscarCurso, function(respuesta){
+            $.post('reporte-curso/buscarCurso.php', txt_buscarCurso, function(respuesta){
             respuesta = JSON.parse(respuesta);
 
                 if(respuesta['servidor']){
@@ -102,7 +102,7 @@ $(document).ready(function(){
             $('#msg_UsuarioInsertado').removeClass('mensaje-success');
 
         }else {
-            $.post('cursos/reporte-curso/buscarUsuarioCurso.php', txt_buscar, function(respuesta){
+            $.post('reporte-curso/buscarUsuarioCurso.php', txt_buscar, function(respuesta){
             respuesta = JSON.parse(respuesta);
 
                 if(respuesta['servidor']){
@@ -151,7 +151,7 @@ $(document).ready(function(){
 
 function leer(){
     $('#tablaReporteCurso').empty();
-    $.post('cursos/reporte-curso/mostrar.php',function(respuesta) {            
+    $.post('reporte-curso/mostrar.php',function(respuesta) {            
             var respuesta = JSON.parse(respuesta);
             //console.log(respuesta[0]);            
             //console.log(respuesta[0].lugar['lugares']);
@@ -190,7 +190,7 @@ function leer(){
 
 function CRUD_modal(datos){
     
-     $.post('cursos/reporte-curso/lista.php', datos, function(respuesta){
+     $.post('reporte-curso/lista.php', datos, function(respuesta){
             respuesta = JSON.parse(respuesta);
 
             
@@ -213,7 +213,7 @@ function eliminarUsuario(datos){
 
 
     usuario = datos['usuario'];
-    $.post('cursos/reporte-curso/eliminar_curso.php', datos, function(respuesta){
+    $.post('reporte-curso/eliminar_curso.php', datos, function(respuesta){
         respuesta=JSON.parse(respuesta);
         
         if(respuesta != true){

@@ -1,16 +1,14 @@
 <?php
 
 	
-	require ('../../../base.php');
-    require ('../../../consulta.php');
+	require ('../../base.php');
+    require ('../../consulta.php');
     
     header("Content-Type: text/html;charset=utf-8");
 
     $conexion = abrirConexion();
 
-    $id_curso = $_POST['id'];
-
-    $query = "SELECT id_curso, titulo FROM curso WHERE id_curso = '$id_curso'";
+    $query = "SELECT id_curso, titulo FROM curso";
 
 
     $resultado = leerDatos($conexion, $query);

@@ -1,6 +1,6 @@
 <?php
 
-	require('../../../base1.php');
+	require('../../base1.php');
     
 
 	if(!$_SERVER['REQUEST_METHOD'] == 'POST'){

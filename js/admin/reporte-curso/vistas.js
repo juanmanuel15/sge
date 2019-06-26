@@ -169,8 +169,5 @@ function vista_leerCursos(respuesta){
 
         $('#tablaReporteCurso').append(fila);
 
-
-
-
 }
 
