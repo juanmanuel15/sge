@@ -1,10 +1,3 @@
-<?php
-
-if(!isset($_SESSION['admin'])){
-    header('Location: ../../../admin/admin.php');
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +7,6 @@ if(!isset($_SESSION['admin'])){
     <title>Document</title>
 </head>
 <body>
-    Documento PDF
+    
 </body>
 </html>

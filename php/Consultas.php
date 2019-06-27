@@ -159,6 +159,11 @@
 			return $query;
 		}
 
+
+		function porcentajeAsistencia(){
+			return $query = "SELECT porcentaje_asistencia,universidad, campus, tipo_documento,slogan, nombre_director, evento, director FROM conf WHERE id ='conf_alumnos'";
+		}
+
 	}
 
 

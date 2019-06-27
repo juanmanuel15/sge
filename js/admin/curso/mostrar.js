@@ -1,6 +1,6 @@
 
 function mostrar(){
-	$.get('cursos/reporte-curso/mostrar.php', function(respuesta){
+	$.get('reporte-curso/mostrar.php', function(respuesta){
 	
 
 	respuesta = JSON.parse(respuesta);

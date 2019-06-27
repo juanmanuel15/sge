@@ -142,7 +142,7 @@ function vista_principalBuscarCurso(usuario){
         fila += "<td>" + usuario[i].nombreCompleto+ "</td>";
         fila += "<td>" +usuario[i].titulo + "</td>";
         fila += `<td><span class = "i_asistencia"><i class="fas fa-book-open" valor = "${usuario[i]['usuario']}&${usuario[i]['curso']}" id = "btn_asistencia"></i></span></td>`;           
-        fila += `<td><span class = "i_mostrar"><a href = "reporte-usuario/constancia.php?curso=${usuario[i]['curso']}&usuario=${usuario[i]['usuario']}"><i class="fas fa-share"></a></i></span></td>`;
+        fila += `<td><span class = "i_mostrar"><a href = "reporte-usuario/constancias.php?curso=${usuario[i]['curso']}&usuario=${usuario[i]['usuario']}"><i class="fas fa-share"></a></i></span></td>`;
         fila += "</tr>";
     }
 

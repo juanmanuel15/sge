@@ -15,6 +15,6 @@ if(!isset($_SESSION['admin'])){
     <title>Document</title>
 </head>
 <body>
-    Hola Mundo
+    No cuentas con la asistencia necesaria
 </body>
 </html>
