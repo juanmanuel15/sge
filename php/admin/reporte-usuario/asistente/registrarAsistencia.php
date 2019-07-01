@@ -1,8 +1,8 @@
 <?php
 
-    include ('../../Buscar.php');
-    include ('../../Consultas.php');
-    include ('../../base1.php');
+    include ('../../../Buscar.php');
+    include ('../../../Consultas.php');
+    include ('../../../base1.php');
 
     header("Content-Type: text/html;charset=utf-8");
     date_default_timezone_set('America/Mexico_City');

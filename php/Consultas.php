@@ -112,7 +112,7 @@
 
 
 		function buscarAsistenciaUsuario($usuario,$curso){
-			return $query = "SELECT id_asistencia, hora_e, hora_s, fecha_e, fecha_s, check_in, check_out FROM asistencia WHERE id_usuario = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario' ) AND id_curso = '$curso';";
+			return $query = "SELECT id_asistencia, hora_e, hora_s, fecha_e, fecha_s, check_in, check_out FROM asistencia WHERE id_usuario = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario' ) AND id_curso = '$curso'; ";
 		}
 
 
@@ -152,7 +152,7 @@
 				}
 
 				if($i == sizeof($busqueda)-1){
-					$query .= ")";
+					$query .= ")  ORDER BY usuario.apellidoP ASC";
 				}
 			}
 
@@ -162,6 +162,11 @@
 
 		function porcentajeAsistencia(){
 			return $query = "SELECT porcentaje_asistencia,universidad, campus, tipo_documento,slogan, nombre_director, evento, director FROM conf WHERE id ='conf_alumnos'";
+		}
+
+
+		function leer_ConstanciasProfesor(){
+			return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo, curso.id_curso, usuario.usuario FROM curso, usuario, curso_usuario_org WHERE curso_usuario_org.id_curso = curso.id_curso AND curso_usuario_org.nCuenta = usuario.nCuenta";
 		}
 
 	}

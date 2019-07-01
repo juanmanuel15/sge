@@ -1,10 +1,10 @@
 <?php 
 	
-	include ('../../Buscar.php');
-	include ('../../Consultas.php');
-	include ('../../ComprobarMetodo.php');
-	include ('../../base1.php');
-	include ('../../consulta.php');
+	include ('../../../Buscar.php');
+	include ('../../../Consultas.php');
+	include ('../../../ComprobarMetodo.php');
+	include ('../../../base1.php');
+	include ('../../../consulta.php');
 
 	header("Content-Type: text/html;charset=utf-8");
 
@@ -44,7 +44,7 @@
 				$usuarios [] = [
 					'usuario' => $usuario['usuario'],
 					'numeroCuenta' => $usuario['nCuenta'],
-                    'nombreCompleto' => $usuario['apellidoP']	. " " . $usuario['apellidoM'] . " ". $usuario['nombre'],
+                    'nombreCompleto' => $usuario['nombre']	. " " . $usuario['apellidoP'] . " ". $usuario['apellidoM'],
                     'titulo' => $usuario['titulo'],
                     'curso' => $usuario['id_curso']
 				];

@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 
     $(document).on('click', '#btn_modal_aceptarEliminarRegistro',function(){  
-        $.post('reporte-usuario/eliminar_registroAsistencia.php', id_registro, function(respuesta){
+        $.post('eliminar_registroAsistencia.php', id_registro, function(respuesta){
             respuesta = JSON.parse(respuesta); 
             obj_mensaje = $('#msg_asistencia');           
             control_errores(obj_mensaje, respuesta, "Error al eliminar el registro", "Se elimino el registro correctamente");  
@@ -105,7 +105,7 @@ $(document).ready(function(){
         if(txt_buscarCursoUsuario === ''){
             leer();
         } else {
-            $.post('reporte-usuario/buscarUsuarioCursoAsistencia.php', txt_buscarCursoUsuario, function(respuesta){
+            $.post('buscarUsuarioCursoAsistencia.php', txt_buscarCursoUsuario, function(respuesta){
                 respuesta = JSON.parse(respuesta);
                 
     
@@ -155,30 +155,11 @@ $(document).on('click', '#btn_salir', function(){
 
 
 function leer(){
-    $('#tablaReporteUsuario').empty();
-
-    $.get('reporte-usuario/leer.php',function(respuesta) {
-            //console.log(respuesta);
+    $.get('leer.php',function(respuesta) {
+            
             var usuario = JSON.parse(respuesta);
-            //console.log(usuario[0].numeroCuenta);
-            var fila = '';
-
-            for(var i =0; i<usuario.length; i++){
-
-                fila += "<tr id=\"" + usuario[i].numeroCuenta + "\">";
-                fila += "<td>" + usuario[i].numeroCuenta + "</td>";   
-                fila += "<td>" + usuario[i].nombreCompleto+ "</td>";
-                fila += "<td>" +usuario[i].titulo + "</td>";
-                fila += `<td><span class = "i_asistencia"><i class="fas fa-book-open" valor = "${usuario[i]['usuario']}&${usuario[i]['curso']}" id = "btn_asistencia"></i></span></td>`;           
-                fila += `<td><span class = "i_mostrar"><a href = "reporte-usuario/constancias.php?curso='${usuario[i]['curso']}'&usuario='${usuario[i]['usuario']}'"><i class="fas fa-share"></a></i></span></td>`;
-                fila += "</tr>";
-            }
+            vista_principalBuscarCurso(usuario);
             
-            
-            
-
-		$('#tablaReporteUsuario').append(fila);
-	
 
 
 	});

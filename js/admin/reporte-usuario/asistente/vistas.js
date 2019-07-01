@@ -1,7 +1,7 @@
 function vista_modal_horarioCurso(datos){
     
     $('#tableBody_asistenciaUsuario').empty();
-    $.post('reporte-usuario/horarioCurso.php', datos,function(respuesta){
+    $.post('horarioCurso.php', datos,function(respuesta){
         respuesta = JSON.parse(respuesta);
         console.log(respuesta);
         msg = "";
@@ -85,7 +85,7 @@ function vista_modal_horarioCurso(datos){
 
 function vista_msg_actualizarAsistencia(datos){
     $('#msg_asistencia').empty();
-    $.post('reporte-usuario/actualizarAsistencia.php', datos, function(respuesta){
+    $.post('actualizarAsistencia.php', datos, function(respuesta){
         var error  = 1;
         respuesta = JSON.parse(respuesta);
         if(respuesta['servidor'] != true){
@@ -131,7 +131,7 @@ function vista_agregar_RegistroAsistencia(id){
 
 
 function vista_principalBuscarCurso(usuario){
-    //console.log(usuario);
+   
     $('#tablaReporteUsuario').empty();
     var fila ='';
 
@@ -142,7 +142,7 @@ function vista_principalBuscarCurso(usuario){
         fila += "<td>" + usuario[i].nombreCompleto+ "</td>";
         fila += "<td>" +usuario[i].titulo + "</td>";
         fila += `<td><span class = "i_asistencia"><i class="fas fa-book-open" valor = "${usuario[i]['usuario']}&${usuario[i]['curso']}" id = "btn_asistencia"></i></span></td>`;           
-        fila += `<td><span class = "i_mostrar"><a href = "reporte-usuario/constancias.php?curso=${usuario[i]['curso']}&usuario=${usuario[i]['usuario']}"><i class="fas fa-share"></a></i></span></td>`;
+        fila += `<td><span class = "i_mostrar"><a href = "constancias.php?curso=${usuario[i]['curso']}&usuario=${usuario[i]['usuario']}"><i class="fas fa-share"></a></i></span></td>`;
         fila += "</tr>";
     }
 

@@ -27,20 +27,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- Estilos propios -->
-    <link rel="stylesheet" href="../../css/main.css"> 
+    <link rel="stylesheet" href="../../../../css/main.css"> 
     <link rel="stylesheet" href=""> 
-
-
-    <style type = "text/css">
-        .tipo-usuario{
-            height: 200px;
-            
-        }
-
-        a:link {
-            text-decoration:none;
-        }
-    </style>
     
 </head>
 <body>
@@ -66,22 +54,56 @@
                 </div>  
         </div>
 
-        <div class="row mt-4">
-            <div class="col-12">
-                <p class = "text-center"> Presiona cualquiera de los siguientes botones para generar la constancia correspondiente</p>
+        <!--div class="row d-flex justify-content-around mt-4">
+           
+            <div class="col-lg-3 col-sm-4 d-flex justify-content-center">
+                <a href="../admin" class="btn btn-salir">Salir</a>
+            </div>
+
+            
+        </div-->
+
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-lg-8 col-sm-10">
+                <form id="form_buscarRegistroAsistencia">
+                    <div class="input-group d-flex justify-content-center">
+                        <input id="buscar_Asistencia" type="text" class="form-control col-sm-auto" name="txt_buscar" placeholder="Buscar">
+                        <button class="btn btn-outline-secondary input-group-append" type="submit" id="btn_buscar"><i class="fas fa-search"></i></button>
+                    </div>                        
+                </form>
             </div>
         </div>
 
-        <div class="row mt-5 d-flex justify-content-center">
-            
-                <a href="reporte-usuario/asistente" class= "col-12 col-lg-3 my-1"><button class="btn btn-primary tipo-usuario col-12">Asistente</button></a>
-                <a href="reporte-usuario/colaborador" class= "col-12 col-lg-3 my-1"><button class="btn btn-secondary tipo-usuario col-12">Colaborador</button></a>
-                <a href="reporte-usuario/profesor" class= "col-12 col-lg-3 my-1"><button class="btn btn-warning tipo-usuario col-12">Profesor</button></a>
-                <a href="reporte-usuario/personalizar" class= "col-12 col-lg-3 my-1"><button class="btn btn-danger tipo-usuario col-12">Personalizar</button></a>
-            
+        <div class="row mt-5">
+                <div class="col-lg-1 col-sm-0"></div>
+                <div class="col-lg-10 col-sm-12">
+                    <!--form method="post" action = "usuario/plantillaUsuario.php"-->
+                        <table class="table align-center text-center">
+                            <thead>
+                                <tr class="texto-tabla">
+                                    <th>N° Cuenta</th>
+                                    <th>Nombre</th>
+                                    <th>Curso</th>
+                                    <th>Generar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaReporteUsuario">
+
+                            </tbody>
+                        </table>
+                    <!--/form-->  
+                </div>
+                <div class="col-lg-1 col-sm-0"></div>
         </div>
 
-        
+        <!-- Es el footer>
+        <footer class="mt-4">            
+            <div class="footer"> 
+            </div>                  
+        </footer-->
+        <script src = "../../../../js/admin/reporte-usuario/profesor/main_profesor.js"></script>
+        <script src = "../../../../js/admin/reporte-usuario/profesor/vistas_profesor.js"></script>
+        <!--script src = "../../js/admin/reporte-usuario/eliminar.js"></script-->
     </div>
 
 

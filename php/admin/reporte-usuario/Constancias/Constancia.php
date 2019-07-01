@@ -6,7 +6,7 @@
             include('archivo/alumno.php');
         }
 
-        function pdf_profesor(){
+        function pdf_profesor($datos){
             require('archivo/profesor.php');
         }
 

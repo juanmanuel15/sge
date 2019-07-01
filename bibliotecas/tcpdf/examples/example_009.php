@@ -70,7 +70,7 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 $pdf->AddPage();
 
 // set JPEG quality
-$pdf->setJPEGQuality(75);
+//$pdf->setJPEGQuality(75);
 
 // Image method signature:
 // Image($file, $x='', $y='', $w=0, $h=0, $type='', $link='', $align='', $resize=false, $dpi=300, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false)
@@ -78,15 +78,16 @@ $pdf->setJPEGQuality(75);
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Example of Image from data stream ('PHP rules')
-$imgdata = base64_decode('iVBORw0KGgoAAAANSUhEUgAAABwAAAASCAMAAAB/2U7WAAAABlBMVEUAAAD///+l2Z/dAAAASUlEQVR4XqWQUQoAIAxC2/0vXZDrEX4IJTRkb7lobNUStXsB0jIXIAMSsQnWlsV+wULF4Avk9fLq2r8a5HSE35Q3eO2XP1A1wQkZSgETvDtKdQAAAABJRU5ErkJggg==');
+//$imgdata = base64_decode('iVBORw0KGgoAAAANSUhEUgAAABwAAAASCAMAAAB/2U7WAAAABlBMVEUAAAD///+l2Z/dAAAASUlEQVR4XqWQUQoAIAxC2/0vXZDrEX4IJTRkb7lobNUStXsB0jIXIAMSsQnWlsV+wULF4Avk9fLq2r8a5HSE35Q3eO2XP1A1wQkZSgETvDtKdQAAAABJRU5ErkJggg==');
 
 // The '@' character is used to indicate that follows an image data stream and not an image file name
-$pdf->Image('@'.$imgdata);
+//$pdf->Image('@'.$imgdata);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Image example with resizing
-$pdf->Image('images/image_demo.jpg', 15, 140, 75, 113, 'JPG', 'http://www.tcpdf.org', '', true, 150, '', false, false, 1, false, false, false);
+$pdf->SetXY(75, 30);
+$pdf->Image('images/UAEM.jpg', '','' ,26 ,22 , 'JPG', '', '', true, 150, '', false, false, 0, false, false, false);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -100,7 +101,7 @@ $y = 35;
 $w = 30;
 $h = 30;
 // test all combinations of alignments
-for ($i = 0; $i < 3; ++$i) {
+/*for ($i = 0; $i < 3; ++$i) {
 	$fitbox = $horizontal_alignments[$i].' ';
 	$x = 15;
 	for ($j = 0; $j < 3; ++$j) {
@@ -110,13 +111,13 @@ for ($i = 0; $i < 3; ++$i) {
 		$x += 32; // new column
 	}
 	$y += 32; // new row
-}
+}*/
 
 $x = 115;
 $y = 35;
 $w = 25;
 $h = 50;
-for ($i = 0; $i < 3; ++$i) {
+/*for ($i = 0; $i < 3; ++$i) {
 	$fitbox = $horizontal_alignments[$i].' ';
 	$x = 115;
 	for ($j = 0; $j < 3; ++$j) {
@@ -126,15 +127,15 @@ for ($i = 0; $i < 3; ++$i) {
 		$x += 27; // new column
 	}
 	$y += 52; // new row
-}
+}*/
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Stretching, position and alignment example
 
 $pdf->SetXY(110, 200);
-$pdf->Image('images/image_demo.jpg', '', '', 40, 40, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
-$pdf->Image('images/image_demo.jpg', '', '', 40, 40, '', '', '', false, 300, '', false, false, 1, false, false, false);
+//$pdf->Image('images/image_demo.jpg', '', '', 40, 40, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
+//$pdf->Image('images/image_demo.jpg', '', '', 40, 40, '', '', '', false, 300, '', false, false, 1, false, false, false);
 
 // -------------------------------------------------------------------
 
