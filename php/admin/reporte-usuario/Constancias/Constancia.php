@@ -22,6 +22,10 @@
             require('archivo/warning_asistencia.php');
         }
 
+        function porcentaje(){
+            require('archivo/insuficiente_asistencia.php');
+        }
+
 
     }
 

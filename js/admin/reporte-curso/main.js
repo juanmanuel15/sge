@@ -126,7 +126,7 @@ $(document).ready(function(){
         var id = $(this).attr('valor');
 
         datos = {'id_usuario' : id, 'id_curso' : id_curso};
-        $.post('cursos/reporte-curso/inscribirUsuario.php', datos, function(respuesta){
+        $.post('reporte-curso/inscribirUsuario.php', datos, function(respuesta){
             respuesta = JSON.parse(respuesta);
             vista_msg_CursoUsuario(respuesta);
             leer();

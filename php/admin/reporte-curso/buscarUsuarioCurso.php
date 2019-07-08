@@ -43,8 +43,11 @@
 				
 				$usuarios [] = [
 					'usuario' => $usuario['usuario'],
-					'nCuenta' => $usuario['nCuenta'],
-					'nombre' => $usuario['apellidoP']	. " " . $usuario['apellidoM'] . " ". $usuario['nombre']
+					'nCuenta' => $usuario['cuenta'],
+					'nombre' => $usuario['nombre']	. " " . $usuario['apellidoP'] . " ". $usuario['apellidoM'],
+					'id' => $usuario['nCuenta'],
+					'carrera' => $usuario['carrera'],
+					'tipo_usuario' => $usuario['tipo_usuario']
 				];
 			}
 

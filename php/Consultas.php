@@ -10,18 +10,18 @@
 
 
 
-			$query = "SELECT usuario.usuario, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta FROM usuario WHERE (";
+			$query = "SELECT usuario.nCuenta, usuario.usuario, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.cuenta, area.nombre as carrera,  tipo_usuario.usuario as tipo_usuario  FROM usuario, area, tipo_usuario WHERE (usuario.id_area = area.id_area AND usuario.tipo_usuario = tipo_usuario.id_tipoUsuario) AND (";
 
 			for($i=0; $i<sizeof($busqueda); $i++){
 				
 
 
-				$query .= "usuario 		LIKE 	'%$busqueda[$i]%'	OR 
-						   nombre		LIKE	'%$busqueda[$i]%'	OR
-						   apellidoP	LIKE	'%$busqueda[$i]%'	OR
-						   apellidoM	LIKE	'%$busqueda[$i]%'	OR
-						   correo 		LIKE 	'%$busqueda[$i]%' 	OR 
-						   ncuenta 		LIKE 	'%$busqueda[$i]%'	";
+				$query .= "usuario.usuario 		LIKE 	'%$busqueda[$i]%'	OR 
+						   usuario.nombre		LIKE	'%$busqueda[$i]%'	OR
+						   usuario.apellidoP	LIKE	'%$busqueda[$i]%'	OR
+						   usuario.apellidoM	LIKE	'%$busqueda[$i]%'	OR
+						   usuario.correo 		LIKE 	'%$busqueda[$i]%' 	OR 
+						   usuario.ncuenta 		LIKE 	'%$busqueda[$i]%'	";
 
 				if($i != sizeof($busqueda)-1){
 					$query .= ")AND(";
@@ -32,7 +32,9 @@
 				}
 			}
 
-			return $query;
+			
+
+			return  $query;
 
 		}
 
@@ -168,6 +170,57 @@
 		function leer_ConstanciasProfesor(){
 			return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo, curso.id_curso, usuario.usuario FROM curso, usuario, curso_usuario_org WHERE curso_usuario_org.id_curso = curso.id_curso AND curso_usuario_org.nCuenta = usuario.nCuenta";
 		}
+
+
+
+		function mostrar_elementoUsuario(){
+			return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.usuario, tipo_usuario.usuario , area.nombre, usuario.cuenta FROM usuario, tipo_usuario, AREA WHERE usuario.tipo_usuario = tipo_usuario.id_tipoUsuario AND usuario.id_area = area.id_area order by usuario.apellidoP;";
+			//return return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.usuario, tipo_usuario.usuario , area.nombre, usuario.cuenta FROM usuario, tipo_usuario, AREA WHERE usuario.tipo_usuario = tipo_usuario.id_tipoUsuario AND usuario.id_area = area.id_area order by usuario.apellidoP;";
+		}
+
+		function select_tipoUsuario(){
+			return $query = "SELECT * FROM tipo_usuario ORDER BY usuario ASC";
+		}
+
+
+		function select_usuario_carrera(){
+			return $query = "SELECT id_area, nombre FROM area ORDER  BY nombre ASC";
+		}
+
+
+		function consultar_correo($correo){
+			return $query = "SELECT * FROM usuario WHERE correo = '$correo'; ";
+		}
+
+		function consultar_usuario($usuario){
+			return $query = "SELECT * FROM usuario WHERE usuario = '$usuario'; ";
+		}
+
+		function consultar_cuenta($cuenta){
+			return $query = "SELECT * FROM usuario WHERE cuenta = '$cuenta'; ";
+		}
+
+		
+		function insertar_usuario($nCuenta, $nombre,$apellidoP,$apellidoM,$correo, $usuario,$pass,$telefono,$tipoUser, $area,$id){
+			return $query = "INSERT INTO usuario (nCuenta, id_area, cuenta, nombre, apellidoP, apellidoM, correo, usuario, pass, tipo_usuario, telefono) VALUES ('$id', $area, '$nCuenta', '$nombre', '$apellidoP', '$apellidoM', '$correo', '$usuario', '$pass', $tipoUser, '$telefono') ";
+		}
+
+		function eliminar_usuario($id){
+			return $query = "DELETE FROM usuario WHERE nCuenta = '$id'";
+		}
+
+		function leer_usuario($id){
+			return $query = "SELECT usuario.nCuenta, AREA.nombre AS area, usuario.cuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.correo, usuario.pass, usuario.telefono, tipo_usuario.usuario AS tipo_usuario, usuario.usuario FROM usuario, AREA, tipo_usuario WHERE nCuenta = '$id' AND usuario.id_area = AREA.id_area AND tipo_usuario.id_tipoUsuario = usuario.tipo_usuario;";
+		}
+
+		function actualizar_usuario($cuenta, $nombre, $apellidoP, $apellidoM, $correo, $usuario, $pass, $telefono, $tipoUser, $area,  $id){
+
+			return "UPDATE usuario SET usuario = '$usuario', cuenta = '$cuenta', nombre = '$nombre', apellidoP = '$apellidoP', apellidoM = '$apellidoM', correo = '$correo', pass = '$pass', telefono = '$telefono', tipo_usuario = $tipoUser, id_area = $area WHERE nCuenta = '$id'";
+		}
+
+		
+
+		
 
 	}
 

@@ -20,7 +20,7 @@
 
                 $conexion = false;
 
-                $query = "SELECT usuario, nombre, apellidoP, apellidoM FROM usuario WHERE nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario')";
+               $query = "SELECT usuario, nombre, apellidoP, apellidoM FROM usuario WHERE nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario')";
 
                 $resultado = $base->leer($query);
 
@@ -97,21 +97,25 @@
 
                     $resultado->free();
 
-
+                    //echo sizeof($horarioCurso) .">= " . sizeof($horarioRegistro) .'&&'. sizeof($horarioRegistro) . "!= 0";
                     if(sizeof($horarioCurso) >= sizeof($horarioRegistro) && sizeof($horarioRegistro) !=0){
                         $mas_asistencia = false;
                         $sin_asistencia = false;
-    
+
+                        
                         $contador = 0;
                         for ($i=0; $i <sizeof($horarioCurso) ; $i++) { 
                             for ($j=0; $j < sizeof($horarioRegistro); $j++) { 
-                                
+                                //$horarioCurso[$i]['fecha'] . "==" . $horarioRegistro[$j]['fecha'] ."<br>";
                                 if($horarioCurso[$i]['fecha'] == $horarioRegistro[$j]['fecha']){
-                                    if($horarioRegistro[$i]['entrada'] == 1){
+                                    
+                                    
+                                    
+                                    if($horarioRegistro[$j]['entrada'] == 1){
                                         $contador++;
                                     }
     
-                                    if($horarioRegistro[$i]['salida'] == 1){
+                                    if($horarioRegistro[$j]['salida'] == 1){
                                         $contador++;
                                     }
                                 }
@@ -125,10 +129,14 @@
                         if($asistencia >= $porcentaje){                            
                             $por = true;
                         }
+
+                        else {
+                            $por = false;
+                        }
                         
 
                     }else {
-                        $por = false;
+                        
                         if(sizeof($horarioRegistro) == 0){
                             $sin_asistencia = true;
                             $mas_asistencia = false;

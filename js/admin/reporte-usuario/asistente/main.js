@@ -73,7 +73,7 @@ $(document).ready(function(){
 
             mensaje_limpiar($('#msg_asistencia'));
 
-            $.post('reporte-usuario/registrarAsistencia.php', datos, function(respuesta){
+            $.post('registrarAsistencia.php', datos, function(respuesta){
                 respuesta = JSON.parse(respuesta);
                 control_errores(obj_msg_agregarRegistro, respuesta, "Error al insertar el registro", "Registro insertado exitosamente");
                 vista_modal_horarioCurso(id_asistenciaCurso);

@@ -38,6 +38,8 @@
                 $constancia->warnning();
             }elseif ($success['porcentaje']){                                
                 $constancia->pdf_alumno($success);
+            }else{
+                $constancia->porcentaje();
             }
         }
 
