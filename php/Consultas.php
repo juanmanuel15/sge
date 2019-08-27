@@ -218,6 +218,20 @@
 			return "UPDATE usuario SET usuario = '$usuario', cuenta = '$cuenta', nombre = '$nombre', apellidoP = '$apellidoP', apellidoM = '$apellidoM', correo = '$correo', pass = '$pass', telefono = '$telefono', tipo_usuario = $tipoUser, id_area = $area WHERE nCuenta = '$id'";
 		}
 
+		function select_tipoDocumento(){			
+			return $query = "SELECT tipo_documento, evento  from conf ORDER BY tipo_documento ASC";
+		}
+
+		function select_cursos(){
+			return $query = "SELECT titulo FROM curso ORDER BY titulo ASC";
+		}
+
+		function select_tipoActividad(){
+			return $query = "SELECT nombre_tipo_actividad FROM tipo_actividad ORDER BY nombre_tipo_actividad ASC";
+		}
+
+		
+
 		
 
 		

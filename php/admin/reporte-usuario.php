@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Insertar Titulo de la página -->
-    <title>  </title>
+    <title>Reporte-usuario</title>
 
     <!--Códigos fuentes externos -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -33,7 +33,7 @@
 
     <style type = "text/css">
         .tipo-usuario{
-            height: 200px;
+            height: 150px;
             
         }
 
@@ -63,7 +63,7 @@
         <div class="row d-flex justify-content-center">
                 <div class="col-xl-6 col-sm-12">
                     <h4 class="d-flex justify-content-center mt-4 "><b>Constancias</b></h4>
-                </div>  
+                </div> 
         </div>
 
         <div class="row mt-4">
@@ -74,10 +74,11 @@
 
         <div class="row mt-5 d-flex justify-content-center">
             
-                <a href="reporte-usuario/asistente" class= "col-12 col-lg-3 my-1"><button class="btn btn-primary tipo-usuario col-12">Asistente</button></a>
-                <a href="reporte-usuario/colaborador" class= "col-12 col-lg-3 my-1"><button class="btn btn-secondary tipo-usuario col-12">Colaborador</button></a>
-                <a href="reporte-usuario/profesor" class= "col-12 col-lg-3 my-1"><button class="btn btn-warning tipo-usuario col-12">Profesor</button></a>
-                <a href="reporte-usuario/personalizar" class= "col-12 col-lg-3 my-1"><button class="btn btn-danger tipo-usuario col-12">Personalizar</button></a>
+                <a href="reporte-usuario/asistente" class= "col-6 col-lg-2 my-1"><button class="btn btn-primary tipo-usuario col-12">Asistente</button></a>
+                <a href="reporte-usuario/colaborador" class= "col-6 col-lg-2 my-1"><button class="btn btn-success tipo-usuario col-12">Colaborador</button></a>
+                <a href="reporte-usuario/profesor" class= "col-6 col-lg-2 my-1"><button class="btn btn-secondary tipo-usuario col-12">Profesor</button></a>
+                <a href="reporte-usuario/personalizar.php" class= "col-6 col-lg-2 my-1"><button class="btn btn-warning tipo-usuario col-12">Personalizar</button></a>
+                <a href="reporte-usuario/configurar.php" class= "col-12 col-lg-2 my-1"><button class="btn btn-danger tipo-usuario col-12">Configurar</button></a>
             
         </div>
 

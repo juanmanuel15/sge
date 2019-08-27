@@ -26,6 +26,10 @@
             require('archivo/insuficiente_asistencia.php');
         }
 
+        function personalizar($datos){
+            require('archivo/personalizar.php');
+        }
+
 
     }
 
