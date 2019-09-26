@@ -6,7 +6,7 @@ var m = 1;
 
 
 $(document).on('click', '#btn_agregarReq', function(){
-	console.log(l);
+	//console.log(l);
 	
 	if(l == 5){
 		l = l;
@@ -18,7 +18,7 @@ $(document).on('click', '#btn_agregarReq', function(){
 
 
 $(document).on('click', '#btn_quitarReq', function(){
-		console.log(l);
+		//console.log(l);
 	if(l == 1){
 		l = l;
 
@@ -31,7 +31,7 @@ $(document).on('click', '#btn_quitarReq', function(){
 
 
 $(document).on('click', '#btn_agregarMaterial', function(){
-	console.log(m);
+	//console.log(m);
 	if(m == 5){
 		m = m;
 	}else {
@@ -41,7 +41,7 @@ $(document).on('click', '#btn_agregarMaterial', function(){
 });
 
 $(document).on('click', '#btn_quitarMaterial', function(){
-		console.log(m);
+		//console.log(m);
 	if(m == 1){
 		m = m;
 
@@ -54,7 +54,7 @@ $(document).on('click', '#btn_quitarMaterial', function(){
 
 
 $(document).on('click', '#btn_agregarHorario', function(){
-		console.log(k);
+		//console.log(k);
 		if(k == 10){
 			k = k;
 		}else {
@@ -64,7 +64,7 @@ $(document).on('click', '#btn_agregarHorario', function(){
 });
 
 $(document).on('click', '#btn_quitarHorario', function(){
-		console.log(k);
+		//console.log(k);
 		if(k == 1){
 			k = k;
 
@@ -77,7 +77,7 @@ $(document).on('click', '#btn_quitarHorario', function(){
 
 $('#btn_agregarProfesor').on('click', function(){
 
-		console.log(j);
+		//console.log(j);
 		if(j == 10){
 			j = j;
 		}else {
@@ -88,7 +88,7 @@ $('#btn_agregarProfesor').on('click', function(){
 
 
 $(document).on('click', '#btn_quitarProfesor', function(){
-		console.log(j);
+		//console.log(j);
 		if(j == 1){
 			j = j;
 		}else {
@@ -100,7 +100,7 @@ $(document).on('click', '#btn_quitarProfesor', function(){
 
 
 $('#btn_agregarResponsable').on('click', function(){
-console.log(i);
+//console.log(i);
 		if(i == 5){
 			i = i;
 		}else {
@@ -110,7 +110,7 @@ console.log(i);
 });
 
 $(document).on('click', '#btn_quitarResponsable', function(){
-		console.log(i);
+		//console.log(i);
 		if(i == 1){
 			i = i;
 		}else {

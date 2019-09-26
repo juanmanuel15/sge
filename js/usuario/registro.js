@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    select_area();
     $('#registro').submit(function(e){
         
         e.preventDefault();
@@ -143,4 +144,33 @@ function removerClases(){
 
 function removerEstilos(obj, clase){
     obj.removeClass(clase)
+}
+
+function select_area(){
+    $.post('../sge/php/admin/elemento-usuario/select_carrera.php', function(respuesta){
+        respuesta = JSON.parse(respuesta);
+        console.log(respuesta);
+
+        if(respuesta.conn == false){
+            
+            var select_carrera = "";
+            var carrera = respuesta.resultado;          
+            console.log(carrera);
+
+        
+            for( i=0; i<carrera.length; i++) {
+                select_carrera += `
+                    <option value = ${carrera[i].id}>${carrera[i].nombre}</option>
+                `;
+            }
+
+            //console.log(select_carrera);
+
+            $('#select_carrera').append(select_carrera);
+
+            
+        }else{
+            console.log("error al encontrar la dirección");
+        }
+    });
 }

@@ -11,7 +11,7 @@ $(document).on('click', '#btn_eliminar', function(){
 		
 			respuesta = JSON.parse(respuesta);
 
-			console.log(respuesta);
+			//console.log(respuesta);
 
 			if(respuesta){
 				alert('Curso eliminado');

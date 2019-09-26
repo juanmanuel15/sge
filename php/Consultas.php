@@ -230,6 +230,108 @@
 			return $query = "SELECT nombre_tipo_actividad FROM tipo_actividad ORDER BY nombre_tipo_actividad ASC";
 		}
 
+
+		//---------Cursos -------//
+
+		function leer_Curso($id){
+			return $query = "SELECT curso.id_curso, curso.titulo, curso.descripcion, tipo_actividad.nombre_tipo_actividad as tActividad, curso.prerrequisitos, curso.dirigido, curso.lugares, tipo_actividad.id_tipo_actividad FROM curso, tipo_actividad WHERE id_curso = '$id' AND tipo_actividad.id_tipo_actividad = curso.id_tipo_actividad;";
+		}
+
+		function leer_tActividad_Curso($id){
+			return $query = "SELECT id_tipo_actividad as id, nombre_tipo_actividad as nombre FROM tipo_actividad WHERE id_tipo_actividad = $id";
+		}
+
+		function leer_requerimientos_curso($id){
+			return $query = "SELECT requerimientos.id_req as id, requerimientos.nombre_req as nombre FROM requerimientos, req_curso, curso WHERE req_curso.id_req = requerimientos.id_req AND curso.id_curso = req_curso.id_curso AND req_curso.id_curso = '$id'";
+		}
+
+		function leer_material_curso($id){
+			return $query = "SELECT id_mat as id, nombre_material as nombre, cantidad as cantidad FROM material WHERE id_curso = '$id'";
+		}
+
+		function leer_horario_curso($id){
+			return $query = " SELECT horario.id_horario, horario.fecha, horario.hora_inicio, horario.hora_final, horario.id_lugar, lugar.nombre_lugar, lugar.lugares FROM horario, lugar, curso WHERE horario.id_curso = curso.id_curso AND lugar.id_lugar = horario.id_lugar AND horario.id_curso = '$id'";
+		}
+
+		function leer_profesor_curso($id){
+			return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM FROM usuario, curso_usuario_org, curso WHERE usuario.nCuenta = curso_usuario_org.nCuenta AND curso.id_curso = '$id' AND curso_usuario_org.id_curso = curso.id_curso;";
+		}
+
+		function leer_responsable_curso($id){
+			return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM FROM usuario, curso_usuario_resp, curso WHERE usuario.nCuenta = curso_usuario_resp.nCuenta AND curso.id_curso = '$id' AND curso_usuario_resp.id_curso = curso.id_curso;";
+		}
+
+
+		#/*------Actualización Curso ------------*/
+		function actualizar_curso($id, $titulo, $id_tipo_actividad, $des, $pre, $dir, $lug){
+			return $query = "UPDATE curso SET titulo = '$titulo', id_tipo_actividad = $id_tipo_actividad, descripcion = '$des', prerrequisitos = '$pre', dirigido = '$dir', lugares = $lug WHERE id_curso = '$id'";
+		}
+
+
+
+		function actualizar_horario($id){
+			return $query = "DELETE FROM horario WHERE id_curso = '$id'";
+		}
+
+		function agregarHorario($fecha, $HI, $HF, $lugar, $id_curso){
+			$query = "INSERT INTO horario (id_horario, fecha, hora_inicio, hora_final, id_curso, id_lugar) VALUES";
+			for($i = 0; $i<count($fecha); $i++){
+				$query .= "(NULL, '$fecha[$i]', '$HI[$i]', '$HF[$i]', '$id_curso', '$lugar[$i]')";
+
+				if($i != count($lugar)-1){
+					$query .= ",";
+				}else {
+					$query .= ";";
+				}
+			}
+
+			return $query;
+		}
+
+
+		function actualizar_prof($id){
+			return $query = "DELETE FROM curso_usuario_org WHERE id_curso = '$id'";
+		}
+		function actualizar_resp($id){
+			return $query = "DELETE FROM curso_usuario_resp WHERE id_curso = '$id'";
+		}
+
+
+		function agregar_prof($id, $profesor){
+			$query = "INSERT INTO curso_usuario_org (nCuenta, id_curso) VALUES";
+			for($i = 0; $i<count($profesor); $i++){
+				$query .= "('$profesor[$i]', '$id')";
+
+				if($i != count($profesor)-1){
+					$query .= ",";
+				}else {
+					$query .= ";";
+				}
+			}
+
+			return $query; 
+		}
+
+		function agregar_resp($id, $resp){
+			$query = "INSERT INTO curso_usuario_resp(nCuenta, id_curso) VALUES";
+			for($i = 0; $i<count($resp); $i++){
+				$query .= "('$resp[$i]', '$id')";
+
+				if($i != count($resp)-1){
+					$query .= ",";
+				}else {
+					$query .= ";";
+				}
+			}
+
+			return $query; 
+		}
+
+
+
+		
+
+
 		
 
 		

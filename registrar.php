@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Registrar usuario</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
@@ -156,6 +156,17 @@
                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
                            </div>
                            <input type="number" class="form-control" placeholder="Teléfono" name="telefono" id="telefono">
+                       </div>                            
+                   </div>                
+            </div>
+
+            <div class="row d-flex justify-content-center mt-2">
+                    <div class="col-lg-5 col-sm-12 col-12 col-md-8">                                         
+                       <div class="input-group">
+                           <div class="input-group-prepend">
+                               <span class="input-group-text"><i class="fas fa-chalkboard-teacher"></i></span>
+                           </div>
+                           <select name="select_carrera" id="select_carrera" class = " form-control"></select>                           
                        </div>                            
                    </div>                
             </div>

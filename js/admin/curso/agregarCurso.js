@@ -94,8 +94,8 @@ $(document).ready(function(){
 			
 		}
 
-		console.log(repetidoReq.indexOf(1));
-		console.log(repetido);
+		//console.log(repetidoReq.indexOf(1));
+		//console.log(repetido);
 
 		/*
 			Verificamos si esta seleccionado el material, casos: 
@@ -164,7 +164,7 @@ $(document).ready(function(){
 				}
 
 			} else {
-				console.log("No se selecciono");
+				//console.log("No se selecciono");
 				$('#divMensajeDatosCurso').removeClass("mensaje-error");
 				material = '';
 				cantidadMaterial = '';
@@ -232,8 +232,16 @@ $(document).ready(function(){
 
 		$('#divProfesorConf').show();
 		$('#divHorarioConf').hide();
-		leerProfesor(datosHorario());
-		leerResp(datosHorario());
+
+		
+		var accion = $(this).attr('accion');
+		//console.log(accion);
+
+		if(accion == 'agregar'){
+			leerProfesor(datosHorario());
+			leerResp(datosHorario());
+		}
+		
 	});
 
 
@@ -279,7 +287,7 @@ $(document).ready(function(){
 			}
 		}
 
-		console.log(valor);
+		//console.log(valor);
 
 		if(valor.indexOf(1) === -1 && valoresRepetidos(responsable).indexOf(1) === -1){
 			$('#divMensajeResp').removeClass('mensaje-error');
@@ -348,34 +356,67 @@ $(document).ready(function(){
 	
 	$('#formCurso').submit(function(e){
 		e.preventDefault();
+		var accion = $('#btn_AceptarHorario').attr('accion');
+		//console.log(accion);		
+		
+		
 
-
-		var enviar = {
-
-			'titulo' : titulo,
-			'descripcion': description,
-			'requisitos': requisitos,
-			'tActividad' : tActividad,
-			'profesor' : profesor,
-			'responsable' : responsable,
-			'dirigido' : dirigido, 
-			'profesor' : profesor,
-			'responsable' : responsable,
-			'fecha': fecha,
-			'horaI' : horaI,
-			'horaF': horaF,
-			'lugar' : lugar,
-			'req' :req,
-			'material' : material,
-			'cantidadMaterial': cantidadMaterial,
-			'cantidad': cantidad,
-			'radioMaterial' : vacioConfMaterial
+		if(accion == "editar"){
+			var enviar = {
+				'titulo' : titulo,
+				'descripcion': description,
+				'requisitos': requisitos,
+				'tActividad' : tActividad,
+				'profesor' : profesor,
+				'responsable' : responsable,
+				'dirigido' : dirigido, 
+				'profesor' : profesor,
+				'responsable' : responsable,
+				'fecha': fecha,
+				'horaI' : horaI,
+				'horaF': horaF,
+				'lugar' : lugar,
+				'req' :req,
+				'material' : material,
+				'cantidadMaterial': cantidadMaterial,
+				'cantidad': cantidad,
+				'radioMaterial' : vacioConfMaterial,
+				'id_curso': $('#btn_AceptarHorario').attr('id_curso')
 			};
 
+			//console.log(enviar);
 
-			console.log(enviar);
+			$.post('cursos/editar/actualizar.php', enviar, function(respuesta){
+				respuesta = JSON.parse(respuesta);
+				console.log(respuesta);
+			});
+				
+			
+			
+		}else if(accion == "agregar"){
 
+			var enviar = {
 
+				'titulo' : titulo,
+				'descripcion': description,
+				'requisitos': requisitos,
+				'tActividad' : tActividad,
+				'profesor' : profesor,
+				'responsable' : responsable,
+				'dirigido' : dirigido, 
+				'profesor' : profesor,
+				'responsable' : responsable,
+				'fecha': fecha,
+				'horaI' : horaI,
+				'horaF': horaF,
+				'lugar' : lugar,
+				'req' :req,
+				'material' : material,
+				'cantidadMaterial': cantidadMaterial,
+				'cantidad': cantidad,
+				'radioMaterial' : vacioConfMaterial
+			};
+	
 			$.post('cursos/insertar1.php',enviar, function(respuesta){	
 
 				$('#divMensajeFinal').removeClass('mensaje-error');
@@ -403,6 +444,13 @@ $(document).ready(function(){
 							
 
 			});
+		}
+
+
+			
+
+
+			
 
 
 
@@ -412,6 +460,7 @@ $(document).ready(function(){
 	//Al presionar el botón agregar se crean los archivos
 
 	$('#btn_agregar').click(function(){
+		$('#btn_AceptarHorario').attr('accion', 'agregar');
 		confIniciales();
 		$('#divBotonCalcularHorario').show();
 		$('#formCurso')[0].reset();
@@ -669,7 +718,7 @@ function datosHorario(){
 		'fecha': fecha,
 		'horaI' : horaI,
 		'horaF': horaF
-	};
+};
 
 
 

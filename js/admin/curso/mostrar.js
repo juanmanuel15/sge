@@ -5,7 +5,7 @@ function mostrar(){
 
 	respuesta = JSON.parse(respuesta);
 
-	console.log(respuesta);
+	//console.log(respuesta);
 	//console.log(respuesta[0].horario[0]['HI']);
 	var texto  = '';
 	$('#tablaCurso').empty();
