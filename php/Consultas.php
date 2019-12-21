@@ -329,14 +329,20 @@
 
 
 
-		
+
+		# -------- Configurar Constancias ---------#
+
+		function leer_configurarConstancia(){
+			$query = "SELECT * from conf WHERE id = 'conf_alumnos'";
+			return $query;
+		}
+
+		function actualizar_configurarConstancia($nU, $nC, $tR, $tE, $FF, $FI, $lE, $lU,$p, $nD){
+			return $query = "UPDATE conf SET tipo_documento = '$tR', slogan = '$lU', nombre_director = '$nD', evento = '$tE', porcentaje_asistencia = '$p', universidad = '$nU', campus = '$nC', fecha_inicial = '$FI', fecha_final = '$FF',  lugar = '$lE' WHERE id = 'conf_alumnos'" ;
+		}
 
 
-		
 
-		
-
-		
 
 	}
 

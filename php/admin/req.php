@@ -90,15 +90,6 @@
             width: 20%;
         }
     </style>
-
-    
-    <!--link rel="stylesheet" type="text/css" href="../../bibliotecas/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../bibliotecas/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" type="text/css" href="../../bibliotecas/css/bootstrap-reboot.min.css">
-    <script src = "../../bibliotecas/js/bootstrap.min.js"></script>
-    <script src = "../../bibliotecas/js/bootstrap.bundle.js"></script>
-    <script src = "../../bibliotecas/js/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../bibliotecas/css/all.css"-->
     
         
     
@@ -159,8 +150,9 @@
 
       
       <script src="../../bibliotecas/js/jquery-3.4.1.js"></script>
+      <script src="../../bibliotecas/js/bootstrap.min.js"></script>   
       <script src="../../bibliotecas/js/popper.min.js"></script>
-      <script src="../../bibliotecas/js/bootstrap.min.js"></script>      
+         
       <script src="../../js/req.js"></script>
     
     
