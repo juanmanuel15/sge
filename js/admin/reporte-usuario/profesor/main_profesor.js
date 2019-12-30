@@ -11,25 +11,27 @@ $(document).ready(function(){
         e.preventDefault();
 
         var txt_buscarCursoUsuario = $('#buscar_Asistencia').val();
-        txt_buscarCursoUsuario = {'txt' : txt_buscarCursoUsuario}; 
+
+        txt_buscarCursoUsuario = {'dato' : txt_buscarCursoUsuario}; 
 
         if(txt_buscarCursoUsuario === ''){
             leer();
         } else {
-            $.post('buscarUsuarioCursoAsistencia.php', txt_buscarCursoUsuario, function(respuesta){
+            $.post('buscar.php', txt_buscarCursoUsuario, function(respuesta){
                 respuesta = JSON.parse(respuesta);
-                
+                console.log(respuesta);                
     
-                    if(respuesta['servidor']){
+                    if(respuesta['serv']){
                         console.log("Error al procesar información");
                         leer();
-                    }else if(respuesta['vacio']){
+                    }else if(respuesta['conn']){
                         leer();
-                    }else if(respuesta['usuarios'] != false){
-                        //console.log(respuesta['usuarios']);
-                        vista_principalBuscarCurso(respuesta['usuarios']);                    
-                    }else {
-                         $('#tablaReporteUsuario').empty();
+                    }else if(respuesta['res'] != false){
+                        leer();           
+                    }else if(respuesta['success'] != false){
+                         vista_principalBuscarCurso(respuesta['success']);
+                    }else{
+                        $('#tablaEditarConstancia').empty();
                     }
                     
                 });
@@ -45,16 +47,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-    
-
-
-
 function leer(){
     $.get('leer.php',function(respuesta) {            
             var respuesta = JSON.parse(respuesta);
@@ -62,3 +54,4 @@ function leer(){
             vista_principalBuscarCurso(usuario);
 	});
 }
+

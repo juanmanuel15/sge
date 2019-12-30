@@ -76,9 +76,15 @@
             
                 <a href="reporte-usuario/asistente" class= "col-6 col-lg-2 my-1"><button class="btn btn-primary tipo-usuario col-12">Asistente</button></a>
                 <a href="reporte-usuario/colaborador" class= "col-6 col-lg-2 my-1"><button class="btn btn-success tipo-usuario col-12">Colaborador</button></a>
-                <a href="reporte-usuario/profesor" class= "col-6 col-lg-2 my-1"><button class="btn btn-secondary tipo-usuario col-12">Profesor</button></a>
-                <a href="reporte-usuario/personalizar.php" class= "col-6 col-lg-2 my-1"><button class="btn btn-warning tipo-usuario col-12">Personalizar</button></a>
-                <a href="reporte-usuario/configurar.php" class= "col-12 col-lg-2 my-1"><button class="btn btn-danger tipo-usuario col-12">Configurar</button></a>
+                <a href="reporte-usuario/editar" class= "col-6 col-lg-2 my-1"><button class="btn btn-dark tipo-usuario col-12">Editar</button></a>
+                <a href="reporte-usuario/personalizar.php" class= "col-6 col-lg-2 my-1"><button class="btn btn-warning tipo-usuario col-12">Personalizar</button></a>                
+                
+            
+        </div>
+
+        <div class="row mt-1 d-flex justify-content-center">
+                <a href="reporte-usuario/profesor" class= "col-6 col-lg-4 my-1"><button class="btn btn-secondary tipo-usuario col-12">Profesor</button></a>                
+                <a href="reporte-usuario/configurar.php" class= "col-6 col-lg-4 my-1"><button class="btn btn-danger tipo-usuario col-12">Configurar</button></a>
             
         </div>
 

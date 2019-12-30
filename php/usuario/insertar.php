@@ -28,6 +28,8 @@
 
             $query = "INSERT INTO usuario (nCuenta, nombre, apellidoP, apellidoM, correo, usuario, pass, tipo_usuario, telefono ) VALUES ('$nCuenta', '$nombre', '$apellidoP', '$apellidoM', '$correo', '$usuario', '$pass', 3, '$telefono')";
 
+            echo $query;
+
             if($conexion->query($query)){
                 $respuesta  = [
                     'valor' => true

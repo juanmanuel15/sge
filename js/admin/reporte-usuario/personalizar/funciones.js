@@ -1,42 +1,34 @@
 function obtenerDatos(){
 
-    obj_alumno = $('#txt_alumno');
-    obj_fechaCurso = $('#txt_fechaCurso');
-    obj_lugar = $('#txt_lugarCurso');
-    obj_fechaGeneracion = $('#txt_fechaGeneracion');
-    obj_slogan = $('#txt_slogan');
-    obj_director = $('#txt_director');
-    obj_nombreCurso = $('#select_nombreCurso');
-    obj_tipo_Documento = $('#select_tipoDocumento');
-    obj_tituloEvento = $('#select_tituloEvento');
-    obj_tipoActividad = $('#select_tActividad');
+    var obj_nombre = $('#txt_nombre');
+    var obj_apellidoP = $('#txt_apellidoP');
+    var obj_apellidoM = $('#txt_apellidoM');
+    var obj_nombreCurso = $('#select_nombreCurso');
+    var obj_tituloEvento = $('#select_tituloEvento');
+    var obj_tipoUsuario = $('#select_personalizarContancia');
 
-    alumno = vacio(obj_alumno);
-    fechaCurso = vacio(obj_fechaCurso);
-    lugar = vacio(obj_lugar);
-    fechaGeneracion = vacio(obj_fechaGeneracion);
-    slogan = vacio(obj_slogan);
-    director = vacio(obj_director);
+    nombre = vacio(obj_nombre);
+    apellidoP = vacio(obj_apellidoP);
     
-    if(alumno != true && fechaCurso != true && lugar != true &&  fechaGeneracion != true && slogan != true && director != true ){
-        success('');
+    if(!nombre  && !apellidoP){
+
+        var nombre =  `${obj_nombre.val()}-${obj_apellidoP.val()}-${obj_apellidoM.val()}`;
+        var nombreCurso =  obj_nombreCurso.val();
+        var tituloEvento = obj_tituloEvento.val(); 
+        var tipoUsuario = obj_tipoUsuario.val();
+
         datos = {
-            'alumno' :  alumno,
-            'fechaCurso' :  fechaCurso,
-            'lugar' :  lugar,
-            'fechaGeneracion' :  fechaGeneracion,
-            'slogan' :  slogan,
-            'director':  director,
-            'tActividad' : obj_tipoActividad.val(),
-            'tipoDocumento' :  obj_tipo_Documento.val(),
-            'nombreCurso' :  obj_nombreCurso.val(),
-            'tituloEvento' : obj_tituloEvento.val() 
+            'nombre' :  nombre,
+            'nombreCurso' :  nombreCurso,
+            'tituloEvento' : tituloEvento, 
+            'tipoUsuario' : tipoUsuario
         };
 
-        var link = `personalizar/constancia.php?alumno=${alumno}&fechaCurso=${fechaCurso}&lugar=${lugar}&fechaGeneracion=${fechaGeneracion}&slogan=${slogan}&director=${director}&tActividad=${obj_tipoActividad.val()}&tipoDocumento=${obj_tipoActividad.val()}&tipoDocumento=${obj_tipo_Documento.val()}&nombreCurso=${obj_nombreCurso.val()}&tituloEvento=${obj_tituloEvento.val()}`;
+
+        var link = `personalizar/constancia.php?nombre=${nombre}&nombreCurso=${nombreCurso}&tituloEvento=${tituloEvento}&tipoUsuario=${tipoUsuario}`;
 
         $('#btn_generarConstancia').attr('href', link);
-
+        success('');
 
 
     }else{
@@ -62,7 +54,7 @@ function vacio(obj){
         respuesta =  true;
     }else{
         obj.removeClass('input-vacio');
-        respuesta =  obj.val();
+        respuesta = false;
     }   
 
     return respuesta;

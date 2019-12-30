@@ -1,58 +1,65 @@
 <?php
-
+    
+    //include('../../../base1.php');
+    //include('../../../Consultas.php');
     include('../Constancias/Constancia.php');
-    include('../comprobacion.php');
+    include('../comprobacion.php');  
 
     session_start();
     if(!isset($_SESSION['admin'])){
         header('Location: ../../../../admin/admin.php' );
     }
 
-
     $constancia = new Constancia();
-    if(isset($_GET['alumno'], $_GET['fechaCurso'], $_GET['lugar'], $_GET['fechaGeneracion'], $_GET['slogan'], $_GET['director'], $_GET['director'], $_GET['tActividad'], $_GET['nombreCurso'], $_GET['tituloEvento'])){
+
+    if(isset($_GET['nombre'], $_GET['nombreCurso'], $_GET['tituloEvento'], $_GET['tipoUsuario'])){
+        
+        $alumno= $_GET['nombre']; 
+        $idCurso= $_GET['nombreCurso']; 
+        $tituloEvento = $_GET['tituloEvento'];
+        $tipoUsuario = $_GET['tipoUsuario'];
+        $datosAlumno = explode('-', $alumno);
+        
+
+        $alumno = str_replace("'", "", $alumno);
+        $alumno = str_replace("-", " ", $alumno);
+        $idCurso = str_replace("'", "", $idCurso);
+        $tituloEvento = str_replace("'", "", $tituloEvento);
+        $tipoUsuario = str_replace("'", "", $tipoUsuario);
+
+        $datos = [
+            'alumno' => $alumno,
+            'idCurso' => $idCurso,
+            'tituloEvento' => $tituloEvento,
+            'tipoUsuario' => $tipoUsuario
+        ];
+
+        $respuesta = personalizar($datos);
+
+
+        if($respuesta != false){
+            if(!$respuesta['conn']){
+                $guardar = guardar($datosAlumno, $idCurso, $tipoUsuario);
+                if(!$guardar['conn']){
+                   if($guardar['success']){
+                    //echo "hola";
+                    $constancia->personalizar($respuesta);
+                   } else{
+                        $constancia->pdf_repetido();
+                   }
+                }else{
+                    $constancia->pdf_error();
+                }                
+            }
+        }else{
+            $constancia->pdf_error();
+        }
 
         
 
-
-        $alumno= $_GET['alumno']; 
-        $fechaCurso = $_GET['fechaCurso']; 
-        $lugar = $_GET['lugar']; 
-        $fechaGeneracion = $_GET['fechaGeneracion']; 
-        $slogan= $_GET['slogan']; 
-        $director = $_GET['director']; 
-        $tActividad= $_GET['tActividad']; 
-        $tipo_documento= $_GET['tipoDocumento']; 
-        $nombreCurso= $_GET['nombreCurso']; 
-        $tituloEvento = $_GET['tituloEvento'];
-
-
-
-
-        $datos = [
-            //'universidad' => $universidad,
-            //'campus' => $campus,
-            'alumno' => $alumno,
-            'fechaCurso' => $fechaCurso,
-            'lugar' => $lugar,
-            'fechaGeneracion' => $fechaGeneracion,
-            'slogan' => $slogan,
-            'director' => $director,
-            'tActividad' => $tActividad,
-            'tipoDocumento' => $tipo_documento,
-            'nombreCurso' => $nombreCurso,
-            'tituloEvento' => $tituloEvento
-        ];
-
-
-        $constancia->personalizar($datos);
-
-
-
-
     }else {
 
-        echo "false";
+        $constancia->pdf_error();
 
     }
 

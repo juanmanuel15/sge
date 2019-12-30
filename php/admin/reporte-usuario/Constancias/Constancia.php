@@ -27,7 +27,26 @@
         }
 
         function personalizar($datos){
-            require('archivo/personalizar.php');
+            if($datos['res']['tipo_usuario'] == 'pon'){
+                require('archivo/personalizarPonente.php');
+            }elseif($datos['res']['tipo_usuario'] == 'asis'){
+                require('archivo/personalizarAsistente.php');
+            }elseif ($datos['res']['tipo_usuario'] == 'col') {
+                require('archivo/personalizarColaborador.php');
+            }
+            
+        }
+
+        function pdf_editar($datos){
+            require('archivo/editar.php');
+        }
+
+        function pdf_error(){
+            require('archivo/error.php');
+        }
+
+        function pdf_repetido(){
+            require('archivo/repetido.php');
         }
 
 

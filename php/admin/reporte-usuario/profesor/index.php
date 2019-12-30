@@ -50,7 +50,7 @@
 
         <div class="row d-flex justify-content-center">
                 <div class="col-xl-6 col-sm-12">
-                    <h4 class="d-flex justify-content-center mt-4 "><b>Constancias</b></h4>
+                    <h4 class="d-flex justify-content-center mt-4 "><b>Constancias de ponentes</b></h4>
                 </div>  
         </div>
 

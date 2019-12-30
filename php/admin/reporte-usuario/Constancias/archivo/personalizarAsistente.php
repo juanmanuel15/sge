@@ -7,6 +7,9 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
 
     $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 
+    $conf = $datos['res']['conf'];
+    $curso = $datos['res']['curso'];
+    $nombre = $datos['res']['usuario'];
 
     //$curso = $_GET['curso'];
 
@@ -35,12 +38,12 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     //$pdf->Image('UAEM.jpg', 15, 140, 75, 113, 'JPG', 'Holamundo.com.mx', '', true, 150, '', false, false, 1, false, false, false);
     $pdf->Ln(25);
 
-    $universidad = $datos['conf']['universidad'];
+    $universidad = $conf['universidad'];
     $pdf->SetFont('helvetica', 'B', 14);
     $pdf->MultiCell(0, 12, $universidad, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(8);
 
-    $campus = $datos['conf']['campus'];
+    $campus = $conf['campus'];
     $pdf->SetFont('helvetica', '', 12);
     $pdf->MultiCell(0, 5, $campus, 0, 'C', 0, 1, '', '', true);
     $pdf->Ln(5);
@@ -50,7 +53,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $pdf->Multicell(0,11, 'Otorga la presente:', 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(10);
 
-    $documento = $datos['conf']['tipo_documento'];
+    $documento = $conf['tipo_documento'];
     $pdf->SetTextColor(149,132,25);
     $pdf->SetFont('helvetica', 'B', 40);
     $pdf->Multicell(0,40, $documento, 0, 'C', 0, 0, '', '', true);
@@ -58,18 +61,18 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
 
    
 
-    $nombre = "A: " . $datos['usuario']['nombre'];
+    $nombre = "A: " . $nombre;
     $pdf->SetTextColor(0,0,0);
     $pdf->SetFont('timesI', 'B', 20);
     $pdf->Multicell(0,20, $nombre, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(20);
 
-    $tActividad = "Por su participación en el " . $datos['curso']['tActividad'] . " titulado:"; 
+    $tActividad = "Por su participación en " . adjetivo($curso['tipoActividad']) . " " .$curso['tipoActividad'] . " titulado:";  
     $pdf->SetFont('helvetica', '', 15);
     $pdf->Multicell(0,12, $tActividad, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(12);
 
-    $titulo_del_Curso = ' "' . $datos['curso']['titulo'] .'" ';
+    $titulo_del_Curso = ' "' . $curso['titulo'] .'" ';
     $pdf->SetFont('timesI', 'B U I', 25);
     $pdf->Multicell(0,20, $titulo_del_Curso, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(20);
@@ -79,9 +82,9 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $pdf->Multicell(0,20,'En el marco de la celebración de la', 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(8);
 
-    $evento = $datos['conf']['evento'];
+    $tituloEvento = $conf['tituloEvento'];
     $pdf->SetFont('helvetica', 'B', 15);
-    $pdf->Multicell(0,20,'"' . $evento . '"', 0, 'C', 0, 0, '', '', true);
+    $pdf->Multicell(0,20,'"' . $tituloEvento . '"', 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(8);
 
 
@@ -90,27 +93,27 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $pdf->Ln(8);
 
 
-    $fechas = cursoDias($datos). " del año en curso.";
+    $fechas = cursoDias($datos['res']). " del año en curso.";
 
     $pdf->SetFont('helvetica', '', 15);
     $pdf->Multicell(0,20,$fechas, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(20);
 
-    $lugar = $datos['conf']['ubicacion'];
-    $generacion = fecha_guardado($datos);
+    $lugar = $conf['ubicacion'];
+    $generacion = fecha_guardado($datos['res']);
     $pdf->SetFont('helvetica', '', 10);
     $pdf->Multicell(0,13,$lugar . " a " . $generacion .".", 0, 'R', 0, 0, '', '', true);
     $pdf->Ln(30);
 
-    $slogan = $datos['conf']['slogan'];
+    $slogan = $conf['slogan'];
     $pdf->SetFont('helvetica', 'B', 8);
     $pdf->Multicell(0,20, '"' . $slogan . '"', 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(30);
 
 
 
-    $nombre_director = $datos['conf']['nombre_director'];
-    $director = $datos['conf']['director'];
+    $nombre_director = $conf['nombreDirector'];
+    $director = $conf['director'];
 
     $pdf->SetFont('helvetica', '', 9);
     $pdf->Multicell(0,8,$nombre_director, 0, 'C', 0, 0, '', '', true);
@@ -118,7 +121,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $pdf->SetFont('helvetica', 'B', 9);
     $pdf->Multicell(0,8,$director, 0, 'C', 0, 0, '', '', true);
    
-    $pdf->Output($datos['usuario']['nombre'].".pdf");
+    $pdf->Output($datos['res']['usuario']);
 
     function cursoDias($datos){
         $texto = '';
@@ -245,6 +248,75 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
             }
 
             return $mes;
+        }
+
+        function adjetivo($tipoActividad){
+            $tipoActividad = strtolower($tipoActividad);
+            switch($tipoActividad){
+                case 'curso':
+                    $adjetivo = 'el';
+                    break;
+                case 'asesoria':
+                    $adjetivo = 'la';
+                    break;
+                case 'campamento':
+                    $adjetivo = 'el';
+                    break;
+                case 'taller':
+                    $adjetivo = 'el';
+                    break;
+                case 'cine club':
+                    $adjetivo = 'el';
+                    break;
+                case 'concurso':
+                    $adjetivo = 'el';
+                    break;
+                case 'conferencia':
+                    $adjetivo = 'la';
+                    break;
+                case 'concierto':
+                    $adjetivo = 'el';
+                    break;
+                case 'exhibición':
+                    $adjetivo = 'la';
+                    break;
+                case 'exposicion de carteles':
+                    $adjetivo = 'la';
+                    break;
+                case 'feria':
+                    $adjetivo = 'la';
+                    break;
+                case 'generador de ideas':
+                    $adjetivo = 'el';
+                    break;
+                case 'kermes':
+                    $adjetivo = 'la';
+                    break;
+                case 'maratón de conocimientos':
+                    $adjetivo = 'el';
+                    break;
+                case 'la':
+                    $adjetivo = 'mesa redonda';
+                    break;
+                case 'obra de teatro':
+                    $adjetivo = 'la';
+                    break;
+                case 'presentación de libros':
+                    $adjetivo = 'la';
+                    break;
+                case 'simulador':
+                    $adjetivo = 'el';
+                    break;
+                case 'torneo':
+                    $adjetivo = 'el';
+                    break;
+                default:
+                    $adjetivo = "el (la)";
+                    break;
+            }       
+
+            return $adjetivo;
+
         }
 
 

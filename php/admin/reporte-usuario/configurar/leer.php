@@ -31,7 +31,7 @@
 					'nombreCampus' => $value['campus'],
 					'FI' => $value['fecha_inicial'],
 					'FF' => $value['fecha_final'],
-					'lugarEvento' => $value['lugar']
+					'lugarEvento' => $value['ubicacion']
 				];
 			}
 

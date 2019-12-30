@@ -47,7 +47,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
 
 
     $pdf->SetFont('helvetica', '', 13);
-    $pdf->Multicell(0,11, 'Otorga el presente:', 0, 'C', 0, 0, '', '', true);
+    $pdf->Multicell(0,11, 'Otorga la presente:', 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(10);
 
     $documento = $datos['conf']['tipo_documento'];
@@ -64,7 +64,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $pdf->Multicell(0,20, $nombre, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(20);
 
-    $tActividad = "Por impartir el " . $datos['curso']['tActividad'] . " titulado:"; 
+    $tActividad = "Por haber impartido el " . $datos['curso']['tActividad'] . " titulado:"; 
     $pdf->SetFont('helvetica', '', 15);
     $pdf->Multicell(0,12, $tActividad, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(12);
@@ -86,7 +86,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
 
 
     $pdf->SetFont('helvetica', '', 15);
-    $pdf->Multicell(0,20,'llevada acabo en este espacio acádemico', 0, 'C', 0, 0, '', '', true);
+    $pdf->Multicell(0,20,'llevada acabo en este espacio acádemico los dias', 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(8);
 
 
@@ -94,7 +94,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
 
     $pdf->SetFont('helvetica', '', 15);
     $pdf->Multicell(0,20,$fechas, 0, 'C', 0, 0, '', '', true);
-    $pdf->Ln(25);
+    $pdf->Ln(20);
 
     $lugar = $datos['conf']['ubicacion'];
     $generacion = fecha_guardado($datos);
@@ -105,7 +105,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $slogan = $datos['conf']['slogan'];
     $pdf->SetFont('helvetica', 'B', 8);
     $pdf->Multicell(0,20, '"' . $slogan . '"', 0, 'C', 0, 0, '', '', true);
-    $pdf->Ln(40);
+    $pdf->Ln(30);
 
 
 
@@ -118,31 +118,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $pdf->SetFont('helvetica', 'B', 9);
     $pdf->Multicell(0,8,$director, 0, 'C', 0, 0, '', '', true);
    
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-    
-
-
-    
-
-   
-
-
-
-    $pdf->Output('');
+    $pdf->Output($datos['usuario']['nombre'].".pdf");
 
     function cursoDias($datos){
         $texto = '';
