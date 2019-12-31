@@ -537,7 +537,6 @@
 
 
     function editar($id){
-
         $base  = new ConexionBase();
 
         if($id != ''){
@@ -611,9 +610,167 @@
         ];
 
 
+        }
     }
 
-}
+    function colaborador($usuario, $curso){
+        $id_usuario = $usuario;
+        $id_curso = $curso;
+
+        $base = new ConexionBase();
+    
+        if(!empty($usuario) && !empty($curso)){
+            $vacio = false;
+            $conexion = $base->conectar();
+
+            if($conexion != false){
+                $conn = false;
+
+                $query = "SELECT porcentaje_asistencia,universidad, campus, tipo_documento,slogan, nombre_director, evento, director, ubicacion FROM conf WHERE id ='conf_alumnos'";
+
+                $resultado = $base->leer($query);
+                $conf = [];
+                while($row = $resultado->fetch_array()){
+                   $conf = [
+                    'porcentaje' => $porcentaje = (int)$row[0],
+                    'universidad' =>$row[1],
+                    'campus' => $row[2],
+                    'tipo_documento' =>  $row[3],
+                    'slogan' =>  $row[4], 
+                    'nombre_director' =>  $row[5],
+                    'evento'  =>  $row[6],
+                    'director' =>  $row[7],
+                    'ubicacion' => $row[8]
+                   ];    
+                }
+
+                $resultado->free();
+
+                $query = "SELECT horario.fecha FROM horario, curso WHERE curso.id_curso = '$curso' AND  horario.id_curso = curso.id_curso ORDER BY date(fecha) ASC";
+                $resultado = $base->leer($query);
+
+    
+                while($row = $resultado->fetch_array()){
+                    $fechasCurso []= [
+                        'fecha' => $row[0]
+                    ];
+                }
+
+
+                $resultado->free();
+
+                $id_constancia = $id_curso.$id_usuario;
+
+                $query = "SELECT * FROM constancia WHERE id_constancia = '$id_constancia'";
+                $resultado = $base->leer($query);
+
+                if($resultado->num_rows>0){
+
+                    $query = "SELECT constancia.usuario, curso.titulo, constancia.nombre, constancia.apellidoP, constancia.apellidoM, tipo_actividad.nombre_tipo_actividad FROM tipo_Actividad, curso, constancia WHERE constancia.id_constancia = '$id_constancia' AND constancia.id_curso = curso.id_curso AND tipo_actividad.id_tipo_actividad = curso.id_tipo_actividad";
+
+                    $resultado = $base->leer($query);
+
+                    foreach ($resultado as $rw) {
+                        $usuario = [
+                            'nombre' => $rw['nombre']. " ". $rw['apellidoP'] . " " . $rw['apellidoM'],
+                            'usuario' => $rw['usuario']
+                        ];
+
+                        $curso = [
+                            'titulo' => $rw['titulo'],
+                            'tActividad' =>$rw['nombre_tipo_actividad'] 
+                        ];
+                    }
+
+
+                    $resultado->free();
+                }else{
+
+                    $query = "SELECT * FROM curso_usuario_resp  WHERE curso_usuario_resp.nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario') AND curso_usuario_resp.id_curso = '$curso';";
+
+                    $resultado = $base->leer($query);
+                    if($resultado->num_rows == 1){
+                        $resultado->free();
+
+                        $horarioCurso = [];
+
+                        for ($i=0; $i < sizeof($fechasCurso) ; $i++) { 
+                            $fechaConvertido [] = $fechasCurso[$i]['fecha'];
+                        }
+
+                        $fechaActual = date('Y-m-d');
+                        $ultimaFecha = array_pop($fechaConvertido);
+
+                        if($fechaActual >= $ultimaFecha){
+
+                            $query = "SELECT usuario, nombre, apellidoP, apellidoM FROM usuario WHERE usuario = '$usuario'";
+                            $resultado = $base->leer($query);
+                            
+                            while($row = $resultado->fetch_array()){
+                                $usuario = [
+                                    'usuario' => $row[0],
+                                    'nombre' => "$row[1] $row[2] $row[3]",
+                                    'nombre1' => $row[1],
+                                    'apellidoP' => $row[2],
+                                    'apellidoM' => $row[3]
+                                ];
+                            }
+
+
+                            $resultado->free();
+                            $query = "SELECT curso.titulo, tipo_actividad.nombre_tipo_actividad FROM curso, tipo_actividad WHERE curso.id_curso = '$curso' AND tipo_actividad.id_tipo_actividad = curso.id_tipo_actividad";
+                            $resultado = $base->leer($query);
+                            
+                            while($row = $resultado->fetch_array()){
+                                $curso = [
+                                    'titulo' => $row[0],
+                                    'tActividad' =>$row[1] 
+                                ];
+                            }
+
+                            $resultado->free();
+
+                            $fecha_constancia = date('Y-m-d H:i:s');
+                            $id = $id_curso.$id_usuario;
+                            $nombre = $usuario['nombre1'];
+                            $apellidoP = $usuario['apellidoP'];
+                            $apellidoM = $usuario['apellidoM'];
+                            
+                            $query = "INSERT INTO constancia(id_constancia, tipo_usuario, id_curso, fecha_generacion, usuario, nombre, apellidoP, apellidoM) VALUES('$id', 0, '$id_curso', '$fecha_constancia', '$id_usuario', '$nombre', '$apellidoP', '$apellidoM')";
+
+                            $resultado = $base->insertar($query);
+                        }else {
+                            $success = false;
+                        }
+                    }else {
+                        $success = false;
+                    }
+                
+                }
+            }else{
+                $conn = true;
+                $success = false;
+            }
+
+        }else{
+            $vacio =  true;
+            $conn = false;
+            $success = false;
+        }
+
+
+
+        $base->cerrar();
+
+
+        return $respuesta = [
+            'vacio' => $vacio,
+            'conn' => $conn,
+            'success' => ['conf' => $conf, 'usuario' => $usuario, 'curso' => $curso, 'fechas' => $fechasCurso]
+        ];      
+
+        
+    }
 
 
 

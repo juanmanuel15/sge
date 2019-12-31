@@ -1,4 +1,6 @@
 <?php
+
+	
 	
 	class Consultas{
 
@@ -421,6 +423,43 @@
 
 
 			return $query;
+		}
+
+
+		/* ------ Constancias Colaboradores ------- */
+
+		function buscar_constanciaColaborador($dato){
+			$dato = explode(" ", $dato);
+
+			$query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo, curso.id_curso, usuario.usuario FROM curso, usuario, curso_usuario_resp WHERE curso_usuario_resp.id_curso = curso.id_curso AND curso_usuario_resp.nCuenta = usuario.nCuenta AND (";
+
+			for($i=0; $i<sizeof($dato); $i++){	
+
+				$query .= "
+					   usuario.nCuenta LIKE '%$dato[$i]%' 	
+					OR usuario.nombre	LIKE '%$dato[$i]%'	
+				    OR usuario.apellidoP	LIKE '%$dato[$i]%' 
+				    OR usuario.apellidoM	LIKE '%$dato[$i]%'
+				    OR curso.titulo LIKE '%$dato[$i]%'
+				    OR usuario.usuario LIKE '%$dato[$i]%'
+				    ";
+
+					if($i != sizeof($dato)-1){
+						$query .= ")AND(";
+					}
+
+					if($i == sizeof($dato)-1){
+						$query .= ")";
+					}
+			}
+
+
+			return $query;
+		}
+
+
+		function leer_ConstanciasColaborador(){
+			return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo, curso.id_curso, usuario.usuario FROM curso, usuario, curso_usuario_resp WHERE curso_usuario_resp.id_curso = curso.id_curso AND curso_usuario_resp.nCuenta = usuario.nCuenta";
 		}
 
 		

@@ -1,5 +1,11 @@
 <?php
 
+	session_start();
+
+    if(!isset($_SESSION['admin'])){
+        header('Location: ../../../admin/admin.php' );
+    }
+
 	require('../../../fpdf/fpdf.php');
 	require('datos_reporte.php');
 	$id = $_GET['id'];

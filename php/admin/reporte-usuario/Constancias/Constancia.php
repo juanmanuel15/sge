@@ -1,5 +1,7 @@
 <?php
 
+    
+
     class Constancia{
 
         function pdf_alumno($datos){
@@ -10,7 +12,7 @@
             require('archivo/profesor.php');
         }
 
-        function pdf_colaborador(){
+        function pdf_colaborador($datos){
             require('archivo/colaborador.php');
         }
 

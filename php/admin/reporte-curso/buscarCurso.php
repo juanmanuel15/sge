@@ -1,5 +1,11 @@
 <?php 
 	
+	session_start();
+
+    if(!isset($_SESSION['admin'])){
+        header('Location: ../../../admin/admin.php' );
+    }
+	
 	include ('../../Buscar.php');
 	include ('../../Consultas.php');
 	include ('../../ComprobarMetodo.php');

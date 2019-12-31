@@ -1,5 +1,11 @@
 <?php 
 
+    session_start();
+
+    if(!isset($_SESSION['admin'])){
+        header('Location: ../../../admin/admin.php' );
+    }
+
 	require ('../../base.php');
     require ('../../consulta.php');
     header("Content-Type: text/html;charset=utf-8");

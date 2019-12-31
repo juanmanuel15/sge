@@ -1,4 +1,5 @@
 <?php 
+
     session_start();
 
     if(!isset($_SESSION['admin'])){
@@ -24,22 +25,19 @@
         $curso = str_replace("'", "", $curso);
 
         $constancia = new Constancia();
-       $respuesta = alumno($usuario, $curso);
+        $respuesta = colaborador($usuario, $curso);
         
-        //var_dump()
+        
         if($respuesta['vacio']){            
             $constancia->error();
         }elseif($respuesta['conn']){            
             $constancia->error();
         }else{
             $success = $respuesta['success']; 
-            //var_dump($success['porcentaje']);
-            if($success['sin_asistencia'] || $success['mas_asistencia']){                
-                $constancia->warnning();
-            }elseif ($success['porcentaje']){                                
-                $constancia->pdf_alumno($success);
+            if ($success != false){                                
+                $constancia->pdf_colaborador($success);
             }else{
-                $constancia->porcentaje();
+                $constancia->error();
             }
         }
 
@@ -50,5 +48,3 @@
 
     
 ?>
-
-

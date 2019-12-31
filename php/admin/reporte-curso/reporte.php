@@ -1,5 +1,11 @@
 <?php 
 
+    session_start();
+
+    if(!isset($_SESSION['admin'])){
+        header('Location: ../../../admin/admin.php' );
+    }s
+
     require_once('../../../bibliotecas/tcpdf/tcpdf.php');
     require('datos_reporte.php');
 

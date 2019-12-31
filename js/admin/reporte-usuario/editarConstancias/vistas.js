@@ -61,7 +61,7 @@ function buscarConstancia(success){
 			</td>
 			<td>
 				<span class="i_mostrar">
-					<a>
+					<a href = 'constancia.php?id=${success[i].id}'>
 						<i class="fas fa-share"> 
 						</i>
 					</a>

@@ -1,4 +1,5 @@
-<?php   
+<?php 
+
 
 require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
 
@@ -50,13 +51,13 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
 
 
     $pdf->SetFont('helvetica', '', 13);
-    $pdf->Multicell(0,11, 'Otorga la presente:', 0, 'C', 0, 0, '', '', true);
+    $pdf->Multicell(0,11, 'Otorga el presente:', 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(10);
 
     $documento = $conf['tipo_documento'];
     $pdf->SetTextColor(149,132,25);
     $pdf->SetFont('helvetica', 'B', 40);
-    $pdf->Multicell(0,40, $documento, 0, 'C', 0, 0, '', '', true);
+    $pdf->Multicell(0,40, 'Reconocimiento', 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(25);
 
    
@@ -67,7 +68,7 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $pdf->Multicell(0,20, $nombre, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(20);
 
-    $tActividad = "Por partipar en las distintas actividades. ";
+    $tActividad = "Por haber colaborado en las distintas actividades. ";
     /*$pdf->SetFont('helvetica', '', 15);
     $pdf->Multicell(0,12, $tActividad, 0, 'C', 0, 0, '', '', true);
     $pdf->Ln(8);
@@ -78,9 +79,9 @@ require_once('../../../../bibliotecas/tcpdf/tcpdf.php');
     $pdf->Ln(20);*/
 
     
-    $pdf->SetFont('helvetica', '', 15);
-    $pdf->Multicell(0,20,$tActividad.'En el marco de la celebración de la', 0, 'C', 0, 0, '', '', true);
-    $pdf->Ln(8);
+    $pdf->SetFont('timesI', 'B U I', 17);
+    $pdf->Multicell(0,20,$tActividad, 0, 'C', 0, 0, '', '', true);
+    $pdf->Ln(20);
 
     $tituloEvento = $conf['tituloEvento'];
     $pdf->SetFont('helvetica', 'B', 15);
