@@ -6,6 +6,8 @@ $(document).ready(function (){
         quitarClases(); 
         $('#exampleModalLabel').text('Agregar Fecha');
         $('#btn_aceptarFecha').val('Agregar');
+        $('#txt_fecha').empty();
+        selectfecha();
     });
 
     
@@ -45,7 +47,7 @@ $(document).ready(function (){
 
         e.preventDefault();
 
-        selectfecha();
+        
         $('#divMensajeFecha').empty();
               
 
@@ -208,6 +210,23 @@ $(document).ready(function (){
         $.post('horario/selectfecha.php', function(respuesta){
             respuesta = JSON.parse(respuesta);
             console.log(respuesta);
+
+            if(!respuesta.serv){
+                if(!respuesta.conn){
+                    if(respuesta.success != false){
+                        var fechas = respuesta.success;
+                        console.log(fechas); 
+                        var texto = '';
+                        for(var i = 0; i < fechas.length; i++){
+                            texto += `
+                                <option value = "${fechas[i]}">${fechas[i]}</option>
+                            `; 
+                        }
+
+                        $('#txt_fecha').append(texto);
+                    }
+                }
+            }
         });
     }
 

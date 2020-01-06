@@ -13,8 +13,8 @@
      	$conexion = $base->conectar();
      	if($conexion != false){
      		$conn = false;
-     		echo $query = $consulta->leer_configurarConstancia();
-     		print_r($resultado = $base->leer($query));
+     		$query = $consulta->leer_configurarConstancia();
+     		$resultado = $base->leer($query);
 
 	     	foreach ($resultado as $rw) {
 	     		$conf = [
@@ -32,7 +32,13 @@
      		
 
 
-     	print_r($conf);
+     	$respuesta = [
+               'serv' => $servidor,
+               'conn' => $conn,
+               'success' => $fechas
+          ];
+
+          echo json_encode($respuesta);
 
      }
 
@@ -55,7 +61,7 @@
      	$diaFF = (int)$FF[2];
 
 
-     	if($anoFF == $anoFI){
+     	/*if($anoFF == $anoFI){*/
      		if($mesFI == $mesFF){
      			if($diaFF == $diaFI){
      				$fecha [] = "$anoFF-$mesFF-$diaFF";
@@ -72,18 +78,44 @@
 
      			if($mesFI > $mesFF){
      				for($i = $mesFF; $i<=$mesFI; $i++){
-     					for($j = $diaFI; $j <= $diaFF; $j++){
-     						
-     					}
+     					if($diaFF < $diaFI){
+                                   for($j = $diaFF; $i <= 31; $i++){
+                                        if($diaFF = 31){
+                                             $diaFF = 1;
+                                        }
+                                        $fecha [] = "$anoFF-$i-$j";
+                                   }
+                              }else{
+                                   for($j = $diaFI; $j <= $diaFF; $j++){
+                                        $fecha [] = "$anoFF-$i-$j";
+                                   }
+                              }
      				}
      			}else{
 
+                         for($i = $mesFI; $i<= $mesFF; $i++){
+                              if($diaFF < $diaFI){
+                                   for($j = $diaFF; $i <= 31; $i++){
+                                        if($diaFF = 31){
+                                             $diaFF = 1;
+                                        }
+                                        $fecha [] = "$anoFF-$i-$j";
+                                   }
+                              }else{
+                                   for($j = $diaFI; $j <= $diaFF; $j++){
+                                        $fecha [] = "$anoFF-$i-$j";
+                                   }
+                              }
+                         }
+
      			}
-
      		}
-     	}else{
+     	/*}else{
 
-     	}
+     	}*/
+
+
+          return $fecha;
 
 
      }

@@ -464,6 +464,31 @@
 
 
 
+
+		/* -------- Acceso usuarios --------- */
+
+		function ingresoProf ($usuario, $pass){
+			return $query = "SELECT usuario, pass FROM usuario WHERE usuario = '$usuario' AND pass = '$pass' AND (tipo_usuario = 2 OR tipo_usuario = 1 OR tipo_usuario = 4)";
+		}
+
+
+
+		/* --------- Consultas Profesores ------- */
+
+		function leer_cursosRegistrados($usuario){
+			return $query = "SELECT curso_usuario_org.id, curso_usuario_org.nCuenta, curso_usuario_org.id_curso, curso.titulo FROM curso_usuario_org, curso WHERE nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario')	ORDER BY curso.titulo ASC";
+		}
+
+		function leer_inscritos($curso){
+			return $query = "SELECT COUNT(nCuenta) as inscritos FROM curso_usuario_insc WHERE id_curso = '$curso'";
+		}
+
+		function leer_usuarioTotales($curso){
+			return $query = "SELECT lugares FROM curso WHERE id_curso = '$curso'";
+		}
+
+
+
 		
 	}
 

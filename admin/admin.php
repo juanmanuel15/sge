@@ -1,7 +1,7 @@
 <?php session_start();
 
-    if(isset($_SESSION['admin'])){
-        header('Location: ../php/admin/');
+    if(isset($_SESSION['prof'])){
+        header('Location: ../php/profesor/');
     }
 
     else {

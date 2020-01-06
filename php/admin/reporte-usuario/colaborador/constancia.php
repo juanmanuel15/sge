@@ -1,11 +1,6 @@
 <?php 
 
-    session_start();
-
-    if(!isset($_SESSION['admin'])){
-        header('Location: ../../../admin/admin.php' );
-    }
-
+    
     
     //include('constancias/Procesar.php');
     include('../Constancias/Constancia.php');
