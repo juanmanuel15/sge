@@ -30,7 +30,12 @@
                   </div>
                                     
                   <div class="form-group row d-flex justify-content-center">     
-            
+                      <div class="col-md-4 col-sm-12 modal_estilo mt-2">
+                          <label for="txt_nombre" class="col-form-label">N° Cuenta:</label>
+                      </div>
+                      <div class="col-md-8 col-sm-12 mt-2">
+                          <input type="text" class="form-control" id="txt_cuenta">
+                      </div>
       
                       <div class="col-md-4 col-sm-12 modal_estilo mt-2">
                           <label for="txt_nombre" class="col-form-label">Nombre:</label>
@@ -210,14 +215,16 @@
         </div>
 
 
-        <div class="row mt-2 d-flex justify-content-center mb-4">
+        <!--div class="row mt-2 d-flex justify-content-center mb-4">
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end texto-usuario-2">
                     Usuario:
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-start texto-usuario-1">
                     <span id="usuario"></span>
                 </div>
-        </div>
+        </div-->
+
+
 
         <hr>
 
@@ -334,6 +341,7 @@
                 correoI = respuesta.correo;
                 passI = respuesta.pass;
                 telI = respuesta.telefono;
+                cuentaI = respuesta.cuenta;
 
                 $('#txt_nombre').val(nombreI);
                 $('#txt_apellidoP').val(apellidoPI);
@@ -342,6 +350,7 @@
                 $('#txt_pass').val(passI);
                 $('#txt_pass2').val(passI);
                 $('#txt_telefono').val(telI);
+                $('#txt_cuenta').val(cuentaI);
 
                 });
             });
@@ -358,6 +367,7 @@
                var vacioApellidoP = vacio($('#txt_apellidoP'));
                var vacioApellidoM = vacio($('#txt_apellidoM'));
                var vacioCorreo = vacio($('#txt_correo'));
+               var vacioCuenta = vacio($('#txt_cuenta'));
                //var vacioCorreo2 = vacio($('#txt_correo2'));                 
                var vacioPass = vacio($('#txt_pass'));
                var vacioPass2 = vacio($('#txt_pass2'));
@@ -372,8 +382,10 @@
               var passC= $('#txt_pass').val();
               var pass2C= $('#txt_pass2').val();
               var telefonoC= $('#txt_telefono').val();
+              var cuentaC = $('#txt_cuenta').val();
+              console.log(cuentaC);
 
-                if(!vacioNombre || !vacioApellidoP || !vacioApellidoM || !vacioCorreo ||  !vacioPass2 || !vacioPass || !vacioTelefono ){
+                if(!vacioNombre || !vacioApellidoP || !vacioApellidoM || !vacioCorreo ||  !vacioPass2 || !vacioPass || !vacioTelefono || !cuentaC ){
                       $('#divMensaje').addClass('mensaje-error');
                       $('#divMensaje').append('<li>Campos vacíos</li>');
 
@@ -405,7 +417,8 @@
                                           'mail': correoC,
                                           'pass' :passC,
                                           'telefono' : telefonoC,
-                                          'usuario' :usuario
+                                          'usuario' :usuario,
+                                          'cuenta' :cuentaC
                                           };
 
                                           $.post('php/usuario/actualizar.php', datos, function(respuesta){
@@ -435,7 +448,8 @@
                               'mail': correoC,
                               'pass' :passC,
                               'telefono' : telefonoC,
-                              'usuario' :usuario
+                              'usuario' :usuario,
+                              'cuenta' :cuentaC
                               };
 
                               $.post('php/usuario/actualizar.php', datos, function(respuesta){
@@ -481,7 +495,7 @@
               $.post('php/usuario/datos.php', datos, function(respuesta){
                 respuesta = JSON.parse(respuesta);
                 $('#nombre').text(respuesta.nombre + " " + respuesta.apellidoP + " "  +respuesta.apellidoM);
-                $('#nCuenta').text(respuesta.nCuenta);
+                $('#nCuenta').text(respuesta.cuenta);
                 $('#correo').text(respuesta.correo);
 
             });
@@ -492,7 +506,7 @@
                 respuesta = JSON.parse(respuesta);
 
                 if(respuesta.datos != false){
-                  vista_cursoInscrito(respuesta);
+                  vista_cursoInscrito(respuesta, usuario);
                 }else {
                   $('#cursoInscrito').empty();
                 }

@@ -1,4 +1,4 @@
-function vista_cursoInscrito(respuesta){
+function vista_cursoInscrito(respuesta, usuario){
 	//console.log(respuesta);
 	$('#cursoInscrito').empty();
 	
@@ -32,14 +32,24 @@ function vista_cursoInscrito(respuesta){
 		<div class="col-3 col-lg-1 align-self-center p-1 curso-inscrito">
                 <div class="row mb-2">
                     <div class="col-12">
-                        <a href="/sge/curso.php?curso=${respuesta[i].curso['id']}" class = "btn btn-primary btn-verCurso col-12">Ver</a>
+                        <a href="/sge/ticket.php?curso=${respuesta[i].curso['id']}&usuario=${usuario}" class = "btn btn-primary btn-verCurso col-12">Ticket</a>
                     </div>
                 </div>
+
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <a href="/sge/php/admin/reporte-usuario/asistente/constancias.php?curso=${respuesta[i].curso['id']}&usuario=${usuario}" class = "btn btn-secondary btn-verCurso col-12">Constancia</a>
+                    </div>
+                </div>
+
+
                 <div class="row mt-2">
                     <div class="col-12" id = "${respuesta[i].curso['id']}">
                         <button class="btn-cancelarCurso btn btn-danger col-12" id = "btn_eliminarCurso" valor = "${respuesta[i].curso['id']}">Eliminar</button>
                     </div>  
                 </div>
+
+                
          </div>
 	`;
 

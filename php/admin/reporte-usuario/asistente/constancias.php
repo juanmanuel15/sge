@@ -1,19 +1,12 @@
 <?php 
-    session_start();
-
-    if(!isset($_SESSION['admin'])){
-        header('Location: ../../../admin/admin.php' );
-    }
+    
 
     
     //include('constancias/Procesar.php');
     include('../Constancias/Constancia.php');
     include('../comprobacion.php');
 
-    session_start();
-    if(!isset($_SESSION['admin'])){
-        header('Location: ../../../../admin/admin.php' );
-    }
+    
 
     if(isset($_GET['curso']) && isset($_GET['usuario'])){  
         
@@ -24,7 +17,7 @@
         $curso = str_replace("'", "", $curso);
 
         $constancia = new Constancia();
-       $respuesta = alumno($usuario, $curso);
+        $respuesta = alumno($usuario, $curso);
         
         //var_dump()
         if($respuesta['vacio']){            

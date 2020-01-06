@@ -1,16 +1,16 @@
 <?php 
 	
-	session_start();
+	//session_start();
 
-    if(!isset($_SESSION['admin'])){
+    /*if(!isset($_SESSION['admin'])){
         header('Location: ../../../admin/admin.php' );
-    }
+    }*/
 	
 	include ('../../Buscar.php');
 	include ('../../Consultas.php');
 	include ('../../ComprobarMetodo.php');
 	include ('../../base1.php');
-	include ('../../consulta.php');
+	//include ('../../consulta.php');
 
 	header("Content-Type: text/html;charset=utf-8");
 

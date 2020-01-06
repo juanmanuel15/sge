@@ -1,10 +1,7 @@
 <?php
 
-	session_start();
+	//session_start();
 
-    if(!isset($_SESSION['admin'])){
-        header('Location: ../../../admin/admin.php' );
-    }
 
 	include ('../../Buscar.php');
 	include ('../../Consultas.php');

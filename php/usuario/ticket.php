@@ -13,6 +13,8 @@
 	$conn = $base->conectar();
 
 
+
+
 	if($conn != false){
 		$query = "SELECT * FROM curso_usuario_insc WHERE id_curso = '$id_curso' AND nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$usuario') ";
 		//echo $query;
@@ -83,6 +85,23 @@
 		        $profesores [] = $row[0] . " " . $row[1] . " " . $row[2];
 
 		    }
+
+
+		    $resultado->free();
+
+		    $query = "SELECT campus, evento, universidad FROM conf WHERE id = 'conf_alumnos'";
+
+		    $resultado = $base->leer($query);
+
+		    foreach ($resultado as $rw) {
+		    	$conf = [
+		    		'nombre_uni' => $rw['universidad'],
+		    		'campus' => $rw['campus'],
+		    		'evento' => $rw['evento']
+		    	];
+		    }
+
+		    $resultado->free();
 
 
 		    

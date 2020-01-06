@@ -17,7 +17,7 @@
 
     	if($id_curso != ''){
 
-    		echo $query = "DELETE FROM curso_usuario_insc WHERE id_curso = '$id_curso' AND nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$id_usuario')";
+    		$query = "DELETE FROM curso_usuario_insc WHERE id_curso = '$id_curso' AND nCuenta = (SELECT nCuenta FROM usuario WHERE usuario = '$id_usuario')";
     		$resultado = eliminarDatos($conexion, $query);
 
     		if($resultado['valor']){

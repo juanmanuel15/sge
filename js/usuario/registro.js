@@ -17,6 +17,9 @@ $(document).ready(function() {
         var objPass2 = $('#pass2');
         var objtelefono = $('#telefono');
         var objCuenta = $('#nCuenta');
+        var objCarrera = $('#select_carrera');
+        var  objNombreCarrera = $('#select_carrera option:selected').attr('valor')
+        console.log(objNombreCarrera);
 
         removerEstilos(objCuenta, 'input-vacio');
         removerEstilos(objCorreo, 'input-vacio');
@@ -25,7 +28,7 @@ $(document).ready(function() {
 
         var vacioNombre = vacio(objNombre);
         var vacioApellidoP = vacio(objApellidoP);
-        var vacioApellidoM = vacio(objApellidoM);
+        //var vacioApellidoM = vacio(objApellidoM);
         var vacioCorreo = vacio(objCorreo);
         var vacioCorreo2 = vacio(objCorreo2);
         var vacioUsuario = vacio(objUsuario);
@@ -37,7 +40,7 @@ $(document).ready(function() {
    
         
 
-        if(!vacioNombre || !vacioApellidoP || !vacioApellidoM || !vacioCorreo || !vacioCorreo2 || !vacioUsuario || !vacioPass2 || !vacioPass || !vacioTelefono || !vacioCuenta){
+        if(!vacioNombre || !vacioApellidoP || !vacioCorreo || !vacioCorreo2 || !vacioUsuario || !vacioPass2 || !vacioPass || !vacioTelefono){
             $('#divMensaje').addClass('mensaje-error');
             $('#divMensaje').append('<li>Campos vacíos</li>');
         }else {
@@ -101,15 +104,18 @@ $(document).ready(function() {
                             'correo' : objCorreo.val(),
                             'usuario' : objUsuario.val(),
                             'pass' : objPass.val(),
-                            'tel' : objtelefono.val()
+                            'tel' : objtelefono.val(),
+                            'area': objCarrera.val(),
+                            'area_nombre': objNombreCarrera
                         };
 
                         $.post('php/usuario/insertar.php', datosEnviar, function(respuesta){
                             respuesta = JSON.parse(respuesta);
                             console.log(respuesta);
-                            if(respuesta.valor){
+                            if(!respuesta.conn && !respuesta.servidor && !respuesta.vacio){
                                 $('#divMensaje').addClass('mensaje-success');
-                                $('#divMensaje').append("<label>Usuario Agregado, por favor ingresa </label>");                                
+                                $('#divMensaje').append("<label>Usuario Agregado, por favor ingresa </label>");
+                                 vaciar();
                             }else {
                                 $('#divMensaje').addClass('mensaje-error');
                                 $('#divMensaje').append("<label>El usuario no se ha podido agregar </label>")
@@ -160,7 +166,7 @@ function select_area(){
         
             for( i=0; i<carrera.length; i++) {
                 select_carrera += `
-                    <option value = ${carrera[i].id}>${carrera[i].nombre}</option>
+                    <option value = ${carrera[i].id} valor = "${carrera[i].nombre}">${carrera[i].nombre}</option>
                 `;
             }
 
@@ -173,4 +179,18 @@ function select_area(){
             console.log("error al encontrar la dirección");
         }
     });
+}
+
+function vaciar(){
+    
+$('#nombre').val('');
+$('#apellidoP').val('');
+$('#apellidoM').val('');
+$('#correo').val('');
+$('#correo2').val('');
+$('#usuario').val('');
+$('#pass').val('');
+$('#pass2').val('');
+$('#telefono').val('');
+$('#nCuenta').val('');
 }

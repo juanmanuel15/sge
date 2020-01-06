@@ -32,14 +32,39 @@ $pdf->AddPage();
 
 // print a message
 
-    #Título del evento
-    $tituloEvento = 'Título del Evento';
-    $pdf->SetFont('times', 'B', 16);
-    $pdf->MultiCell(0, 5, $tituloEvento, 0, 'C', 0, 1, '', '', true);
+
+         $pdf->SetXY(10, 10);
+        $pdf->Image('img/UAEM.jpg', '','' ,26 ,22 , 'JPG', '', '', true, 150, '', false, false, 0, false, false, false);
+        //$pdf->Image('UAEM.jpg', 15, 140, 75, 113, 'JPG', 'Holamundo.com.mx', '', true, 150, '', false, false, 1, false, false, false);
+        //$pdf->Ln(25);
+
+
+        $pdf->SetXY(-35, 10);
+        $pdf->Image('img/escudo_cue.jpg', '','' ,26 ,22 , 'JPG', '', '', true, 150, '', false, false, 0, false, false, false);
+        //$pdf->Image('UAEM.jpg', 15, 140, 75, 113, 'JPG', 'Holamundo.com.mx', '', true, 150, '', false, false, 1, false, false, false);
+        //$pdf->Ln(25);
+
+        $pdf->SetXY(0, 8);
+        $universidad = $conf['nombre_uni'];
+        $pdf->SetFont('helvetica', 'B', 14);
+        $pdf->MultiCell(0, 12, $universidad, 0, 'C', 0, 0, '', '', true);
+        $pdf->Ln(8);
+
+        $campus = $conf['campus'];
+        $pdf->SetFont('helvetica', '', 12);
+        $pdf->MultiCell(0, 5, $campus, 0, 'C', 0, 1, '', '', true);
+        $pdf->Ln(5);
+
+        #Título del evento
+        $tituloEvento = $conf['evento'];
+        $pdf->SetFont('times', 'B', 12);
+        $pdf->MultiCell(0, 5, $tituloEvento, 0, 'C', 0, 1, '', '', true);
+
+    
 
     $pdf->Ln(5);
     #Título del curso
-    $pdf->SetFont('times', 'B', 12);
+    $pdf->SetFont('times', 'B', 10);
     $pdf->MultiCell(0, 5, $tituloCurso, 0, 'C', 0, 1, '', '', true);
     $pdf->Ln(5);
     
@@ -121,15 +146,25 @@ $pdf->Ln(15);
 
 // QRCODE,H : QR-CODE Best error correction
 
-$pdf->write2DBarcode($cadena, 'QRCODE,H', 74, 200, 60, 0, $style, 'N');
-$pdf->Ln(5);
+$pdf->write2DBarcode($cadena, 'QRCODE,H', 74, 150, 60, 0, $style, 'N');
+$pdf->Ln(15);
+
+$leyenda = "Este código QR es su pase de entrada y salida a la actividad."; 
+    $pdf->SetFont('times', 'B', 14);
+    //$pdf->writeHTML($leyenda, true, 1, true,1);
+    $pdf->MultiCell(0, 5, $leyenda, 0, 'C', 0, 0, '', '', true);
+    $pdf->Ln(10);
+
+
+
+
 
 
 
 
 
 //Close and output PDF document
-$pdf->Output('');
+$pdf->Output($nombreUsuario.'.pdf');
 
 //============================================================+
 // END OF FILE

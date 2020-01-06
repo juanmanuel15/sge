@@ -4,6 +4,8 @@
     if(!isset($_SESSION['admin'])){
         header('Location: ../../../../admin/admin.php' );
     }
+
+
 ?>
 
 <!-- Modal -->
@@ -14,8 +16,7 @@
         <h5 class="modal-title" id="modal_usuarioAsistencia"><b>Asistencia</b></h5>
       </div>
       <div class="modal-body">      
-
-            <div class="row" id = "modal_mostrarAsistencia">
+ 
                 <div class="col-12">
                         <div class="row mt-2">
                             

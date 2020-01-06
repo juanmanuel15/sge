@@ -462,6 +462,8 @@
 			return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo, curso.id_curso, usuario.usuario FROM curso, usuario, curso_usuario_resp WHERE curso_usuario_resp.id_curso = curso.id_curso AND curso_usuario_resp.nCuenta = usuario.nCuenta";
 		}
 
+
+
 		
 	}
 

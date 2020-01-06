@@ -1,10 +1,6 @@
 <?php
 
-    session_start();
-
-    if(!isset($_SESSION['admin'])){
-        header('Location: ../../../admin/admin.php' );
-    }
+    
 
     include ('elimina_acentos.php');
 	require ('../../base.php');

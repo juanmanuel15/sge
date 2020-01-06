@@ -12,7 +12,7 @@
 
          $conexion = abrirConexion();
 
-         $query = "SELECT nombre, apellidoP, apellidoM, correo, pass, telefono, nCuenta, correo FROM usuario WHERE usuario = '$usuario'";
+         $query = "SELECT nombre, apellidoP, apellidoM, correo, pass, telefono, nCuenta, correo, cuenta FROM usuario WHERE usuario = '$usuario'";
 
          $resultado = $conexion->query($query);
 
@@ -28,7 +28,8 @@
                 'pass' => $row[4],
                 'telefono' => $row[5],
                 'nCuenta' => $row[6],
-                'correo' => $row[7]
+                'correo' => $row[7],
+                'cuenta' => $row[8]
             ];
 
          }

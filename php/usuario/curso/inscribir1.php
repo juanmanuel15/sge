@@ -143,7 +143,7 @@
                         }else {
                             $traslape = false;
 
-                            $query = $consulta->insertarUsuarioCurso($id_curso, $id_usuario);
+                            echo $query = $consulta->insertarUsuarioCurso($id_curso, $id_usuario);
 
                             $resultado = $base->insertar($query);
 
