@@ -81,7 +81,8 @@
                     <label for="txt_fecha" class="col-form-label">Fecha:</label>
                 </div>
                 <div class="col-md-9 col-sm-12">
-                    <input type="date" class="form-control" id="txt_fecha">
+                    <!--input type="date" class="form-control" id="txt_fecha"-->
+                    <select name="txt_fecha" id="txt_fecha" class="form-control"></select>
                 </div>            
             </div>
 

@@ -1,5 +1,6 @@
 <?php 
 	
+	
 	include ('../../../Buscar.php');
 	include ('../../../Consultas.php');
 	include ('../../../ComprobarMetodo.php');

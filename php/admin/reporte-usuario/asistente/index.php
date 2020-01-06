@@ -2,8 +2,10 @@
     session_start();
 
     if(!isset($_SESSION['admin'])){
-        header('Location: ../../../admin/admin.php' );
+        header('Location: ../../../../admin/admin.php' );
     }
+
+
 ?>
 
 <!-- Modal -->
@@ -14,8 +16,7 @@
         <h5 class="modal-title" id="modal_usuarioAsistencia"><b>Asistencia</b></h5>
       </div>
       <div class="modal-body">      
-
-            <div class="row" id = "modal_mostrarAsistencia">
+ 
                 <div class="col-12">
                         <div class="row mt-2">
                             
@@ -196,7 +197,7 @@
 
         <div class="row d-flex justify-content-center">
                 <div class="col-xl-6 col-sm-12">
-                    <h4 class="d-flex justify-content-center mt-4 "><b>Constancias</b></h4>
+                    <h4 class="d-flex justify-content-center mt-4 "><b>Constancias de asistentes</b></h4>
                 </div>  
         </div>
 

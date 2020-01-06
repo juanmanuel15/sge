@@ -1,5 +1,11 @@
 <?php
 
+    session_start();
+
+    if(!isset($_SESSION['admin'])){
+        header('Location: ../../../admin/admin.php' );
+    }
+
 	require ('../../base.php');
     require ('../../consulta.php');
 
@@ -9,7 +15,7 @@
 
     	$conexion = abrirConexion();
 
-    	$query = "SELECT usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta FROM usuario, curso_usuario_insc, curso WHERE curso.id_curso = '$id' AND curso_usuario_insc.nCuenta = usuario.nCuenta AND curso_usuario_insc.id_curso = curso.id_curso order by usuario.apellidoP ASC; ";
+    	$query = "SELECT usuario.nombre, usuario.apellidoP, usuario.apellidoM, usuario.nCuenta, usuario.cuenta FROM usuario, curso_usuario_insc, curso WHERE curso.id_curso = '$id' AND curso_usuario_insc.nCuenta = usuario.nCuenta AND curso_usuario_insc.id_curso = curso.id_curso order by usuario.apellidoP ASC; ";
 
     	$resultado = leerDatos($conexion, $query);
 
@@ -18,7 +24,7 @@
     	while($row  = $resultado->fetch_array()){
     		$respuesta [] = [
     			'nombre' => $row[1] . " " . $row[2] . " " . $row[0],
-    			'cuenta' => $row[3]
+    			'cuenta' => $row[4]
     		];
     	}
 
@@ -123,6 +129,31 @@
         cerrarConexion($conexion);
 
         return $respuesta;           
+    }
+
+
+    function conf(){
+        $conexion = abrirConexion();
+        $query = "SELECT id, universidad, campus, evento from conf WHERE id = 'conf_alumnos'";;
+
+
+        $resultado = leerDatos($conexion, $query);
+
+        $respuesta = [];
+
+        while($row  = $resultado->fetch_array()){
+            $respuesta [] = [
+                'id' => $row[0],
+                'universidad' => $row[1],
+                'campus' => $row[2],
+                'evento' => $row[3]
+            ];
+        }
+
+        $resultado->free();
+        cerrarConexion($conexion);
+
+        return $respuesta; 
     }
     
 

@@ -1,6 +1,10 @@
 <?php 
+  session_start();
 
-	require ('../../base.php');
+    if(!isset($_SESSION['admin'])){
+        header('Location: ../../../admin/admin.php' );
+    }
+	  require ('../../base.php');
     require ('../../consulta.php');
 
     //header('Content-Type: application/json');

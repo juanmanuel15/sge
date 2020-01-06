@@ -1,4 +1,6 @@
 <?php
+	
+
 
 	include ('elimina_acentos.php');
 	require ('../../base.php');

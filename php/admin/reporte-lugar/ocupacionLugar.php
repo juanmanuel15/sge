@@ -1,5 +1,10 @@
 <?php
 
+	session_start();
+
+    if(!isset($_SESSION['admin'])){
+        header('Location: ../../../admin/admin.php' );
+    }
 	include ('../../base1.php');
 
 	if(!$_SERVER['REQUEST_METHOD'] == 'POST'){

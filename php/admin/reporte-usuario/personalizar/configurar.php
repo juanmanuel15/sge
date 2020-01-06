@@ -33,7 +33,7 @@
 
         $resultado->free();
 
-        $query = $consulta->select_tipoActividad();
+        /*$query = $consulta->select_tipoActividad();
         $resultado = $base->leer($query);
 
         while($row = $resultado->fetch_array()){
@@ -43,7 +43,7 @@
         }
 
 
-        $resultado->free();
+        $resultado->free();*/
 
 
 
@@ -52,9 +52,25 @@
 
         while($row = $resultado->fetch_array()){
             $tituloCurso []= [
+                'id_curso' => $row[1], 
                 'tituloCurso' => $row[0]
             ];
         }
+
+
+        $resultado->free();
+
+        $query = $consulta->select_tipoUsuario();
+        $resultado = $base->leer($query);
+
+        while($row = $resultado->fetch_array()){
+            $tipoUsuario []= [
+                'id_tipoUsuario' => $row[0],
+                'tipoUsuario' => $row[1]
+            ];
+        }
+
+        
 
 
         $resultado->free();
@@ -75,7 +91,7 @@
        'resp' => [
            'evento' => $evento,
            'tituloCurso' => $tituloCurso,
-           'tActividad' => $tActividad
+           'tipoUsuario' => $tipoUsuario
            ]
     ];
 

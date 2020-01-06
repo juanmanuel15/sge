@@ -1,9 +1,10 @@
 <?php 
 
+    
+
     require_once('../../../bibliotecas/tcpdf/tcpdf.php');
     require('datos_reporte.php');
 
-    session_start();
     if(!isset($_SESSION['admin'])){
         header('Location: ../../../admin/admin.php' );
     }
@@ -16,7 +17,7 @@
         $profesores = profesor($id);
         $curso = curso($id);
         $colaboradores = colaborador($id);
-
+        $conf = conf();
         $horario = horario($id);
 
         //print_r($horario);
@@ -45,15 +46,37 @@
 
         // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 
+        $pdf->SetXY(10, 10);
+        $pdf->Image('../../../img/UAEM.jpg', '','' ,26 ,22 , 'JPG', '', '', true, 150, '', false, false, 0, false, false, false);
+        //$pdf->Image('UAEM.jpg', 15, 140, 75, 113, 'JPG', 'Holamundo.com.mx', '', true, 150, '', false, false, 1, false, false, false);
+        //$pdf->Ln(25);
+
+
+        $pdf->SetXY(-35, 10);
+        $pdf->Image('../../../img/escudo_cue.jpg', '','' ,26 ,22 , 'JPG', '', '', true, 150, '', false, false, 0, false, false, false);
+        //$pdf->Image('UAEM.jpg', 15, 140, 75, 113, 'JPG', 'Holamundo.com.mx', '', true, 150, '', false, false, 1, false, false, false);
+        //$pdf->Ln(25);
+
+        $pdf->SetXY(0, 8);
+        $universidad = $conf[0]['universidad'];
+        $pdf->SetFont('helvetica', 'B', 14);
+        $pdf->MultiCell(0, 12, $universidad, 0, 'C', 0, 0, '', '', true);
+        $pdf->Ln(8);
+
+        $campus = $conf[0]['campus'];
+        $pdf->SetFont('helvetica', '', 12);
+        $pdf->MultiCell(0, 5, $campus, 0, 'C', 0, 1, '', '', true);
+        $pdf->Ln(5);
+
         #Título del evento
-        $tituloEvento = 'Título del Evento';
-        $pdf->SetFont('times', 'B', 16);
+        $tituloEvento = $conf[0]['evento'];
+        $pdf->SetFont('times', 'B', 12);
         $pdf->MultiCell(0, 5, $tituloEvento, 0, 'C', 0, 1, '', '', true);
 
 
         #Título del curso
         $tituloCurso = $curso['titulo'];
-        $pdf->SetFont('times', 'B', 12);
+        $pdf->SetFont('times', 'B', 10);
         $pdf->MultiCell(0, 5, $tituloCurso, 0, 'C', 0, 1, '', '', true);
         $pdf->Ln(5);
         
@@ -147,7 +170,7 @@
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFillColor(255, 255, 255);
             $pdf->MultiCell(10,5, $i+1, 1, 'C', 0, 0, '', '', true); 
-            $pdf->MultiCell(40,5, $alumnos[$i]['cuenta'], 1, 'L', 0, 0, '',  '', true );
+            $pdf->MultiCell(40,5, $alumnos[$i]['cuenta'], 1, 'C', 0, 0, '',  '', true );
             $pdf->MultiCell(120,5, $alumnos[$i]['nombre'], 1, 'L', 0, 0, '',  '', true);
             $pdf->MultiCell(20,5, '', 1, 'C', 0, 1, '',  '', true);
             

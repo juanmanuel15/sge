@@ -190,6 +190,8 @@
                 };
 
 
+            //console.log(datos);
+
              botonInscribir(datos, curso1, usuario);
 
            
@@ -202,7 +204,8 @@
 
                 $.post('php/usuario/curso/inscribir.php', datos, function(respuesta){
                     respuesta = JSON.parse(respuesta);
-                    if(respuesta){
+                    console.log(respuesta);
+                    if(respuesta.traslape){
                        alert("Ya tienes un curso inscrito en el mismo horario");
 
                     }else {

@@ -45,7 +45,7 @@ $(document).ready(function (){
 
         e.preventDefault();
 
-
+        selectfecha();
         $('#divMensajeFecha').empty();
               
 
@@ -201,6 +201,14 @@ $(document).ready(function (){
     function vaciarFormulario(){
         $('#txt_fecha').val('');
         $('#txt_id').val('');
+    }
+
+
+    function selectfecha(){
+        $.post('horario/selectfecha.php', function(respuesta){
+            respuesta = JSON.parse(respuesta);
+            console.log(respuesta);
+        });
     }
 
 

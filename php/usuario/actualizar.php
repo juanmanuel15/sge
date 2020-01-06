@@ -17,15 +17,16 @@
          $apellidoM = filter_var($_POST['apellidoM'], FILTER_SANITIZE_STRING);
          $pass = filter_var($_POST['pass'], FILTER_SANITIZE_STRING);
          $telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_STRING);
+         $cuenta = filter_var($_POST['cuenta'], FILTER_SANITIZE_STRING);
 
-        if(empty($usuario) || empty($correo) || empty($apellidoP) || empty($apellidoM) || empty($pass) || empty($telefono)) {
-            print_r($respuesta = [
+        if(empty($usuario) || empty($correo) || empty($apellidoP) || empty($apellidoM) || empty($pass) || empty($telefono) || empty($cuenta)) {
+            $respuesta = [
                 'valor' => false
-            ]);
+            ];
         }else {
             
             $conexion = abrirConexion();
-            echo $query = "UPDATE usuario SET nombre = '$nombre', apellidoP = '$apellidoP', apellidoM = '$apellidoM', pass = '$pass' , telefono = '$telefono', correo = '$correo' WHERE usuario = '$usuario'";
+            echo $query = "UPDATE usuario SET nombre = '$nombre', apellidoP = '$apellidoP', apellidoM = '$apellidoM', pass = '$pass' , telefono = '$telefono', correo = '$correo', cuenta = '$cuenta' WHERE usuario = '$usuario'";
             $resultado = $conexion->query($query);
 
            if($resultado){

@@ -64,7 +64,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Contraseña" name="pass">
+                        <input type="password" class="form-control" placeholder="Contraseña" name="pass">
                     </div>                            
                 </div>                
             </div>

@@ -1,4 +1,5 @@
 <?php
+    
     include ('../../../Buscar.php');
     include ('../../../Consultas.php');
     include ('../../../base1.php');

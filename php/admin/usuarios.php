@@ -1,9 +1,5 @@
 <?php
-    session_start();
-
-    if(!isset($_SESSION['admin'])){
-        header('Location: ../../admin/admin.php' );
-    }
+    
 ?>
 <!-- Modal Agregar Usuario-->
 <div class="modal fade" id="modal_AgregarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

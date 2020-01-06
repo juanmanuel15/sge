@@ -1,4 +1,6 @@
 <?php
+
+	
 	
 	class Consultas{
 
@@ -223,7 +225,7 @@
 		}
 
 		function select_cursos(){
-			return $query = "SELECT titulo FROM curso ORDER BY titulo ASC";
+			return $query = "SELECT titulo, id_curso FROM curso ORDER BY titulo ASC";
 		}
 
 		function select_tipoActividad(){
@@ -329,15 +331,140 @@
 
 
 
+
+		# -------- Configurar Constancias ---------#
+
+		function leer_configurarConstancia(){
+			$query = "SELECT * from conf WHERE id = 'conf_alumnos'";
+			return $query;
+		}
+
+		function actualizar_configurarConstancia($nU, $nC, $tR, $tE, $FF, $FI, $lE, $lU,$p, $nD){
+			return $query = "UPDATE conf SET tipo_documento = '$tR', slogan = '$lU', nombre_director = '$nD', evento = '$tE', porcentaje_asistencia = '$p', universidad = '$nU', campus = '$nC', fecha_inicial = '$FI', fecha_final = '$FF',  ubicacion = '$lE' WHERE id = 'conf_alumnos'" ;
+		}
+
+
+
+		# ------------- Editar Constancia ---------#
+
+		function leer_constanciasGuardadas(){
+			return $query = "SELECT constancia.id_constancia, constancia.nombre, constancia.apellidoP, constancia.apellidoM, curso.titulo, constancia.id_curso, constancia.usuario FROM curso, constancia WHERE curso.id_curso = constancia.id_curso";
+		}
+
+		function editar_constancia($id_constancia){
+			return $query = "SELECT constancia.id_constancia, constancia.nombre, constancia.apellidoP, constancia.apellidoM FROM  constancia WHERE constancia.id_constancia = '$id_constancia'";
+		}
+		function actualizar_constancia($id, $name, $lastName1, $lastName2){
+			return $query = "UPDATE constancia SET nombre = '$name', apellidoP = '$lastName1', apellidoM = '$lastName2' WHERE id_constancia = '$id'";
+		}
+
+
+		function eliminar_editarConstancia($id){
+			return $query = "DELETE FROM constancia WHERE id_constancia = '$id'";
+		}
+
+		function buscar_constanciasGuardadas($dato){
+			$dato = explode(" ", $dato);
+
+			$query = "SELECT constancia.id_constancia, constancia.nombre, constancia.apellidoP, constancia.apellidoM, curso.titulo, constancia.id_curso, constancia.usuario FROM curso, constancia WHERE curso.id_curso = constancia.id_curso AND (";
+
+			for($i=0; $i<sizeof($dato); $i++){	
+
+				$query .= "
+					   constancia.id_constancia LIKE '%$dato[$i]%' 	
+					OR constancia.nombre	LIKE '%$dato[$i]%'	
+				    OR constancia.apellidoP	LIKE '%$dato[$i]%' 
+				    OR constancia.apellidoM	LIKE '%$dato[$i]%'
+				    OR curso.titulo LIKE '%$dato[$i]%'
+				    OR constancia.usuario LIKE '%$dato[$i]%'
+				    ";
+
+					if($i != sizeof($dato)-1){
+						$query .= ")AND(";
+					}
+
+					if($i == sizeof($dato)-1){
+						$query .= ")";
+					}
+			}
+
+
+			return $query;
+		}
+
+
+
+		/* ----------- Cosntancias Ponentes --------- */
+
+		function buscar_constanciaPonente($dato){
+			$dato = explode(" ", $dato);
+
+			$query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo, curso.id_curso, usuario.usuario FROM curso, usuario, curso_usuario_org WHERE curso_usuario_org.id_curso = curso.id_curso AND curso_usuario_org.nCuenta = usuario.nCuenta AND (";
+
+			for($i=0; $i<sizeof($dato); $i++){	
+
+				$query .= "
+					   usuario.nCuenta LIKE '%$dato[$i]%' 	
+					OR usuario.nombre	LIKE '%$dato[$i]%'	
+				    OR usuario.apellidoP	LIKE '%$dato[$i]%' 
+				    OR usuario.apellidoM	LIKE '%$dato[$i]%'
+				    OR curso.titulo LIKE '%$dato[$i]%'
+				    OR usuario.usuario LIKE '%$dato[$i]%'
+				    ";
+
+					if($i != sizeof($dato)-1){
+						$query .= ")AND(";
+					}
+
+					if($i == sizeof($dato)-1){
+						$query .= ")";
+					}
+			}
+
+
+			return $query;
+		}
+
+
+		/* ------ Constancias Colaboradores ------- */
+
+		function buscar_constanciaColaborador($dato){
+			$dato = explode(" ", $dato);
+
+			$query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo, curso.id_curso, usuario.usuario FROM curso, usuario, curso_usuario_resp WHERE curso_usuario_resp.id_curso = curso.id_curso AND curso_usuario_resp.nCuenta = usuario.nCuenta AND (";
+
+			for($i=0; $i<sizeof($dato); $i++){	
+
+				$query .= "
+					   usuario.nCuenta LIKE '%$dato[$i]%' 	
+					OR usuario.nombre	LIKE '%$dato[$i]%'	
+				    OR usuario.apellidoP	LIKE '%$dato[$i]%' 
+				    OR usuario.apellidoM	LIKE '%$dato[$i]%'
+				    OR curso.titulo LIKE '%$dato[$i]%'
+				    OR usuario.usuario LIKE '%$dato[$i]%'
+				    ";
+
+					if($i != sizeof($dato)-1){
+						$query .= ")AND(";
+					}
+
+					if($i == sizeof($dato)-1){
+						$query .= ")";
+					}
+			}
+
+
+			return $query;
+		}
+
+
+		function leer_ConstanciasColaborador(){
+			return $query = "SELECT usuario.nCuenta, usuario.nombre, usuario.apellidoP, usuario.apellidoM, curso.titulo, curso.id_curso, usuario.usuario FROM curso, usuario, curso_usuario_resp WHERE curso_usuario_resp.id_curso = curso.id_curso AND curso_usuario_resp.nCuenta = usuario.nCuenta";
+		}
+
+
+
 		
-
-
-		
-
-		
-
-		
-
 	}
 
 

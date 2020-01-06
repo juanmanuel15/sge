@@ -94,7 +94,7 @@
 
 
     function id_usuario_int($nombre, $apellido, $correo, $area){
-        return $id = date('Ymd') .substr(strtolower($correo), 0, 3). substr(strtolower($nombre), 0, 3) . substr(strtolower($apellido), 0,3).substr(strtolower($area),0,3);
+        return $id = date('Ymd') .substr(strtolower($correo), 0, 3). substr(strtolower($nombre), 0, 3) . substr(strtolower($apellido), 0,3).substr(strtoupper($area),0,3);
     }
 
     function id_usuario_ext($nombre, $apellido, $correo){

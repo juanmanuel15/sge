@@ -1,4 +1,5 @@
 <?php 
+    
     require ('../../base.php');
     require ('../../consulta.php');
     header('Content-Type: application/json');

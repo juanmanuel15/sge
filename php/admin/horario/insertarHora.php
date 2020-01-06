@@ -1,6 +1,6 @@
 <?php
     //header('Content-Type: application/json');
-
+	
     require ('../../base.php');
     require ('../../consulta.php');
 

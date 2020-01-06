@@ -32,7 +32,7 @@ function vista_selects(){
 
                 $('#select_tipoDocumento').append(texto);
 
-                /* Select Tipo de Actividad*/
+                /* Select Tipo de Actividad
 
                 texto = '';
                 tActividad =  respuesta['resp']['tActividad'];
@@ -44,20 +44,41 @@ function vista_selects(){
                     `; 
                 }
 
-                $('#select_tActividad').append(texto);
+                $('#select_tActividad').append(texto);*/
 
                 /* Select Titulo del Curso */
                 texto = '';
-                tituloCurso =  respuesta['resp']['tituloCurso'];
+                curso =  respuesta['resp']['tituloCurso'];
 
-                for(i = 0; i< tituloCurso.length; i++){
+                for(i = 0; i< curso.length; i++){
 
                     texto += `
-                        <option value = "${tituloCurso[i]['tituloCurso']}">${tituloCurso[i]['tituloCurso']}</option>
+                        <option value = "${curso[i]['id_curso']}">${curso[i]['tituloCurso']}</option>
                     `; 
                 }
 
                 $('#select_nombreCurso').append(texto);
+
+
+                var texto = '';
+                var user = '';
+
+                var tipo_usuario = respuesta['resp']['tipoUsuario'];
+                for(var i= 0; i<tipo_usuario.length; i++){
+                    console.log(tipo_usuario[i].id_tipoUsuario);
+                    switch(tipo_usuario[i].id_tipoUsuario){
+                        case '0': user = "col"; break;
+                        case '1': user = "admin"; break;
+                        case '2': user = "pon"; break;
+                        case '3': user = "asis"; break;
+                        default: user = "nOption"; break;
+                    }
+                    texto += `
+                        <option value = ${user}>${tipo_usuario[i]['tipoUsuario']}</option>
+                    `; 
+                }
+
+                $('#select_personalizarContancia').append(texto);
 
 
 
@@ -83,8 +104,5 @@ function vista_btn(btn_generar, btn_verificar){
     }else{
         $('#btn_verficar').hide();
     }
-        
-    
-
     
 }

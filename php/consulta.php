@@ -1,5 +1,7 @@
 <?php
 
+    
+
 
 	# Esta función es de consulta, es decir, solo retornará el valor del query enviado.
 

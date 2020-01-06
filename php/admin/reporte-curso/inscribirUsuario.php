@@ -1,5 +1,8 @@
 <?php
 
+	//session_start();
+
+
 	include ('../../Buscar.php');
 	include ('../../Consultas.php');
 	include ('../../ComprobarMetodo.php');

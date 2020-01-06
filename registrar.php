@@ -133,7 +133,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Contraseña" name="pass" id="pass">
+                        <input type="password" class="form-control" placeholder="Contraseña" name="pass" id="pass">
                     </div>                            
                 </div>                
             </div>
@@ -144,7 +144,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Repetir Contraseña" name="pass2" id="pass2">
+                            <input type="password" class="form-control" placeholder="Repetir Contraseña" name="pass2" id="pass2">
                         </div>                            
                     </div>                
             </div>
