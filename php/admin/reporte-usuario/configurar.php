@@ -6,8 +6,6 @@
    } 
 ?>
 
-<<<<<<< HEAD
-=======
 <!-- Modal -->
 <div class="modal fade" id="actualizarContancias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -137,7 +135,6 @@
 
 
 
->>>>>>> origin/mod-usuario
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -147,16 +144,6 @@
     <title>Configurar</title>
 
     <!--Códigos fuentes externos -->
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-=======
     <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"-->
     <link rel="stylesheet" href="../../../bibliotecas/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/main.css"> 
@@ -164,7 +151,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"-->
->>>>>>> origin/mod-usuario
 
      <!-- Estilos propios -->
      <link rel="stylesheet" href="../../../css/main.css"> 
@@ -184,11 +170,7 @@
     <main> 
         <div class="container">
             <div class="row mb-4 mt-4 d-flex justify-content-center">
-<<<<<<< HEAD
-                <h5><b>Configurar Constancias</b></h5>
-=======
                 <h5><b>Configurar constancias</b></h5>
->>>>>>> origin/mod-usuario
                 
                 <!-- 
                     Ruta imagen
@@ -203,49 +185,19 @@
                     Porcentaje de Asistencia
                     Ruta sello
                 -->
-<<<<<<< HEAD
-            </div>     
-=======
             </div>  
 
             <div class="row d-flex justify-content-center my-4" id = "div_msg_base">  
             </div>   
->>>>>>> origin/mod-usuario
 
             <div class="row d-flex justify-content-center">
                 
                 <div class="col-lg-3 col-sm d-flex justify-content-center"><label for="txt_uniNombre">Nombre de la universidad: </label></div>   
-<<<<<<< HEAD
-                <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_uniNombre" class = "form-control"></div>   
-                
-=======
                 <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_uniNombre" class = "form-control"readonly></div>                   
->>>>>>> origin/mod-usuario
             </div>
 
             <div class="row d-flex justify-content-center mt-2 mb-2">
                 <div class="col-lg-3 col-sm d-flex justify-content-center"><label for="txt_uniCampus">Campus: </label></div>   
-<<<<<<< HEAD
-                <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_uniCampus" class = "form-control"></div>   
-            </div> 
-
-            <div class="row d-flex justify-content-center mt-2 mb-2">
-                <div class="col-lg-3 col-sm d-flex justify-content-center"><label for="txt_tipoReconocimiento">Tipo de reconocimiento: </label></div>   
-                <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_tipoReconocimiento" class = "form-control"></div>   
-            </div> 
-
-            <div class="row d-flex justify-content-center mt-2 mb-2">
-                <div class="col-lg-3 col-sm d-flex justify-content-center"><label for="txt_tituloEvento">Título del evento: </label></div>   
-                <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_tituloEvento" class = "form-control"></div>   
-            </div> 
-
-
-            <div class="row d-flex justify-content-center mt-2 mb-2">
-                <div class="col-lg-3 col-sm-5  d-flex justify-content-center"><label for="txt_fechaEvento" class = "text-rigth">Fechas del Evento: </label></div>   
-                <div class="col-lg-3 col-sm-2 d-flex justify-content-center"><input type="date" name="" id="txt_fechaEventoInicial" class = "form-control"></div>
-                <div class="col-lg-2 col-sm-1 d-flex justify-content-center mr-0 ml-0"><label for="">al </label></div>
-                <div class="col-lg-3 col-sm-2 d-flex justify-content-center"><input type="date" name="" id="txt_fechaEventoFinal" class = "form-control"></div>     
-=======
                 <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_uniCampus" class = "form-control"readonly></div>   
             </div> 
             <div class="row d-flex justify-content-center mt-2 mb-2">
@@ -270,35 +222,21 @@
                 <div class="col-lg-3 col-sm-2 d-flex justify-content-center"><input type="date" name="" id="txt_fechaEventoInicial" class = "form-control" readonly></div>
                 <div class="col-lg-2 col-sm-1 d-flex justify-content-center mr-0 ml-0"><label for="">al </label></div>
                 <div class="col-lg-3 col-sm-2 d-flex justify-content-center"><input type="date" name="" id="txt_fechaEventoFinal" class = "form-control" readonly></div>     
->>>>>>> origin/mod-usuario
             </div> 
 
             <div class="row d-flex justify-content-center mt-2 mb-2">
                 <div class="col-lg-3 col-sm d-flex justify-content-center"><label for="txt_lugarEvento"  class = "col-form-label">Lugar del evento: </label></div>   
-<<<<<<< HEAD
-                <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_lugarEvento" class = "form-control"></div>   
-=======
                 <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_lugarEvento" class = "form-control" readonly></div>   
->>>>>>> origin/mod-usuario
             </div> 
 
             <div class="row d-flex justify-content-center mt-2 mb-2">
                 <div class="col-lg-3 col-sm d-flex justify-content-center"><label for="txt_lugarEvento" class = "col-form-label">Lema de la universidad: </label></div>   
-<<<<<<< HEAD
-                <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_lugarEvento" class = "form-control"></div>   
-=======
                 <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_lema" class = "form-control" readonly></div>   
->>>>>>> origin/mod-usuario
             </div>
 
 
             <div class="row d-flex justify-content-center mt-2 mb-2">
                 <div class="col-lg-3 col-sm d-flex justify-content-center"><label for="txt_lugarEvento" class = "col-form-label">Asistencia (%):</label></div>   
-<<<<<<< HEAD
-                <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_lugarEvento" class = "form-control"></div>   
-            </div> 
-
-=======
                 <div class="col-lg-8 col-sm d-flex justify-content-center"><input type="text" name="" id="txt_asistencia" class = "form-control" readonly></div>   
             </div> 
 
@@ -308,14 +246,11 @@
                 </div>
             </div>
 
->>>>>>> origin/mod-usuario
              
 
         </div>
         
     </main>
-<<<<<<< HEAD
-=======
 
     
     <script src="../../../bibliotecas/js/jquery-3.4.1.js"></script>
@@ -327,6 +262,5 @@
 
 
     
->>>>>>> origin/mod-usuario
 </body>
 </html>

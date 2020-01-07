@@ -14,7 +14,7 @@ function vista_modal_horarioCurso(datos){
                                 msg = "Son iguales";
                                 var texto = ``;
 
-                                console.log(asistencia);
+                                //console.log(asistencia);
                                 
                                 
                                 
@@ -126,7 +126,6 @@ function vista_msg_actualizarAsistencia(datos){
 function vista_agregar_RegistroAsistencia(id){
     $('#modal_mostrarAsistencia').hide();
     $('#modal_agregarRegistroAsistencia').show();
-
 }
 
 

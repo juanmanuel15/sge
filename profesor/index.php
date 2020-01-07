@@ -1,11 +1,11 @@
-<?php  session_start();
-
-    require ('../php/base1.php');
-    require ('../php/Consultas.php'); 
+<?php  session_start();    
 
     if(isset($_SESSION['prof'])){
         header('Location: admin.php');
     }
+
+    require ('../php/base1.php');
+    require ('../php/Consultas.php'); 
     
     $error = "";
     if($_SERVER['REQUEST_METHOD']== 'POST'){
