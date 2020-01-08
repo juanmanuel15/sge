@@ -5,6 +5,71 @@
         header('Location: ../../profesor/index.php' );
     }
 ?>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_asistenciaUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_usuarioAsistencia"><b>Asistencia</b></h5>
+      </div>
+      <div class="modal-body">  
+        <main>
+            <div class="row d-flex justify-content-center my-3">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        
+                        <div class="col-4 d-flex justify-content-center">
+                            <b><label for="select_fechaActividad">Fecha :</label class = ""></b>
+                        </div>
+                        <div class="col-8 d-flex justify-content-center">
+                            <select name="select_fechaActividad" id="select_fechaActividad" class="form-control mx-2"></select>
+                        </div>
+                    </div>                    
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th class="text-center">Fecha</th>
+                            </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id = "table_asistentesInscritos">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_agregarCurso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Asistencia</h5>
+      </div>
+      <div class="modal-body">
+      </div>      
+    </div>
+  </div>
+</div>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

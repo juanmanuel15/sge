@@ -16,10 +16,9 @@ function leer_actividades(usuario){
 							<td>
 							${curso.relacion[i]['inscritos']}/${curso.relacion[i]['lugares']}
 							</td>	
-							<td><span class="i_asistencia"><i class="fas fa-book-open" id="btn_asistencia"> </i></span>
+							<td><span class="i_asistencia" ><i class="fas fa-book-open" id="btn_asistencia" valor = "${curso.cursos[i].id_curso}"> </i></span>
 							</td>
-							<td><span id="btn_generar" class="i_mostrar"><a href="reporte-curso/reporte.php?id=${curso.cursos[i].id_curso}"><i class="fas fa-share"></i></a></span></td>
-							
+							<td><span id="btn_generar" class="i_mostrar"><a href="lista.php?id=${curso.cursos[i].id_curso}"><i class="fas fa-share"></i></a></span></td>
 						</tr>
 						`;
 					}
@@ -29,5 +28,13 @@ function leer_actividades(usuario){
 				}
 			}
 		}
+	});
+}
+
+function asistencia_Alumnos(curso){
+	curso = {'curso': curso};
+	$.post('actividades/inscritos.php', curso,  function(respuesta){
+		var respuesta = JSON.parde(respuesta);
+		console.log(respuesta);
 	});
 }
